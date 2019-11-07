@@ -1,4 +1,4 @@
-import Phaser from 'phaser'
+import Phaser, { Tilemaps } from 'phaser'
 const config = {
   type: Phaser.AUTO,
   width: 800,
@@ -24,6 +24,8 @@ function preload() {
   this.load.image('ground', 'assets/platform.png')
   this.load.image('star', 'assets/star.png')
   this.load.image('bomb', 'assets/bomb.png')
+  this.load.image('tiles', 'assets/jungle_set.png')
+  this.load.tilemapTiledJSON('map', 'assets/jungle_set.json')
   this.load.spritesheet('dude', 'assets/dude.png', {
     frameWidth: 32,
     frameHeight: 48,
@@ -40,7 +42,21 @@ let scoreText
 const gameOver = false
 
 function create() {
-  this.add.image(400, 300, 'sky')
+  const scene: Phaser.Scene = this
+  scene.add.image(400, 300, 'sky')
+  const level = [[0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0], [undefined, 9, 9]]
+  const map = this.make.tilemap({ data: level, tileWidth: 40, tileHeight: 40 })
+  const tiles = map.addTilesetImage('tiles')
+  const layer = map.createStaticLayer(0, tiles, 0, 0)
+  // const tileSet = new Phaser.Tilemaps.Tileset('jungle_set', 0)
+  // const map = scene.make.tilemap({ key: 'map' })
+  // const tileSet = map.addTilesetImage('jungle', 'tiles')
+  // const layer = map.createStaticLayer('World1', tileSet, 0, 0)
+  // const layer = new Phaser.Tilemaps.LayerData('jungle')
+  // const tile = new Phaser.Tilemaps.Tile(layer, 0, 0, 0, 30, 30, 30, 10)
+  scene.add.tilemap('jungle', 0, 0)
+  // const tileset = this.addTilesetImage('jungle_set', 'tiles')
+  // this.add.image(400, 300, 'jungle_set')
   // this.add.image(400, 300, 'star')
   platforms = this.physics.add.staticGroup()
 

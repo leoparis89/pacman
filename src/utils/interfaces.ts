@@ -1,4 +1,4 @@
-interface Node {
+interface Vertex {
   id: string
   visited?: boolean
 }

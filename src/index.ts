@@ -45,7 +45,7 @@ function create() {
   const scene: Phaser.Scene = this
   // scene.add.image(400, 300, 'sky')
   const level = [
-    [0, 9, 0, 3, 0, 0, 0, 0, 0, 0, 0],
+    [17, 9, 0, 3, 0, 0, 0, 0, 0, 0, 0],
     [0, 9, 0, 3, 0, 0, 0, 0, 0, 0, 0],
     [0, 9, null, 3, 0, 0, 0, 0, 0, 0, 0],
   ]

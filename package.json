@@ -8,8 +8,10 @@
   },
   "devDependencies": {
     "@poi/plugin-typescript": "^12.2.1",
+    "@types/jest": "^24.0.23",
     "@types/poi": "^12.5.0",
     "@types/prettier": "^1.18.3",
+    "jest": "^24.9.0",
     "poi": "^12.7.3",
     "prettier": "^1.18.2",
     "tslint": "^5.20.1",
@@ -17,6 +19,7 @@
     "typescript": "^3.7.2"
   },
   "scripts": {
-    "dev": "yarn poi --serve src/index.ts"
+    "dev": "yarn poi --serve src/index.ts",
+    "test:watch": "jest"
   }
 }

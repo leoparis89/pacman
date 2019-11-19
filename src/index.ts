@@ -1,8 +1,8 @@
 import Phaser, { Tilemaps } from 'phaser'
 const config = {
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
+  width: 960,
+  height: 960,
   physics: {
     default: 'arcade',
     arcade: {
@@ -20,10 +20,10 @@ const config = {
 const game = new Phaser.Game(config)
 
 function preload() {
-  this.load.image('sky', 'assets/sky.png')
+  // this.load.image('sky', 'assets/sky.png')
   this.load.image('ground', 'assets/platform.png')
-  this.load.image('star', 'assets/star.png')
-  this.load.image('bomb', 'assets/bomb.png')
+  // this.load.image('star', 'assets/star.png')
+  // this.load.image('bomb', 'assets/bomb.png')
   this.load.image('tiles', 'assets/jungle_set.png')
   this.load.tilemapTiledJSON('map', 'assets/jungle_set.json')
   this.load.spritesheet('dude', 'assets/dude.png', {
@@ -43,9 +43,9 @@ const gameOver = false
 
 function create() {
   const scene: Phaser.Scene = this
-  scene.add.image(400, 300, 'sky')
+  // scene.add.image(400, 300, 'sky')
   const level = [[0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0], [undefined, 9, 9]]
-  const map = this.make.tilemap({ data: level, tileWidth: 40, tileHeight: 40 })
+  const map = this.make.tilemap({ data: level, tileWidth: 48, tileHeight: 48 })
   const tiles = map.addTilesetImage('tiles')
   const layer = map.createStaticLayer(0, tiles, 0, 0)
   // this.add.image(400, 300, 'star')

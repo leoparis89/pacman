@@ -48,28 +48,19 @@ function create() {
   const map = this.make.tilemap({ data: level, tileWidth: 40, tileHeight: 40 })
   const tiles = map.addTilesetImage('tiles')
   const layer = map.createStaticLayer(0, tiles, 0, 0)
-  // const tileSet = new Phaser.Tilemaps.Tileset('jungle_set', 0)
-  // const map = scene.make.tilemap({ key: 'map' })
-  // const tileSet = map.addTilesetImage('jungle', 'tiles')
-  // const layer = map.createStaticLayer('World1', tileSet, 0, 0)
-  // const layer = new Phaser.Tilemaps.LayerData('jungle')
-  // const tile = new Phaser.Tilemaps.Tile(layer, 0, 0, 0, 30, 30, 30, 10)
-  scene.add.tilemap('jungle', 0, 0)
-  // const tileset = this.addTilesetImage('jungle_set', 'tiles')
-  // this.add.image(400, 300, 'jungle_set')
   // this.add.image(400, 300, 'star')
-  platforms = this.physics.add.staticGroup()
+  // platforms = this.physics.add.staticGroup()
 
-  platforms
-    .create(400, 568, 'ground')
-    .setScale(2)
-    .refreshBody()
+  // platforms
+  //   .create(400, 568, 'ground')
+  //   .setScale(2)
+  //   .refreshBody()
 
   // platforms.create(600, 400, 'ground')
   // platforms.create(50, 250, 'ground')
   // platforms.create(750, 220, 'ground')
 
-  // player = this.physics.add.sprite(100, 450, 'dude')
+  player = this.physics.add.sprite(100, 450, 'dude')
 
   // player.setBounce(0.2)
   // player.setCollideWorldBounds(true)

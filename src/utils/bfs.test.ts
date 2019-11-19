@@ -56,7 +56,7 @@ test('gridToGraph should return the right value (two unlinked values)', () => {
   ]
 
   const expected = {
-    nodes: [{ id: '2:2' }, { id: '3:4' }],
+    nodes: [{ id: '2:2' }, { id: '4:3' }],
     edges: [],
   }
 
@@ -75,7 +75,33 @@ test('gridToGraph should return the right value (one link)', () => {
   ]
 
   const expected = {
-    nodes: [{ id: '2:2' }, { id: '2:3' }],
+    nodes: [
+      {
+        id: '2:2',
+      },
+      {
+        id: '3:2',
+      },
+    ],
+    edges: [['2:2', '3:2'], ['3:2', '2:2']],
+  }
+
+  expect(gridToGraph(grid)).toEqual(expected)
+})
+
+test.skip('gridToGraph should return the right value (more complex)', () => {
+  const o = 'something'
+  const x = null
+  const grid = [
+    [x, x, x, x, x],
+    [x, x, x, x, x],
+    [x, x, o, o, x],
+    [x, x, x, o, x],
+    [x, x, x, x, x],
+  ]
+
+  const expected = {
+    nodes: [{ id: '2:2' }, { id: '2:3' }, { id: '3:3' }],
     edges: [['2:2', '3:2']],
   }
 

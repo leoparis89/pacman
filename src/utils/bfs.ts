@@ -4,8 +4,8 @@ export const gridToGraph = (grid: any[][]) => {
 
   const edges: Edge[] = []
 
-  grid.forEach((row, i) => {
-    row.forEach((cell, j) => {
+  grid.forEach((row, j) => {
+    row.forEach((cell, i) => {
       const id = makeId(i, j)
       if (cell) {
         const vertex: Vertex = {
@@ -13,11 +13,12 @@ export const gridToGraph = (grid: any[][]) => {
         }
         nodes.push(vertex)
 
+        // node on top
         if (getCell(i, j + 1)) {
           edges.push([id, makeId(i, j + 1)])
         }
         // node under
-        if (getCell(i, j + 1)) {
+        if (getCell(i, j - 1)) {
           edges.push([id, makeId(i, j - 1)])
         }
         // node on the left

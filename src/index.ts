@@ -112,16 +112,27 @@ function update() {
   if (cursors.left.isDown) {
     player.setVelocityX(-160)
     player.anims.play('left', true)
-  } else if (cursors.right.isDown) {
+    return
+  }
+  if (cursors.right.isDown) {
     player.setVelocityX(160)
     player.anims.play('right', true)
-  } else {
-    player.setVelocityX(0)
-    player.anims.play('turn')
+    return
   }
-  if (cursors.up.isDown && player.body.touching.down) {
-    player.setVelocityY(-330)
+  if (cursors.up.isDown) {
+    player.setVelocityY(-160)
+    player.anims.play('turn', true)
+    return
   }
+
+  if (cursors.down.isDown) {
+    player.setVelocityY(160)
+    player.anims.play('turn', true)
+    return
+  }
+  player.anims.play('turn', true)
+  player.setVelocityX(0)
+  player.setVelocityY(0)
 }
 
 // function collectStar(player, star) {

@@ -13,12 +13,12 @@ import { gridToGraph } from './bfs'
 
 //   const expected = {
 //     nodes: [
-//       { id: '0-2' },
-//       { id: '2-2' },
-//       { id: '2-3' },
-//       { id: '3-2' },
-//       { id: '3-4' },
-//       { id: '4-2' },
+//       { id: '0:2' },
+//       { id: '2:2' },
+//       { id: '2:3' },
+//       { id: '3:2' },
+//       { id: '3:4' },
+//       { id: '4:2' },
 //     ],
 //   }
 
@@ -37,7 +37,7 @@ test('gridToGraph should return the right value (single value)', () => {
   ]
 
   const expected = {
-    nodes: [{ id: '2-2' }],
+    nodes: [{ id: '2:2' }],
     edges: [],
   }
 
@@ -56,7 +56,7 @@ test('gridToGraph should return the right value (two unlinked values)', () => {
   ]
 
   const expected = {
-    nodes: [{ id: '2-2' }, { id: '3-4' }],
+    nodes: [{ id: '2:2' }, { id: '3:4' }],
     edges: [],
   }
 
@@ -75,8 +75,8 @@ test('gridToGraph should return the right value (one link)', () => {
   ]
 
   const expected = {
-    nodes: [{ id: '2-2' }, { id: '2-3' }],
-    edges: [['2-2', '3-2']],
+    nodes: [{ id: '2:2' }, { id: '2:3' }],
+    edges: [['2:2', '3:2']],
   }
 
   expect(gridToGraph(grid)).toEqual(expected)

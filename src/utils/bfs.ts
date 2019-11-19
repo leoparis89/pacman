@@ -35,4 +35,4 @@ export const gridToGraph = (grid: any[][]) => {
 }
 
 const _getCell = grid => (i, j) => grid[j] && grid[j][i]
-const makeId = (i, j) => `${i}-${j}`
+const makeId = (i, j) => `${i}:${j}`

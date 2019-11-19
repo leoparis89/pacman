@@ -44,17 +44,25 @@ const gameOver = false
 function create() {
   const scene: Phaser.Scene = this
   // scene.add.image(400, 300, 'sky')
-  const level = [[0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0], [undefined, 9, 9]]
-  const map = this.make.tilemap({ data: level, tileWidth: 48, tileHeight: 48 })
+  const level = [
+    [0, 9, 0, 3, 0, 0, 0, 0, 0, 0, 0],
+    [0, 9, 0, 3, 0, 0, 0, 0, 0, 0, 0],
+    [0, 9, null, 3, 0, 0, 0, 0, 0, 0, 0],
+  ]
+  const map = scene.make.tilemap({
+    data: level,
+    tileWidth: 48,
+    tileHeight: 48,
+  } as any)
   const tiles = map.addTilesetImage('tiles')
+  map.setCollisionBetween(0, 9)
   const layer = map.createStaticLayer(0, tiles, 0, 0)
-  // this.add.image(400, 300, 'star')
-  // platforms = this.physics.add.staticGroup()
+  platforms = this.physics.add.staticGroup()
 
-  // platforms
-  //   .create(400, 568, 'ground')
-  //   .setScale(2)
-  //   .refreshBody()
+  platforms
+    .create(400, 568, 'ground')
+    .setScale(2)
+    .refreshBody()
 
   // platforms.create(600, 400, 'ground')
   // platforms.create(50, 250, 'ground')
@@ -63,8 +71,9 @@ function create() {
   player = this.physics.add.sprite(100, 450, 'dude')
 
   // player.setBounce(0.2)
-  // player.setCollideWorldBounds(true)
-  // this.physics.add.collider(player, platforms)
+  player.setCollideWorldBounds(true)
+  this.physics.add.collider(player, platforms)
+  this.physics.add.collider(player, layer)
 
   this.anims.create({
     key: 'left',

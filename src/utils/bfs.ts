@@ -7,7 +7,7 @@ export const gridToGraph = (grid: any[][], path) => {
   grid.forEach((row, j) => {
     row.forEach((cell, i) => {
       const id = makeId(i, j)
-      if (cell) {
+      if (cell === path) {
         const vertex: Vertex = {
           id,
         }

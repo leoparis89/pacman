@@ -1,5 +1,6 @@
 import Phaser, { Tilemaps } from 'phaser'
 
+import { gridToGraph } from './utils/bfs'
 import level from './utils/level'
 const cellSize = 48
 
@@ -94,3 +95,7 @@ function refreshPos(ghost) {
 setInterval(() => {
   gridPos.x = gridPos.x + 1
 }, 500)
+
+debugger
+const result = gridToGraph(level, null)
+console.log(result)

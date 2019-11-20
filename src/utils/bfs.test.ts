@@ -89,6 +89,31 @@ test('gridToGraph should return the right value (one link)', () => {
   expect(gridToGraph(grid, o)).toEqual(expected)
 })
 
+test('gridToGraph should return the right value (null path)', () => {
+  const o = null
+  const x = 'wall'
+  const grid = [
+    [x, x, x, x, x],
+    [x, x, x, x, x],
+    [x, x, o, o, x],
+    [x, x, x, x, x],
+    [x, x, x, x, x],
+  ]
+
+  const expected = {
+    nodes: [
+      {
+        id: '2:2',
+      },
+      {
+        id: '3:2',
+      },
+    ],
+    edges: [['2:2', '3:2'], ['3:2', '2:2']],
+  }
+
+  expect(gridToGraph(grid, null)).toEqual(expected)
+})
 test.skip('gridToGraph should return the right value (more complex)', () => {
   const o = 'something'
   const x = null

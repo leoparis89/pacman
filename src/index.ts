@@ -21,11 +21,8 @@ const game = new Phaser.Game(config)
 
 function preload() {
   const scene: Phaser.Scene = this
-  // this.load.image('sky', 'assets/sky.png')
   scene.load.image('ground', 'assets/platform.png')
   scene.load.image('ghost', 'assets/ghost.png')
-  // this.load.image('star', 'assets/star.png')
-  // this.load.image('bomb', 'assets/bomb.png')
   this.load.image('tiles', 'assets/jungle_set.png')
   this.load.tilemapTiledJSON('map', 'assets/jungle_set.json')
   this.load.spritesheet('dude', 'assets/dude.png', {
@@ -34,14 +31,7 @@ function preload() {
   })
 }
 
-let platforms
-let player
 let cursors
-let stars
-let bombs
-const score = 0
-let scoreText
-const gameOver = false
 
 let ghost
 
@@ -159,7 +149,7 @@ function update() {
   // player.anims.play('turn', true)
   // player.setVelocityX(0)
   // player.setVelocityY(0)
-  ghost.setX(70)
+  // ghost.setX(70)
 }
 
 // function collectStar(player, star) {

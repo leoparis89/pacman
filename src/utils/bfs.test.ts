@@ -41,7 +41,7 @@ test('gridToGraph should return the right value (single value)', () => {
     edges: [],
   }
 
-  expect(gridToGraph(grid)).toEqual(expected)
+  expect(gridToGraph(grid, o)).toEqual(expected)
 })
 
 test('gridToGraph should return the right value (two unlinked values)', () => {
@@ -60,7 +60,7 @@ test('gridToGraph should return the right value (two unlinked values)', () => {
     edges: [],
   }
 
-  expect(gridToGraph(grid)).toEqual(expected)
+  expect(gridToGraph(grid, o)).toEqual(expected)
 })
 
 test('gridToGraph should return the right value (one link)', () => {
@@ -86,7 +86,7 @@ test('gridToGraph should return the right value (one link)', () => {
     edges: [['2:2', '3:2'], ['3:2', '2:2']],
   }
 
-  expect(gridToGraph(grid)).toEqual(expected)
+  expect(gridToGraph(grid, o)).toEqual(expected)
 })
 
 test.skip('gridToGraph should return the right value (more complex)', () => {
@@ -105,5 +105,5 @@ test.skip('gridToGraph should return the right value (more complex)', () => {
     edges: [['2:2', '3:2']],
   }
 
-  expect(gridToGraph(grid)).toEqual(expected)
+  expect(gridToGraph(grid, o)).toEqual(expected)
 })

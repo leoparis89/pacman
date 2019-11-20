@@ -38,10 +38,29 @@ let ghost
 function create() {
   const scene: Phaser.Scene = this
   // scene.add.image(400, 300, 'sky')
+  const x = null
+  const o = 9
   const level = [
-    [17, 9, 0, 3, 0, 0, 0, 0, 0, 0, 0],
-    [0, 9, 0, 3, 0, 0, 0, 0, 0, 0, 0],
-    [0, 9, null, 3, 0, 0, 0, 0, 0, 0, 0],
+    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, o],
+    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+    [x, x, x, x, x, o, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+    [x, x, x, x, x, x, x, x, x, o, x, x, x, x, x, x, x, x, x, o],
   ]
   const map = scene.make.tilemap({
     data: level,
@@ -51,7 +70,6 @@ function create() {
   const tiles = map.addTilesetImage('tiles')
   map.setCollisionBetween(0, 9)
   const layer = map.createStaticLayer(0, tiles, 0, 0)
-  platforms = this.physics.add.staticGroup()
 
   // platforms
   //   .create(400, 568, 'ground')
@@ -72,7 +90,7 @@ function create() {
   // player.setCollideWorldBounds(true)
   // this.physics.add.collider(player, platforms)
   // this.physics.add.collider(ghost, platforms)
-  // this.physics.add.collider(player, layer)
+  this.physics.add.collider(ghost, layer)
 
   // this.anims.create({
   //   key: 'left',

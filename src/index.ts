@@ -110,6 +110,10 @@ function update() {
 }
 
 function refreshPos(ghost) {
-  ghost.setX(gridPos.x + cellSize / 2)
-  ghost.setY(gridPos.y + cellSize / 2)
+  ghost.setX(gridPos.x * cellSize + cellSize / 2)
+  ghost.setY(gridPos.y * cellSize + cellSize / 2)
 }
+
+setInterval(() => {
+  gridPos.x = gridPos.x + 1
+}, 500)

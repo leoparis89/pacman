@@ -20,8 +20,10 @@ const config = {
 const game = new Phaser.Game(config)
 
 function preload() {
+  const scene: Phaser.Scene = this
   // this.load.image('sky', 'assets/sky.png')
-  this.load.image('ground', 'assets/platform.png')
+  scene.load.image('ground', 'assets/platform.png')
+  scene.load.image('ghost', 'assets/ghost.png')
   // this.load.image('star', 'assets/star.png')
   // this.load.image('bomb', 'assets/bomb.png')
   this.load.image('tiles', 'assets/jungle_set.png')
@@ -40,6 +42,8 @@ let bombs
 const score = 0
 let scoreText
 const gameOver = false
+
+let ghost
 
 function create() {
   const scene: Phaser.Scene = this
@@ -67,6 +71,9 @@ function create() {
   // platforms.create(600, 400, 'ground')
   // platforms.create(50, 250, 'ground')
   // platforms.create(750, 220, 'ground')
+  ghost = scene.physics.add.image(200, 200, 'ghost')
+  ghost.displayWidth = 48
+  ghost.displayHeight = 48
 
   player = this.physics.add.sprite(100, 450, 'dude')
 

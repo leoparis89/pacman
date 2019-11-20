@@ -1,7 +1,8 @@
 import Phaser, { Tilemaps } from 'phaser'
 
 import { gridToGraph } from './utils/bfs'
-import level from './utils/level'
+import level, { emptyLevel } from './utils/level'
+
 const cellSize = 48
 
 const config = {
@@ -44,7 +45,7 @@ function create() {
   const scene: Phaser.Scene = this
   // scene.add.image(400, 300, 'sky')
   const map = scene.make.tilemap({
-    data: level,
+    data: emptyLevel,
     tileWidth: cellSize,
     tileHeight: cellSize,
   } as any)
@@ -96,5 +97,5 @@ setInterval(() => {
   gridPos.x = gridPos.x + 1
 }, 500)
 
-const result = gridToGraph(level, null)
+const result = gridToGraph(emptyLevel, null)
 console.log(result)

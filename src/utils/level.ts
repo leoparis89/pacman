@@ -23,3 +23,26 @@ export default [
   [o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o],
   [o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o],
 ]
+
+export const emptyLevel = [
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+  [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
+]

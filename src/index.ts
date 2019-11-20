@@ -1,4 +1,7 @@
 import Phaser, { Tilemaps } from 'phaser'
+
+const cellSize = 48
+
 const config = {
   type: Phaser.AUTO,
   width: 960,
@@ -25,15 +28,15 @@ function preload() {
   scene.load.image('ghost', 'assets/ghost.png')
   this.load.image('tiles', 'assets/jungle_set.png')
   this.load.tilemapTiledJSON('map', 'assets/jungle_set.json')
-  this.load.spritesheet('dude', 'assets/dude.png', {
-    frameWidth: 32,
-    frameHeight: 48,
-  })
 }
 
 let cursors
-
 let ghost
+
+const gridPos = {
+  x: 0,
+  y: 0,
+}
 
 function create() {
   const scene: Phaser.Scene = this
@@ -64,16 +67,16 @@ function create() {
   ]
   const map = scene.make.tilemap({
     data: level,
-    tileWidth: 48,
-    tileHeight: 48,
+    tileWidth: cellSize,
+    tileHeight: cellSize,
   } as any)
   const tiles = map.addTilesetImage('tiles')
   map.setCollisionBetween(0, 9)
   const layer = map.createStaticLayer(0, tiles, 0, 0)
 
   ghost = scene.physics.add.image(200, 200, 'ghost')
-  ghost.displayWidth = 48
-  ghost.displayHeight = 48
+  ghost.displayWidth = cellSize
+  ghost.displayHeight = cellSize
 
   ghost.setCollideWorldBounds(true)
   this.physics.add.collider(ghost, layer)
@@ -101,4 +104,12 @@ function update() {
 
   ghost.setVelocity(0)
   // ghost.setX(70)
+  ghost.setX(gridPos.x + 24)
+  ghost.setY(gridPos.y + 24)
+  refreshPos(ghost)
+}
+
+function refreshPos(ghost) {
+  ghost.setX(gridPos.x + cellSize / 2)
+  ghost.setY(gridPos.y + cellSize / 2)
 }

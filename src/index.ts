@@ -96,6 +96,5 @@ setInterval(() => {
   gridPos.x = gridPos.x + 1
 }, 500)
 
-debugger
 const result = gridToGraph(level, null)
 console.log(result)

@@ -155,9 +155,11 @@ function update() {
   }
 
   ghost.setVelocity(0)
+  // ghost.setX(10)
   // player.anims.play('turn', true)
   // player.setVelocityX(0)
   // player.setVelocityY(0)
+  ghost.setX(70)
 }
 
 // function collectStar(player, star) {

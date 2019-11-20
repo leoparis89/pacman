@@ -1,5 +1,6 @@
 import Phaser, { Tilemaps } from 'phaser'
 
+import level from './utils/level'
 const cellSize = 48
 
 const config = {
@@ -41,30 +42,6 @@ const gridPos = {
 function create() {
   const scene: Phaser.Scene = this
   // scene.add.image(400, 300, 'sky')
-  const x = null
-  const o = 9
-  const level = [
-    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, o],
-    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
-    [x, x, x, x, x, o, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
-    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
-    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
-    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
-    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
-    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
-    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
-    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
-    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
-    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
-    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
-    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
-    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
-    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
-    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
-    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
-    [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x],
-    [x, x, x, x, x, x, x, x, x, o, x, x, x, x, x, x, x, x, x, o],
-  ]
   const map = scene.make.tilemap({
     data: level,
     tileWidth: cellSize,

@@ -77,9 +77,11 @@ function create() {
 
   player = this.physics.add.sprite(100, 450, 'dude')
 
+  ghost.setCollideWorldBounds(true)
   // player.setBounce(0.2)
   player.setCollideWorldBounds(true)
   this.physics.add.collider(player, platforms)
+  this.physics.add.collider(ghost, platforms)
   this.physics.add.collider(player, layer)
 
   this.anims.create({
@@ -126,29 +128,36 @@ function create() {
 }
 function update() {
   if (cursors.left.isDown) {
-    player.setVelocityX(-160)
-    player.anims.play('left', true)
+    // player.setVelocityX(-160)
+    // player.anims.play('left', true)
+    ghost.setVelocityX(-160)
     return
   }
   if (cursors.right.isDown) {
-    player.setVelocityX(160)
-    player.anims.play('right', true)
+    // player.setVelocityX(160)
+    // player.anims.play('right', true)
+
+    ghost.setVelocityX(160)
     return
   }
   if (cursors.up.isDown) {
-    player.setVelocityY(-160)
-    player.anims.play('turn', true)
+    // player.setVelocityY(-160)
+    // player.anims.play('turn', true)
+    ghost.setVelocityY(-160)
     return
   }
 
   if (cursors.down.isDown) {
-    player.setVelocityY(160)
-    player.anims.play('turn', true)
+    // player.setVelocityY(160)
+    // player.anims.play('turn', true)
+    ghost.setVelocityY(160)
     return
   }
-  player.anims.play('turn', true)
-  player.setVelocityX(0)
-  player.setVelocityY(0)
+
+  ghost.setVelocity(0)
+  // player.anims.play('turn', true)
+  // player.setVelocityX(0)
+  // player.setVelocityY(0)
 }
 
 // function collectStar(player, star) {

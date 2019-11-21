@@ -114,21 +114,26 @@ test('gridToGraph should return the right value (null path)', () => {
 
   expect(gridToGraph(grid, null)).toEqual(expected)
 })
-test.skip('gridToGraph should return the right value (more complex)', () => {
-  const o = 'something'
-  const x = null
-  const grid = [
-    [x, x, x, x, x],
-    [x, x, x, x, x],
-    [x, x, o, o, x],
-    [x, x, x, o, x],
-    [x, x, x, x, x],
-  ]
 
-  const expected = {
-    nodes: [{ id: '2:2' }, { id: '2:3' }, { id: '3:3' }],
-    edges: [['2:2', '3:2']],
+test('doBfs should visit all nodes', () => {
+  const input = {
+    nodes: [
+      {
+        id: 'a',
+      },
+      {
+        id: 'b',
+      },
+      {
+        id: 'c',
+      },
+      {
+        id: 'd',
+      },
+      {
+        id: 'e',
+      },
+    ],
+    edges: [['a', 'b'], ['a', 'c'], ['a', 'd'], ['c', 'e']],
   }
-
-  expect(gridToGraph(grid, o)).toEqual(expected)
 })

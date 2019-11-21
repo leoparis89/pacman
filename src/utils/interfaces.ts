@@ -1,6 +1,12 @@
 interface Vertex {
   id: string
-  visited?: boolean
+  discovered?: boolean
+  parent: string
 }
 
 type Edge = [string, string]
+
+interface Graph {
+  nodes: Vertex[]
+  edges: Edge[]
+}

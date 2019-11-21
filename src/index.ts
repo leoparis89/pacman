@@ -97,5 +97,5 @@ setInterval(() => {
   gridPos.x = gridPos.x + 1
 }, 500)
 
-const result = gridToGraph(emptyLevel, null)
-console.log(result)
+const graph = gridToGraph(emptyLevel, null)
+console.log(graph)

@@ -38,21 +38,33 @@ export const gridToGraph = (grid: any[][], path) => {
 const _getCell = grid => (i, j) => grid[j] && grid[j][i]
 const makeId = (i, j) => `${i}:${j}`
 
-export const doBfs = (graph: Graph, seedId) => {
-  const seed = graph.nodes.find(n => n.id === seedId)
+export const doBfs = (g: Graph, seedId: string, goalId: string) => {
+  const graph: Graph = JSON.parse(JSON.stringify(g))
+  const getNode = _getNode(graph.nodes)
+
+  const seed = getNode(seedId)
+  const goal = getNode(goalId)
+
   if (!seed) {
     throw new Error(`No seed found with id ${seedId}!`)
   }
+
+  if (!goal) {
+    throw new Error(`No goal found with id ${goalId}!`)
+  }
+
   const queue: Vertex[] = []
   seed.discovered = true
   queue.unshift(seed)
 
   while (queue.length) {
     const current = queue.shift()!
-
     // if current is the goal return current
-
+    if (current.id === goalId) {
+      return getPath(graph.nodes, seedId, goalId)
+    }
     const neighbors = getNeighbors(current.id, graph)
+
     for (const neighbor of neighbors) {
       if (!neighbor.discovered) {
         neighbor.discovered = true
@@ -61,6 +73,7 @@ export const doBfs = (graph: Graph, seedId) => {
       }
     }
   }
+  return graph
 }
 
 function getNeighbors(id, graph: Graph) {
@@ -70,3 +83,22 @@ function getNeighbors(id, graph: Graph) {
   )
   return neighbors
 }
+
+function getPath(nodes: Vertex[], seedId, goalId) {
+  const getNode = _getNode(nodes)
+  const result = [goalId]
+
+  const goal = getNode(goalId)!
+
+  let current = getNode(goal.parent!)!
+  result.push(current.id)
+
+  while (current.id !== seedId) {
+    current = getNode(current.parent!)!
+    result.push(current.id)
+  }
+  return result.reverse()
+}
+
+const _getNode = (nodes: Vertex[]) => (id: string) =>
+  nodes.find(n => n.id === id)

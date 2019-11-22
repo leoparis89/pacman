@@ -1,4 +1,4 @@
-import { gridToGraph } from './bfs'
+import { doBfs, gridToGraph } from './bfs'
 
 // test('gridToGraph should return the right value (case 1)', () => {
 //   const o = 'something'
@@ -116,7 +116,7 @@ test('gridToGraph should return the right value (null path)', () => {
 })
 
 test('doBfs should visit all nodes', () => {
-  const input = {
+  const input: Graph = {
     nodes: [
       {
         id: 'a',
@@ -136,4 +136,6 @@ test('doBfs should visit all nodes', () => {
     ],
     edges: [['a', 'b'], ['a', 'c'], ['a', 'd'], ['c', 'e']],
   }
+
+  expect(doBfs(input, 'a', 'e')).toEqual(['a', 'c', 'e'])
 })

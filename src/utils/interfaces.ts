@@ -1,7 +1,7 @@
 interface Vertex {
   id: string
   discovered?: boolean
-  parent: string
+  parent?: string
 }
 
 type Edge = [string, string]

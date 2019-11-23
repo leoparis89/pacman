@@ -1,6 +1,6 @@
 import Phaser, { Tilemaps } from 'phaser'
 
-import { gridToGraph } from './utils/bfs'
+import { getShortestPath, gridToGraph } from './utils/bfs'
 import level, { emptyLevel } from './utils/level'
 
 const cellSize = 48
@@ -99,3 +99,5 @@ setInterval(() => {
 
 const graph = gridToGraph(emptyLevel, null)
 console.log(graph)
+const path = getShortestPath(graph, '1:1', '5:1')
+console.log(path)

@@ -38,7 +38,7 @@ export const gridToGraph = (grid: any[][], path) => {
 const _getCell = grid => (i, j) => grid[j] && grid[j][i]
 const makeId = (i, j) => `${i}:${j}`
 
-export const doBfs = (g: Graph, seedId: string, goalId: string) => {
+export const getShortestPath = (g: Graph, seedId: string, goalId: string) => {
   const graph: Graph = JSON.parse(JSON.stringify(g))
   const getNode = _getNode(graph.nodes)
 

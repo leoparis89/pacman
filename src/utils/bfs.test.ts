@@ -1,4 +1,4 @@
-import { doBfs, gridToGraph } from './bfs'
+import { getShortestPath, gridToGraph } from './bfs'
 
 // test('gridToGraph should return the right value (case 1)', () => {
 //   const o = 'something'
@@ -137,5 +137,5 @@ test('doBfs should visit all nodes', () => {
     edges: [['a', 'b'], ['a', 'c'], ['a', 'd'], ['c', 'e']],
   }
 
-  expect(doBfs(input, 'a', 'e')).toEqual(['a', 'c', 'e'])
+  expect(getShortestPath(input, 'a', 'e')).toEqual(['a', 'c', 'e'])
 })

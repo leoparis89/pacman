@@ -215,4 +215,48 @@ describe('gridToGraph then getShortestPath', () => {
       '2:2',
     ])
   })
+
+  it('should return the right value (2x2 no obstacles horizontal)', () => {
+    const o = 'something'
+    const x = undefined
+    const grid = [
+      [o, o], ///////
+      [o, o],
+    ]
+
+    const graph = gridToGraph(grid, o)
+    expect(graph.edges).toEqual([
+      ['0:0', '0:1'],
+      ['0:0', '1:0'],
+      ['1:0', '1:1'],
+      ['1:0', '0:0'],
+      ['0:1', '0:0'],
+      ['0:1', '1:1'],
+      ['1:1', '1:0'],
+      ['1:1', '0:1'],
+    ])
+    expect(getShortestPath(graph, '0:0', '1:0')).toEqual(['0:0', '1:0'])
+  })
+
+  it('should return the right value (2x2 no obstacles vertical)', () => {
+    const o = 'something'
+    const x = undefined
+    const grid = [
+      [o, o], ///////
+      [o, o],
+    ]
+
+    const graph = gridToGraph(grid, o)
+    expect(graph.edges).toEqual([
+      ['0:0', '0:1'],
+      ['0:0', '1:0'],
+      ['1:0', '1:1'],
+      ['1:0', '0:0'],
+      ['0:1', '0:0'],
+      ['0:1', '1:1'],
+      ['1:1', '1:0'],
+      ['1:1', '0:1'],
+    ])
+    expect(getShortestPath(graph, '0:0', '0:1')).toEqual(['0:0', '0:1'])
+  })
 })

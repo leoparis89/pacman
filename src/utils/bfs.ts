@@ -58,7 +58,7 @@ export const getShortestPath = (g: Graph, seedId: string, goalId: string) => {
   queue.unshift(seed)
 
   while (queue.length) {
-    const current = queue.shift()!
+    const current = queue.pop()!
     // if current is the goal return current
     if (current.id === goalId) {
       return getPath(graph.nodes, seedId, goalId)

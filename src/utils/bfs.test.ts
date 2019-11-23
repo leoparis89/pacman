@@ -115,7 +115,7 @@ test('gridToGraph should return the right value (null path)', () => {
   expect(gridToGraph(grid, null)).toEqual(expected)
 })
 
-test('doBfs should visit all nodes', () => {
+test('getShortestPatch should return the shortest path from seed node to goal node', () => {
   const input: Graph = {
     nodes: [
       {

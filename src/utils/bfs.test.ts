@@ -285,4 +285,19 @@ describe('gridToGraph then getShortestPath', () => {
     const graph = gridToGraph(grid, o)
     expect(getShortestPath(graph, '0:0', '0:2')).toEqual(['0:0', '0:1', '0:2'])
   })
+
+  it('should return the right value (3x3 no obstacles horizontal)', () => {
+    const o = 'something'
+    const x = undefined
+    const grid = [
+      [o, o, o], ///////
+      [o, o, o],
+      [o, o, o],
+    ]
+
+    const graph = gridToGraph(grid, o)
+    expect(getShortestPath(graph, '0:0', '1:0')).toEqual(['0:0', '1:0'])
+    //  ["0:0", "0:1", "0:2", "1:2", "2:2", "2:1", "2:0"]
+    expect(getShortestPath(graph, '0:0', '2:0')).toEqual('')
+  })
 })

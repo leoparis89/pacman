@@ -149,66 +149,70 @@ describe('gridToGraph function', () => {
 //   expect(gridToGraph(grid, null)).toEqual(expected)
 // })
 
-test('getShortestPatch should return the shortest path from seed node to goal node', () => {
-  const input: Graph = {
-    nodes: [
-      {
-        id: 'a',
-      },
-      {
-        id: 'b',
-      },
-      {
-        id: 'c',
-      },
-      {
-        id: 'd',
-      },
-      {
-        id: 'e',
-      },
-    ],
-    edges: [['a', 'b'], ['a', 'c'], ['a', 'd'], ['c', 'e']],
-  }
+describe('getShortestPath function', () => {
+  test('it should return the shortest path from seed node to goal node', () => {
+    const input: Graph = {
+      nodes: [
+        {
+          id: 'a',
+        },
+        {
+          id: 'b',
+        },
+        {
+          id: 'c',
+        },
+        {
+          id: 'd',
+        },
+        {
+          id: 'e',
+        },
+      ],
+      edges: [['a', 'b'], ['a', 'c'], ['a', 'd'], ['c', 'e']],
+    }
 
-  expect(getShortestPath(input, 'a', 'e')).toEqual(['a', 'c', 'e'])
+    expect(getShortestPath(input, 'a', 'e')).toEqual(['a', 'c', 'e'])
+  })
 })
 
-test('gridToGraph and then getShortestPath should return the right value (case1)', () => {
-  const o = 'something'
-  const x = undefined
-  const grid = [[x, x, x], [o, o, o], [x, x, o]]
+describe('gridToGraph then getShortestPath', () => {
+  it('should return the right value (case1)', () => {
+    const o = 'something'
+    const x = undefined
+    const grid = [[x, x, x], [o, o, o], [x, x, o]]
 
-  const expected: Graph = {
-    nodes: [
-      {
-        id: '0:1',
-      },
-      {
-        id: '1:1',
-      },
-      {
-        id: '2:1',
-      },
-      {
-        id: '2:2',
-      },
-    ],
-    edges: [
-      ['0:1', '1:1'],
-      ['1:1', '0:1'],
-      ['1:1', '2:1'],
-      ['2:1', '2:2'],
-      ['2:1', '1:1'],
-      ['2:2', '2:1'],
-    ],
-  }
+    const expected: Graph = {
+      nodes: [
+        {
+          id: '0:1',
+        },
+        {
+          id: '1:1',
+        },
+        {
+          id: '2:1',
+        },
+        {
+          id: '2:2',
+        },
+      ],
+      edges: [
+        ['0:1', '1:1'],
+        ['1:1', '0:1'],
+        ['1:1', '2:1'],
+        ['2:1', '2:2'],
+        ['2:1', '1:1'],
+        ['2:2', '2:1'],
+      ],
+    }
 
-  expect(gridToGraph(grid, o)).toEqual(expected)
-  expect(getShortestPath(expected, '0:1', '2:2')).toEqual([
-    '0:1',
-    '1:1',
-    '2:1',
-    '2:2',
-  ])
+    expect(gridToGraph(grid, o)).toEqual(expected)
+    expect(getShortestPath(expected, '0:1', '2:2')).toEqual([
+      '0:1',
+      '1:1',
+      '2:1',
+      '2:2',
+    ])
+  })
 })

@@ -1,4 +1,4 @@
-import { getShortestPath, gridToGraph } from './bfs'
+import { getShortestPath, gridToGraph, normalizeLevel } from './bfs'
 
 // test('gridToGraph should return the right value (case 1)', () => {
 //   const o = 'something'
@@ -361,5 +361,20 @@ describe('gridToGraph then getShortestPath', () => {
       errorMessage = error.message
     }
     expect(errorMessage).toEqual('Goal node with id "bar" doesn\'t exist!')
+  })
+})
+
+describe('normalizeLevel function', () => {
+  it('should put true on chosen path and undefined elsewhere ', () => {
+    const grid = [
+      [8, 3, 3], ///////
+      [8, 8, 8],
+      [3, 3, 3], // Path closed !
+    ]
+    expect(normalizeLevel(grid, 8)).toEqual([
+      [true, undefined, undefined],
+      [true, true, true],
+      [undefined, undefined, undefined],
+    ])
   })
 })

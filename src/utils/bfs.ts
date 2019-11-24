@@ -102,3 +102,19 @@ function getPath(nodes: Vertex[], seedId, goalId) {
 
 const _getNode = (nodes: Vertex[]) => (id: string) =>
   nodes.find(n => n.id === id)
+
+export function normalizeLevel(level: any[][], pathValue: any) {
+  const result: any[] = []
+  level.forEach(row => {
+    const newRow: any[] = []
+    row.forEach(cell => {
+      if (cell === pathValue) {
+        newRow.push(true)
+      } else {
+        newRow.push(undefined)
+      }
+    })
+    result.push(newRow)
+  })
+  return result
+}

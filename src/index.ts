@@ -1,6 +1,6 @@
 import Phaser, { Tilemaps } from 'phaser'
 
-import { getShortestPath, gridToGraph } from './utils/bfs'
+import { getShortestPath, gridToGraph, normalizeLevel } from './utils/bfs'
 import { level } from './utils/level'
 
 const cellSize = 48
@@ -36,7 +36,7 @@ function preload() {
 let cursors
 let ghost
 
-const gridPos = {
+let gridPos = {
   x: 0,
   y: 0,
 }
@@ -93,21 +93,23 @@ function refreshPos(ghost) {
   ghost.setY(gridPos.y * cellSize + cellSize / 2)
 }
 
-const graph = gridToGraph(level)
-// const path = getShortestPath(graph, '1:1', '9:9')
+const normalized = normalizeLevel(level, null)
+const graph = gridToGraph(normalized)
 
-// let i = 0
+const path = getShortestPath(graph, '0:0', '19:19')
 
-// if (path) {
-//   setInterval(() => {
-//     if (!path[i]) {
-//       return
-//     }
-//     const [x, y] = path[i].split(':').map(Number)
-//     gridPos = {
-//       x,
-//       y,
-//     }
-//     i++
-//   }, 500)
-// }
+let i = 0
+
+if (path) {
+  setInterval(() => {
+    if (!path[i]) {
+      return
+    }
+    const [x, y] = path[i].split(':').map(Number)
+    gridPos = {
+      x,
+      y,
+    }
+    i++
+  }, 200)
+}

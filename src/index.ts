@@ -93,7 +93,7 @@ function refreshPos(ghost) {
   ghost.setY(gridPos.y * cellSize + cellSize / 2)
 }
 
-const graph = gridToGraph(emptyLevel, null)
+const graph = gridToGraph(emptyLevel)
 const path = getShortestPath(graph, '1:1', '9:9')
 
 let i = 0

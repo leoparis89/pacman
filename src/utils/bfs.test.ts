@@ -42,7 +42,7 @@ describe('gridToGraph function', () => {
       edges: [],
     }
 
-    expect(gridToGraph(grid, o)).toEqual(expected)
+    expect(gridToGraph(grid)).toEqual(expected)
   })
 
   test('it should return the right value (two unlinked values)', () => {
@@ -61,7 +61,7 @@ describe('gridToGraph function', () => {
       edges: [],
     }
 
-    expect(gridToGraph(grid, o)).toEqual(expected)
+    expect(gridToGraph(grid)).toEqual(expected)
   })
 
   test('it should return the right value (one link)', () => {
@@ -87,7 +87,7 @@ describe('gridToGraph function', () => {
       edges: [['2:2', '3:2'], ['3:2', '2:2']],
     }
 
-    expect(gridToGraph(grid, o)).toEqual(expected)
+    expect(gridToGraph(grid)).toEqual(expected)
   })
 
   test('it should return the right value (case1)', () => {
@@ -120,7 +120,7 @@ describe('gridToGraph function', () => {
       ],
     }
 
-    expect(gridToGraph(grid, o)).toEqual(expected)
+    expect(gridToGraph(grid)).toEqual(expected)
   })
 })
 // test('gridToGraph should return the right value (null path)', () => {
@@ -207,7 +207,7 @@ describe('gridToGraph then getShortestPath', () => {
       ],
     }
 
-    expect(gridToGraph(grid, o)).toEqual(expected)
+    expect(gridToGraph(grid)).toEqual(expected)
     expect(getShortestPath(expected, '0:1', '2:2')).toEqual([
       '0:1',
       '1:1',
@@ -224,7 +224,7 @@ describe('gridToGraph then getShortestPath', () => {
       [o, o],
     ]
 
-    const graph = gridToGraph(grid, o)
+    const graph = gridToGraph(grid)
     expect(graph.edges).toEqual([
       ['0:0', '0:1'],
       ['0:0', '1:0'],
@@ -246,7 +246,7 @@ describe('gridToGraph then getShortestPath', () => {
       [o, o],
     ]
 
-    const graph = gridToGraph(grid, o)
+    const graph = gridToGraph(grid)
     expect(graph.edges).toEqual([
       ['0:0', '0:1'],
       ['0:0', '1:0'],
@@ -269,7 +269,7 @@ describe('gridToGraph then getShortestPath', () => {
       [o, o, o],
     ]
 
-    const graph = gridToGraph(grid, o)
+    const graph = gridToGraph(grid)
     expect(getShortestPath(graph, '0:0', '2:0')).toEqual(['0:0', '1:0', '2:0'])
   })
 
@@ -282,7 +282,7 @@ describe('gridToGraph then getShortestPath', () => {
       [o, o, o],
     ]
 
-    const graph = gridToGraph(grid, o)
+    const graph = gridToGraph(grid)
     expect(getShortestPath(graph, '0:0', '0:2')).toEqual(['0:0', '0:1', '0:2'])
   })
 
@@ -296,7 +296,7 @@ describe('gridToGraph then getShortestPath', () => {
       [o, x, x, x],
     ]
 
-    const graph = gridToGraph(grid, o)
+    const graph = gridToGraph(grid)
     expect(getShortestPath(graph, '0:0', '3:0')).toEqual([
       '0:0',
       '0:1',
@@ -319,7 +319,7 @@ describe('gridToGraph then getShortestPath', () => {
       [o, x, x, x],
     ]
 
-    const graph = gridToGraph(grid, o)
+    const graph = gridToGraph(grid)
     expect(getShortestPath(graph, '0:0', '3:0')).toEqual(null)
   })
 
@@ -333,7 +333,7 @@ describe('gridToGraph then getShortestPath', () => {
       [o, x, x, x],
     ]
 
-    const graph = gridToGraph(grid, o)
+    const graph = gridToGraph(grid)
     let errorMessage
     try {
       getShortestPath(graph, 'foo', '3:0')
@@ -353,7 +353,7 @@ describe('gridToGraph then getShortestPath', () => {
       [o, x, x, x],
     ]
 
-    const graph = gridToGraph(grid, o)
+    const graph = gridToGraph(grid)
     let errorMessage
     try {
       getShortestPath(graph, '0:0', 'bar')

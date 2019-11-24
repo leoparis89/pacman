@@ -1,4 +1,4 @@
-export const gridToGraph = (grid: any[][], path) => {
+export const gridToGraph = (grid: any[][]) => {
   const getCell = _getCell(grid)
   const nodes: Vertex[] = []
 
@@ -7,26 +7,26 @@ export const gridToGraph = (grid: any[][], path) => {
   grid.forEach((row, j) => {
     row.forEach((cell, i) => {
       const id = makeId(i, j)
-      if (cell === path) {
+      if (cell) {
         const vertex: Vertex = {
           id,
         }
         nodes.push(vertex)
 
         // node on top
-        if (getCell(i, j + 1) === path) {
+        if (getCell(i, j + 1)) {
           edges.push([id, makeId(i, j + 1)])
         }
         // node under
-        if (getCell(i, j - 1) === path) {
+        if (getCell(i, j - 1)) {
           edges.push([id, makeId(i, j - 1)])
         }
         // node on the left
-        if (getCell(i - 1, j) === path) {
+        if (getCell(i - 1, j)) {
           edges.push([id, makeId(i - 1, j)])
         }
         // node on the right
-        if (getCell(i + 1, j) === path) {
+        if (getCell(i + 1, j)) {
           edges.push([id, makeId(i + 1, j)])
         }
       }

@@ -36,7 +36,7 @@ function preload() {
 let cursors
 let ghost
 
-const gridPos = {
+let gridPos = {
   x: 0,
   y: 0,
 }
@@ -93,11 +93,21 @@ function refreshPos(ghost) {
   ghost.setY(gridPos.y * cellSize + cellSize / 2)
 }
 
-setInterval(() => {
-  gridPos.x = gridPos.x + 1
-}, 500)
-
 const graph = gridToGraph(emptyLevel, null)
-console.log(graph)
-const path = getShortestPath(graph, '1:1', '5:1')
-console.log(path)
+const path = getShortestPath(graph, '1:1', '9:9')
+
+let i = 0
+
+if (path) {
+  setInterval(() => {
+    if (!path[i]) {
+      return
+    }
+    const [x, y] = path[i].split(':').map(Number)
+    gridPos = {
+      x,
+      y,
+    }
+    i++
+  }, 500)
+}

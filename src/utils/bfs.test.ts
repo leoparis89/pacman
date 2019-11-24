@@ -285,4 +285,81 @@ describe('gridToGraph then getShortestPath', () => {
     const graph = gridToGraph(grid, o)
     expect(getShortestPath(graph, '0:0', '0:2')).toEqual(['0:0', '0:1', '0:2'])
   })
+
+  it('should return the right value (case with obstacles)', () => {
+    const o = 'something'
+    const x = undefined
+    const grid = [
+      [o, x, x, o], ///////
+      [o, x, o, o],
+      [o, o, o, x],
+      [o, x, x, x],
+    ]
+
+    const graph = gridToGraph(grid, o)
+    expect(getShortestPath(graph, '0:0', '3:0')).toEqual([
+      '0:0',
+      '0:1',
+      '0:2',
+      '1:2',
+      '2:2',
+      '2:1',
+      '3:1',
+      '3:0',
+    ])
+  })
+
+  it('should return null if there is no path', () => {
+    const o = 'something'
+    const x = undefined
+    const grid = [
+      [o, x, x, o], ///////
+      [o, x, o, o],
+      [o, o, x, x], // Path closed !
+      [o, x, x, x],
+    ]
+
+    const graph = gridToGraph(grid, o)
+    expect(getShortestPath(graph, '0:0', '3:0')).toEqual(null)
+  })
+
+  it("should throw if start node doesn't exist exist", () => {
+    const o = 'something'
+    const x = undefined
+    const grid = [
+      [o, x, x, o], ///////
+      [o, x, o, o],
+      [o, o, x, x], // Path closed !
+      [o, x, x, x],
+    ]
+
+    const graph = gridToGraph(grid, o)
+    let errorMessage
+    try {
+      getShortestPath(graph, 'foo', '3:0')
+    } catch (error) {
+      errorMessage = error.message
+    }
+    expect(errorMessage).toEqual('Start node with id "foo" doesn\'t exist!')
+  })
+
+  it("should throw if goal node doesn't exist exist", () => {
+    const o = 'something'
+    const x = undefined
+    const grid = [
+      [o, x, x, o], ///////
+      [o, x, o, o],
+      [o, o, x, x], // Path closed !
+      [o, x, x, x],
+    ]
+
+    const graph = gridToGraph(grid, o)
+    let errorMessage
+    try {
+      getShortestPath(graph, '0:0', 'bar')
+    } catch (error) {
+      errorMessage = error.message
+    }
+    expect(errorMessage).toEqual('Goal node with id "bar" doesn\'t exist!')
+  })
 })

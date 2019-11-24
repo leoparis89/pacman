@@ -46,11 +46,11 @@ export const getShortestPath = (g: Graph, startId: string, goalId: string) => {
   const goal = getNode(goalId)
 
   if (!seed) {
-    throw new Error(`No seed found with id ${startId}!`)
+    throw new Error(`Start node with id "${startId}" doesn't exist!`)
   }
 
   if (!goal) {
-    throw new Error(`No goal found with id ${goalId}!`)
+    throw new Error(`Goal node with id "${goalId}" doesn't exist!`)
   }
 
   const queue: Vertex[] = []
@@ -73,7 +73,7 @@ export const getShortestPath = (g: Graph, startId: string, goalId: string) => {
       }
     }
   }
-  return graph
+  return null
 }
 
 function getNeighbors(id, graph: Graph) {

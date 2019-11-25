@@ -7,8 +7,8 @@ const cellSize = 48
 
 const config = {
   type: Phaser.AUTO,
-  width: 960,
-  height: 960,
+  width: 1024,
+  height: 768,
   physics: {
     default: 'arcade',
     arcade: {

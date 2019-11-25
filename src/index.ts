@@ -8,7 +8,7 @@ const cellSize = 48
 const config = {
   type: Phaser.AUTO,
   width: 1024,
-  height: 768,
+  height: 1024,
   physics: {
     default: 'arcade',
     arcade: {
@@ -29,8 +29,14 @@ function preload() {
   const scene: Phaser.Scene = this
   scene.load.image('ground', 'assets/platform.png')
   scene.load.image('ghost', 'assets/ghost.png')
-  scene.load.image('tiles', 'assets/jungle_set.png')
-  scene.load.tilemapTiledJSON('map', 'assets/jungle_set.json')
+  // scene.load.image('tiles', 'assets/jungle_set.png')
+  // scene.load.tilemapTiledJSON('map', 'assets/jungle_set.json')
+
+  scene.load.image('dungeonTiles', 'assets/0x72_DungeonTilesetII_v1.3.png')
+  scene.load.tilemapTiledJSON(
+    'dungeonMap',
+    'assets/0x72_DungeonTilesetII_v1.3.json',
+  )
 }
 
 let cursors
@@ -47,19 +53,24 @@ function create() {
   // scene.add.image(400, 300, 'sky')
   const map = scene.make.tilemap({
     data: level,
-    tileWidth: cellSize,
-    tileHeight: cellSize,
-  } as any)
-  const tiles = map.addTilesetImage('tiles')
-  map.setCollisionBetween(0, 9)
+    tileWidth: 16,
+    tileHeight: 16,
+    // width: 64,
+    // height: 64,
+  } as Phaser.Types.Tilemaps.TilemapConfig)
+
+  const tiles = map.addTilesetImage('dungeonTiles')
+  // map.setCollisionBetween(0, 9)
   const layer = map.createStaticLayer(0, tiles, 0, 0)
+  layer.scaleX = 2
+  layer.scaleY = 2
 
   // ghost = scene.physics.add.image(200, 200, 'ghost')
   // ghost.displayWidth = cellSize
   // ghost.displayHeight = cellSize
 
   // ghost.setCollideWorldBounds(true)
-  scene.physics.add.collider(ghost, layer)
+  // scene.physics.add.collider(ghost, layer)
 
   // cursors = scene.input.keyboard.createCursorKeys()
 

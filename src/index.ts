@@ -36,6 +36,7 @@ function preload() {
 let cursors
 let ghost
 
+let controls
 // const gridPos = {
 //   x: 0,
 //   y: 0,
@@ -60,39 +61,60 @@ function create() {
   // ghost.setCollideWorldBounds(true)
   scene.physics.add.collider(ghost, layer)
 
-  cursors = scene.input.keyboard.createCursorKeys()
+  // cursors = scene.input.keyboard.createCursorKeys()
 
-  scene.cameras.main.setSize(480, 480)
+  // scene.cameras.main.setSize(480, 480)
+  //  Camera controls
+  cursors = this.input.keyboard.createCursorKeys()
+
+  const controlConfig = {
+    camera: this.cameras.main,
+    left: cursors.left,
+    right: cursors.right,
+    up: cursors.up,
+    down: cursors.down,
+    acceleration: 0.04,
+    drag: 0.0005,
+    maxSpeed: 0.7,
+  }
+  controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig)
 }
 
-function update() {
-  if (cursors.left.isDown) {
-    console.log('left')
-    // ghost.setVelocityX(-160)
-    // return
-  }
-  if (cursors.right.isDown) {
-    console.log('right')
-    // ghost.setVelocityX(160)
-    // return
-  }
-  if (cursors.up.isDown) {
-    console.log('up')
-    // ghost.setVelocityY(-160)
-    // return
-  }
-  if (cursors.down.isDown) {
-    console.log('down')
-    // ghost.setVelocityY(160)
-    // return
-  }
-  // ghost.setVelocity(0)
-  // // ghost.setX(70)
-  // ghost.setX(gridPos.x + 24)
-  // ghost.setY(gridPos.y + 24)
-  // refreshPos(ghost)
-}
+// function update() {
+//   const scene: Phaser.Scene = this
+//   const camera = scene.cameras.main
 
+//   if (cursors.left.isDown) {
+//     // console.log('left')
+//     console.log(scene.cameras)
+//     camera.scrollX = 20 // ghost.setVelocityX(-160)
+//     return
+//   }
+//   if (cursors.right.isDown) {
+//     console.log('right')
+//     // ghost.setVelocityX(160)
+//     // return
+//   }
+//   if (cursors.up.isDown) {
+//     console.log('up')
+//     // ghost.setVelocityY(-160)
+//     // return
+//   }
+//   if (cursors.down.isDown) {
+//     console.log('down')
+//     // ghost.setVelocityY(160)
+//     // return
+//   }
+//   // ghost.setVelocity(0)
+//   // // ghost.setX(70)
+//   // ghost.setX(gridPos.x + 24)
+//   // ghost.setY(gridPos.y + 24)
+//   // refreshPos(ghost)
+// }
+
+function update(time, delta) {
+  controls.update(delta)
+}
 // function refreshPos(ghost) {
 //   ghost.setX(gridPos.x * cellSize + cellSize / 2)
 //   ghost.setY(gridPos.y * cellSize + cellSize / 2)

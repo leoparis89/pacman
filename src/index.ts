@@ -29,8 +29,8 @@ function preload() {
   const scene: Phaser.Scene = this
   scene.load.image('ground', 'assets/platform.png')
   scene.load.image('ghost', 'assets/ghost.png')
-  this.load.image('tiles', 'assets/jungle_set.png')
-  this.load.tilemapTiledJSON('map', 'assets/jungle_set.json')
+  scene.load.image('tiles', 'assets/jungle_set.png')
+  scene.load.tilemapTiledJSON('map', 'assets/jungle_set.json')
 }
 
 let cursors
@@ -58,9 +58,9 @@ function create() {
   ghost.displayHeight = cellSize
 
   ghost.setCollideWorldBounds(true)
-  this.physics.add.collider(ghost, layer)
+  scene.physics.add.collider(ghost, layer)
 
-  cursors = this.input.keyboard.createCursorKeys()
+  cursors = scene.input.keyboard.createCursorKeys()
 }
 function update() {
   if (cursors.left.isDown) {

@@ -36,10 +36,10 @@ function preload() {
 let cursors
 let ghost
 
-let gridPos = {
-  x: 0,
-  y: 0,
-}
+// const gridPos = {
+//   x: 0,
+//   y: 0,
+// }
 
 function create() {
   const scene: Phaser.Scene = this
@@ -53,63 +53,68 @@ function create() {
   map.setCollisionBetween(0, 9)
   const layer = map.createStaticLayer(0, tiles, 0, 0)
 
-  ghost = scene.physics.add.image(200, 200, 'ghost')
-  ghost.displayWidth = cellSize
-  ghost.displayHeight = cellSize
+  // ghost = scene.physics.add.image(200, 200, 'ghost')
+  // ghost.displayWidth = cellSize
+  // ghost.displayHeight = cellSize
 
-  ghost.setCollideWorldBounds(true)
+  // ghost.setCollideWorldBounds(true)
   scene.physics.add.collider(ghost, layer)
 
   cursors = scene.input.keyboard.createCursorKeys()
+
+  scene.cameras.main.setSize(480, 480)
 }
+
 function update() {
   if (cursors.left.isDown) {
-    ghost.setVelocityX(-160)
-    return
+    console.log('left')
+    // ghost.setVelocityX(-160)
+    // return
   }
   if (cursors.right.isDown) {
-    ghost.setVelocityX(160)
-    return
+    console.log('right')
+    // ghost.setVelocityX(160)
+    // return
   }
   if (cursors.up.isDown) {
-    ghost.setVelocityY(-160)
-    return
+    console.log('up')
+    // ghost.setVelocityY(-160)
+    // return
   }
-
   if (cursors.down.isDown) {
-    ghost.setVelocityY(160)
-    return
+    console.log('down')
+    // ghost.setVelocityY(160)
+    // return
   }
-
-  ghost.setVelocity(0)
-  // ghost.setX(70)
-  ghost.setX(gridPos.x + 24)
-  ghost.setY(gridPos.y + 24)
-  refreshPos(ghost)
+  // ghost.setVelocity(0)
+  // // ghost.setX(70)
+  // ghost.setX(gridPos.x + 24)
+  // ghost.setY(gridPos.y + 24)
+  // refreshPos(ghost)
 }
 
-function refreshPos(ghost) {
-  ghost.setX(gridPos.x * cellSize + cellSize / 2)
-  ghost.setY(gridPos.y * cellSize + cellSize / 2)
-}
+// function refreshPos(ghost) {
+//   ghost.setX(gridPos.x * cellSize + cellSize / 2)
+//   ghost.setY(gridPos.y * cellSize + cellSize / 2)
+// }
 
-const normalized = normalizeLevel(level, null)
-const graph = gridToGraph(normalized)
+// const normalized = normalizeLevel(level, null)
+// const graph = gridToGraph(normalized)
 
-const path = getShortestPath(graph, '0:0', '19:19')
+// const path = getShortestPath(graph, '0:0', '19:19')
 
-let i = 0
+// let i = 0
 
-if (path) {
-  setInterval(() => {
-    if (!path[i]) {
-      return
-    }
-    const [x, y] = path[i].split(':').map(Number)
-    gridPos = {
-      x,
-      y,
-    }
-    i++
-  }, 100)
-}
+// if (path) {
+//   setInterval(() => {
+//     if (!path[i]) {
+//       return
+//     }
+//     const [x, y] = path[i].split(':').map(Number)
+//     gridPos = {
+//       x,
+//       y,
+//     }
+//     i++
+//   }, 100)
+// }

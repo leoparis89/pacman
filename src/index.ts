@@ -32,7 +32,10 @@ function preload() {
   // scene.load.image('tiles', 'assets/jungle_set.png')
   // scene.load.tilemapTiledJSON('map', 'assets/jungle_set.json')
 
-  scene.load.image('dungeonTiles', 'assets/0x72_DungeonTilesetII_v1.3.png')
+  const bar = scene.load.image(
+    'dungeonTiles',
+    'assets/0x72_DungeonTilesetII_v1.3.png',
+  )
   scene.load.tilemapTiledJSON(
     'dungeonMap',
     'assets/0x72_DungeonTilesetII_v1.3.json',
@@ -64,7 +67,6 @@ function create() {
   const layer = map.createStaticLayer(0, tiles, 0, 0)
   layer.scaleX = 2
   layer.scaleY = 2
-
   // ghost = scene.physics.add.image(200, 200, 'ghost')
   // ghost.displayWidth = cellSize
   // ghost.displayHeight = cellSize
@@ -126,6 +128,7 @@ function create() {
 function update(time, delta) {
   controls.update(delta)
 }
+
 // function refreshPos(ghost) {
 //   ghost.setX(gridPos.x * cellSize + cellSize / 2)
 //   ghost.setY(gridPos.y * cellSize + cellSize / 2)

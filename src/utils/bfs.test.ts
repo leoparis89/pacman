@@ -1,4 +1,10 @@
-import { getShortestPath, gridToGraph, normalizeLevel } from './bfs'
+import { Input } from 'phaser'
+import {
+  coordsToArray,
+  getShortestPath,
+  gridToGraph,
+  normalizeLevel,
+} from './bfs'
 
 // test('gridToGraph should return the right value (case 1)', () => {
 //   const o = 'something'
@@ -375,6 +381,31 @@ describe('normalizeLevel function', () => {
       [true, undefined, undefined],
       [true, true, true],
       [undefined, undefined, undefined],
+    ])
+  })
+})
+
+describe('coordsToArray', () => {
+  it('should return the right value !', () => {
+    const input: TileMap = new Map()
+    input.set([4, 4], 'x')
+    input.set([5, 4], 'x')
+    input.set([6, 4], 'x')
+    input.set([4, 5], 'x')
+    input.set([5, 5], 'x')
+    input.set([6, 5], 'x')
+    input.set([4, 6], 'x')
+    input.set([5, 6], 'x')
+    input.set([6, 6], 'x')
+
+    expect(coordsToArray(input)).toEqual([
+      [],
+      [],
+      [],
+      [],
+      [undefined, undefined, undefined, undefined, 'x', 'x', 'x'],
+      [undefined, undefined, undefined, undefined, 'x', 'x', 'x'],
+      [undefined, undefined, undefined, undefined, 'x', 'x', 'x'],
     ])
   })
 })

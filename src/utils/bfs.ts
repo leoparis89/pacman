@@ -118,3 +118,27 @@ export function normalizeLevel(level: any[][], pathValue: any) {
   })
   return result
 }
+
+export const coordsToArray: (ps: TileMap) => any[][] = ps => {
+  const result: any[][] = []
+  ps.forEach((val, [x, y]) => {
+    if (!result[y]) {
+      const newRow: any[] = []
+      newRow[x] = val
+      result[y] = newRow
+    } else {
+      result[y][x] = val
+    }
+  })
+
+  for (let i = 0; i < result.length; i++) {
+    if (!result[i]) {
+      result[i] = []
+    }
+  }
+  return result
+}
+
+// export const getBounds: (ps: Point[]) => any[][] = ps => {
+//   const result = []
+// }

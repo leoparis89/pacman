@@ -10,3 +10,10 @@ interface Graph {
   nodes: Vertex[]
   edges: Edge[]
 }
+
+interface Point {
+  x: number
+  y: number
+}
+
+type TileMap = Map<Point, any>

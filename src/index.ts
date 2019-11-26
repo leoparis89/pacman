@@ -74,8 +74,8 @@ function create() {
   const tiles = map.addTilesetImage('dungeonTiles')
   // map.setCollisionBetween(0, 9)
   const layer = map.createStaticLayer(0, tiles, 0, 0)
-  layer.scaleX = 2
-  layer.scaleY = 2
+  layer.scaleX = 4
+  layer.scaleY = 4
   // ghost = scene.physics.add.image(200, 200, 'ghost')
   // ghost.displayWidth = cellSize
   // ghost.displayHeight = cellSize

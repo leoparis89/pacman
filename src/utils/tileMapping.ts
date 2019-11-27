@@ -16,6 +16,7 @@ export default {
     },
     vertical: {
       sample1: [224, 256, 288],
+      sample2: [225, 257, 289],
     },
     corner: {
       top: {

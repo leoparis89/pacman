@@ -51,6 +51,13 @@ export const createRoom = (width: number, height: number, coords: Point) => {
         result.set([i + x, j + y], TileMap.wall.vertical.sample1[1])
         continue
       }
+
+      // Top
+
+      if (j === 0) {
+        result.set([i + x, j + y], TileMap.wall.horizontal.sample1[0])
+        result.set([i + x, j + y + 1], TileMap.wall.horizontal.sample1[1])
+      }
       // result.set([i + x, j + y], TileMap.floor.sample1)
     }
   }

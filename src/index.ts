@@ -74,7 +74,7 @@ function create() {
   layer2.scaleX = 4
   layer2.scaleY = 4
 
-  const room = createRoom(3, 3, [4, 5])
+  const room = createRoom(3, 3, [5, 5])
 
   const level = coordsToArray(room)
 

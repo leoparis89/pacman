@@ -57,7 +57,7 @@ let controls
 // }
 
 function create() {
-  const room = createRoom(6, 6, [3, 4])
+  const room = createRoom(3, 3, [3, 4])
 
   const level = coordsToArray(room)
 

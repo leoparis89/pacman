@@ -50,3 +50,15 @@ export const createRoom = (width: number, height: number, coords: Point) => {
   }
   return result
 }
+
+export const createFloor = (width: number, height: number, coords: Point) => {
+  const [x, y] = coords
+  const result: TileMap = new Map()
+
+  for (let i = 0; i < width; i++) {
+    for (let j = 0; j < height; j++) {
+      result.set([i + x, j + y], TileMap.floor.sample1)
+    }
+  }
+  return result
+}

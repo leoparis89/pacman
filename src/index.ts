@@ -6,7 +6,7 @@ import {
   gridToGraph,
   normalizeLevel,
 } from './utils/bfs'
-import { createRoom } from './utils/shapeGenerator'
+import { createFloor, createRoom } from './utils/shapeGenerator'
 
 const cellSize = 48
 
@@ -57,18 +57,32 @@ let controls
 // }
 
 function create() {
-  const room = createRoom(3, 3, [3, 4])
+  const scene: Phaser.Scene = this
+
+  const floor = createFloor(3, 3, [5, 5])
+  const floorLevel = coordsToArray(floor)
+
+  const map2 = scene.make.tilemap({
+    data: floorLevel,
+    tileWidth: 16,
+    tileHeight: 16,
+  } as Phaser.Types.Tilemaps.TilemapConfig)
+
+  const tiles2 = map2.addTilesetImage('dungeonTiles')
+
+  const layer2 = map2.createStaticLayer(0, tiles2, 0, 0)
+  layer2.scaleX = 4
+  layer2.scaleY = 4
+
+  const room = createRoom(3, 3, [4, 5])
 
   const level = coordsToArray(room)
 
-  const scene: Phaser.Scene = this
   // scene.add.image(400, 300, 'sky')
   const map = scene.make.tilemap({
     data: level,
     tileWidth: 16,
     tileHeight: 16,
-    // width: 64,
-    // height: 64,
   } as Phaser.Types.Tilemaps.TilemapConfig)
 
   const tiles = map.addTilesetImage('dungeonTiles')

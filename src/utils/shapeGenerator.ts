@@ -1,6 +1,10 @@
 import TileMap from './tileMapping'
 
-export const createRoom = (width: number, height: number, coords: Point) => {
+export const createWallsForRoom = (
+  width: number,
+  height: number,
+  coords: Point,
+) => {
   const [x, y] = coords
   const result: TileMap = new Map()
 

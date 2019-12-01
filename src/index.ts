@@ -6,7 +6,7 @@ import {
   gridToGraph,
   normalizeLevel,
 } from './utils/bfs'
-import { createFloor, createRoom } from './utils/shapeGenerator'
+import { createFloor, createWallsForRoom } from './utils/shapeGenerator'
 
 const cellSize = 48
 
@@ -59,12 +59,12 @@ let controls
 function create() {
   const scene: Phaser.Scene = this
 
-  const myLevel: any = {
-    floor: null,
-    wall: null,
+  const myLevel: LevelGrid = {
+    floor: [],
+    wall: [],
   }
   myLevel.floor = coordsToArray(createFloor(3, 3, [5, 5]))
-  myLevel.wall = coordsToArray(createRoom(3, 3, [5, 5]))
+  myLevel.wall = coordsToArray(createWallsForRoom(3, 3, [5, 5]))
 
   render(scene, myLevel)
   // scene.add.image(400, 300, 'sky')
@@ -156,7 +156,7 @@ function update(time, delta) {
 //   }, 100)
 // }
 
-const render = (scene: Phaser.Scene, level) => {
+const render = (scene: Phaser.Scene, level: LevelGrid) => {
   const floorMap = scene.make.tilemap({
     data: level.floor,
     tileWidth: 16,

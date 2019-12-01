@@ -59,37 +59,15 @@ let controls
 function create() {
   const scene: Phaser.Scene = this
 
-  const floor = createFloor(3, 3, [5, 5])
-  const floorLevel = coordsToArray(floor)
+  const myLevel: any = {
+    floor: null,
+    wall: null,
+  }
+  myLevel.floor = coordsToArray(createFloor(3, 3, [5, 5]))
+  myLevel.wall = coordsToArray(createRoom(3, 3, [5, 5]))
 
-  const map2 = scene.make.tilemap({
-    data: floorLevel,
-    tileWidth: 16,
-    tileHeight: 16,
-  } as Phaser.Types.Tilemaps.TilemapConfig)
-
-  const tiles2 = map2.addTilesetImage('dungeonTiles')
-
-  const layer2 = map2.createStaticLayer(0, tiles2, 0, 0)
-  layer2.scaleX = 4
-  layer2.scaleY = 4
-
-  const room = createRoom(3, 3, [5, 5])
-
-  const level = coordsToArray(room)
-
+  render(scene, myLevel)
   // scene.add.image(400, 300, 'sky')
-  const map = scene.make.tilemap({
-    data: level,
-    tileWidth: 16,
-    tileHeight: 16,
-  } as Phaser.Types.Tilemaps.TilemapConfig)
-
-  const tiles = map.addTilesetImage('dungeonTiles')
-  // map.setCollisionBetween(0, 9)
-  const layer = map.createStaticLayer(0, tiles, 0, 0)
-  layer.scaleX = 4
-  layer.scaleY = 4
   // ghost = scene.physics.add.image(200, 200, 'ghost')
   // ghost.displayWidth = cellSize
   // ghost.displayHeight = cellSize
@@ -177,3 +155,27 @@ function update(time, delta) {
 //     i++
 //   }, 100)
 // }
+
+const render = (scene: Phaser.Scene, level) => {
+  const floorMap = scene.make.tilemap({
+    data: level.floor,
+    tileWidth: 16,
+    tileHeight: 16,
+  } as Phaser.Types.Tilemaps.TilemapConfig)
+  const tiles2 = floorMap.addTilesetImage('dungeonTiles')
+  const layer2 = floorMap.createStaticLayer(0, tiles2, 0, 0)
+  layer2.scaleX = 4
+  layer2.scaleY = 4
+
+  const wallMap = scene.make.tilemap({
+    data: level.wall,
+    tileWidth: 16,
+    tileHeight: 16,
+  } as Phaser.Types.Tilemaps.TilemapConfig)
+
+  const tiles = wallMap.addTilesetImage('dungeonTiles')
+  // map.setCollisionBetween(0, 9)
+  const layer = wallMap.createStaticLayer(0, tiles, 0, 0)
+  layer.scaleX = 4
+  layer.scaleY = 4
+}

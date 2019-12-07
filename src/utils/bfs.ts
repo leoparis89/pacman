@@ -119,6 +119,12 @@ export function normalizeLevel(level: any[][], pathValue: any) {
   return result
 }
 
+export const levelCoordsToArray = (l: LevelCoords) =>
+  ({
+    floor: coordsToArray(l.floor),
+    wall: coordsToArray(l.wall),
+  } as LevelGrid)
+
 export const coordsToArray: (ps: TileMap) => any[][] = ps => {
   const result: any[][] = []
   ps.forEach((val, [x, y]) => {

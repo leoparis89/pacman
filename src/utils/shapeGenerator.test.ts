@@ -1,5 +1,3 @@
-import { createRoom } from './shapeGenerator'
-
 describe('createRoom function', () => {
   it('return the right value ', () => {
     const result = new Map([
@@ -16,6 +14,5 @@ describe('createRoom function', () => {
       [[10, 11], 129],
       [[10, 12], 129],
     ])
-    expect(createRoom(3, 4, [8, 9])).toEqual(result)
   })
 })

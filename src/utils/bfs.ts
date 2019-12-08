@@ -121,14 +121,15 @@ export function normalizeLevel(level: any[][], pathValue: any) {
   return result
 }
 
-export const levelCoordsToArray = (l: LevelCoords) =>
+export const levelCoordsToArray = (l: Level) =>
   ({
     floor: coordsToArray(l.floor),
     wall: coordsToArray(l.wall),
-  } as LevelGrid)
+  } as LevelArrays)
 
 export const coordsToArray: (ps: TileMap) => any[][] = ps => {
   const result: any[][] = []
+  debugger
   ps.forEach((val, [x, y]) => {
     if (!result[y]) {
       const newRow: any[] = []
@@ -147,11 +148,11 @@ export const coordsToArray: (ps: TileMap) => any[][] = ps => {
   return result
 }
 
-export const mergeLevels = (l1: LevelCoords, l2: LevelCoords) => {
+export const mergeLevels = (l1: Level, l2: Level) => {
   return {
     floor: _mergeMaps(l1.floor, l2.floor),
     wall: _mergeMaps(l1.wall, l2.wall),
-  } as LevelCoords
+  } as Level
 }
 export const _mergeMaps = (m1: TileMap, m2: TileMap) => {
   const serializedResult = new Map(

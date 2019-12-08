@@ -4,33 +4,9 @@ import {
   coordsToArray,
   getShortestPath,
   gridToGraph,
+  mergeLevels,
   normalizeLevel,
 } from './bfs'
-
-// test('gridToGraph should return the right value (case 1)', () => {
-//   const o = 'something'
-//   const x = null
-//   const grid = [
-//     [x, x, o, x, x],
-//     [x, x, x, x, x],
-//     [x, x, o, o, x],
-//     [x, x, o, x, o],
-//     [x, x, o, x, x],
-//   ]
-
-//   const expected = {
-//     nodes: [
-//       { id: '0:2' },
-//       { id: '2:2' },
-//       { id: '2:3' },
-//       { id: '3:2' },
-//       { id: '3:4' },
-//       { id: '4:2' },
-//     ],
-//   }
-
-//   expect(gridToGraph(grid)).toEqual(expected)
-// })
 
 describe('gridToGraph function', () => {
   test('it should return the right value (single value)', () => {
@@ -424,5 +400,24 @@ describe('_mergeMaps', () => {
     const m2: TileMap = new Map([[[3, 4], 'o'], [[1, 1], 'o']])
     const expected = new Map([[[3, 4], 'o'], [[3, 5], 'x'], [[1, 1], 'o']])
     expect(_mergeMaps(m1, m2)).toEqual(expected)
+  })
+})
+
+describe('mergeLevels', () => {
+  it('it should return the right value', () => {
+    const l1: Level = {
+      floor: new Map([[[1, 1], 'o']]),
+      wall: new Map(),
+    }
+    const l2: Level = {
+      floor: new Map([[[1, 2], 'o']]),
+      wall: new Map([[[4, 4], 'x']]),
+    }
+
+    const expected: Level = {
+      floor: new Map([[[1, 2], 'o'], [[1, 1], 'o']]),
+      wall: new Map([[[4, 4], 'x']]),
+    }
+    expect(mergeLevels(l1, l2)).toEqual(expected)
   })
 })

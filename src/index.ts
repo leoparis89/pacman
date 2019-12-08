@@ -8,7 +8,12 @@ import {
   mergeLevels,
   normalizeLevel,
 } from './utils/bfs'
-import { createFloor, createWallsForRoom } from './utils/shapeGenerator'
+import {
+  createFloor,
+  createWallsForRoom,
+  insertRoom,
+  makeNewLevel,
+} from './utils/shapeGenerator'
 
 const cellSize = 48
 
@@ -58,32 +63,20 @@ let controls
 //   y: 0,
 // }
 
-function insertRoom(level: LevelCoords, width, height, pos) {
-  const room: LevelCoords = {
-    floor: createFloor(width, height, pos),
-    wall: createWallsForRoom(width, height, pos),
-  }
-  return mergeLevels(level, room)
-}
-
 function create() {
   const scene: Phaser.Scene = this
 
-  const myLevel: LevelGrid = {
+  const myLevel: LevelArrays = {
     floor: [],
     wall: [],
   }
-  const myLevelCoords: LevelCoords = {
-    floor: new Map(),
-    wall: new Map(),
-  }
-  const levelWithRoom = insertRoom(myLevelCoords, 4, 5, [6, 6])
-  const levelWithRoom2 = insertRoom(levelWithRoom, 4, 4, [2, 1])
-  // const levelWithRoom2 = insertRoom(levelWithRoom, 4, 5, [1, 1])
+
+  const newLevel = makeNewLevel()
+  const levelWithRoom1 = insertRoom(newLevel, 3, 3, [1, 1])
+  const levelWithRoom2 = insertRoom(levelWithRoom1, 3, 3, [6, 6])
   // myLevel.floor = coordsToArray(createFloor(3, 3, [5, 5]))
   // myLevel.wall = coordsToArray(createWallsForRoom(3, 3, [5, 5]))
-
-  render(scene, levelWithRoom)
+  render(scene, levelWithRoom2)
   // scene.add.image(400, 300, 'sky')
   // ghost = scene.physics.add.image(200, 200, 'ghost')
   // ghost.displayWidth = cellSize
@@ -173,7 +166,7 @@ function update(time, delta) {
 //   }, 100)
 // }
 
-const render = (scene: Phaser.Scene, levelCoords: LevelCoords) => {
+const render = (scene: Phaser.Scene, levelCoords: Level) => {
   const level = levelCoordsToArray(levelCoords)
   const floorMap = scene.make.tilemap({
     data: level.floor,

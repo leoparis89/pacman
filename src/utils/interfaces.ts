@@ -17,12 +17,12 @@ type TileMap = Map<Point, any>
 
 type Grid = number[][]
 
-interface LevelGrid {
+interface LevelArrays {
   floor: Grid
   wall: Grid
 }
 
-interface LevelCoords {
+interface Level {
   floor: TileMap
   wall: TileMap
 }

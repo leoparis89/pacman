@@ -129,7 +129,6 @@ export const levelCoordsToArray = (l: Level) =>
 
 export const coordsToArray: (ps: TileMap) => any[][] = ps => {
   const result: any[][] = []
-  debugger
   ps.forEach((val, [x, y]) => {
     if (!result[y]) {
       const newRow: any[] = []

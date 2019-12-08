@@ -21,6 +21,6 @@
   },
   "scripts": {
     "dev": "yarn poi --serve src/index.ts",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch --verbose"
   }
 }

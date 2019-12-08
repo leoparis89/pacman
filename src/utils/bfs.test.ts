@@ -385,6 +385,20 @@ describe('coordsToArray', () => {
       [undefined, undefined, undefined, undefined, 'x', 'x', 'x'],
     ])
   })
+
+  it('should return the right value (case with seperated elements)', () => {
+    const input: TileMap = new Map()
+    input.set([1, 1], 'x')
+    input.set([4, 4], 'x')
+
+    expect(coordsToArray(input)).toEqual([
+      [],
+      [undefined, 'x'],
+      [],
+      [],
+      [undefined, undefined, undefined, undefined, 'x'],
+    ])
+  })
 })
 
 describe('_mergeMaps', () => {

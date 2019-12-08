@@ -145,6 +145,14 @@ export const coordsToArray: (ps: TileMap) => any[][] = ps => {
   return result
 }
 
+export const mergeMaps = (l1: LevelCoords, l2: LevelCoords) => {
+  return {
+    floor: new Map(...l1.floor, ...l2.floor),
+    wall: new Map(...l1.wall, ...l2.wall),
+  } as LevelCoords
+}
+export const _mergeMaps = (m1: TileMap, m2: TileMap) =>
+  new Map([...m1].concat([...m2]))
 // export const getBounds: (ps: Point[]) => any[][] = ps => {
 //   const result = []
 // }

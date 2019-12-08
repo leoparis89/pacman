@@ -1,5 +1,6 @@
 import { Input } from 'phaser'
 import {
+  _mergeMaps,
   coordsToArray,
   getShortestPath,
   gridToGraph,
@@ -407,5 +408,14 @@ describe('coordsToArray', () => {
       [undefined, undefined, undefined, undefined, 'x', 'x', 'x'],
       [undefined, undefined, undefined, undefined, 'x', 'x', 'x'],
     ])
+  })
+})
+
+describe('_mergeMaps', () => {
+  it('should return the right value', () => {
+    const m1: TileMap = new Map([[[3, 4], 'x'], [[3, 5], 'x']])
+    const m2: TileMap = new Map([[[1, 1], 'x']])
+    const expected = new Map([[[3, 4], 'x'], [[3, 5], 'x'], [[1, 1], 'x']])
+    expect(_mergeMaps(m1, m2)).toEqual(expected)
   })
 })

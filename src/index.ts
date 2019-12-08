@@ -5,6 +5,7 @@ import {
   getShortestPath,
   gridToGraph,
   levelCoordsToArray,
+  mergeLevels,
   normalizeLevel,
 } from './utils/bfs'
 import { createFloor, createWallsForRoom } from './utils/shapeGenerator'
@@ -57,12 +58,12 @@ let controls
 //   y: 0,
 // }
 
-function insertRoom(levelCoords: LevelCoords, width, height, pos) {
-  const result: LevelCoords = {
+function insertRoom(level: LevelCoords, width, height, pos) {
+  const room: LevelCoords = {
     floor: createFloor(width, height, pos),
     wall: createWallsForRoom(width, height, pos),
   }
-  return result
+  return mergeLevels(level, room)
 }
 
 function create() {
@@ -76,12 +77,13 @@ function create() {
     floor: new Map(),
     wall: new Map(),
   }
-  const levelWithRoom = insertRoom(myLevelCoords, 4, 5, [8, 9])
-  const levelWithRoom2 = insertRoom(levelWithRoom, 4, 5, [1, 1])
+  const levelWithRoom = insertRoom(myLevelCoords, 4, 5, [6, 6])
+  const levelWithRoom2 = insertRoom(levelWithRoom, 4, 4, [2, 1])
+  // const levelWithRoom2 = insertRoom(levelWithRoom, 4, 5, [1, 1])
   // myLevel.floor = coordsToArray(createFloor(3, 3, [5, 5]))
   // myLevel.wall = coordsToArray(createWallsForRoom(3, 3, [5, 5]))
 
-  render(scene, levelWithRoom2)
+  render(scene, levelWithRoom)
   // scene.add.image(400, 300, 'sky')
   // ghost = scene.physics.add.image(200, 200, 'ghost')
   // ghost.displayWidth = cellSize

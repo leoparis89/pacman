@@ -1,3 +1,5 @@
+import { Tilemaps } from 'phaser'
+
 export const gridToGraph = (grid: any[][]) => {
   const getCell = _getCell(grid)
   const nodes: Vertex[] = []
@@ -151,8 +153,28 @@ export const mergeMaps = (l1: LevelCoords, l2: LevelCoords) => {
     wall: new Map(...l1.wall, ...l2.wall),
   } as LevelCoords
 }
-export const _mergeMaps = (m1: TileMap, m2: TileMap) =>
-  new Map([...m1].concat([...m2]))
+export const _mergeMaps = (m1: TileMap, m2: TileMap) => {
+  const serializedResult = new Map(
+    [...serializeMap(m1)].concat([...serializeMap(m2)]),
+  )
+  return deSerializeMap(serializedResult)
+}
 // export const getBounds: (ps: Point[]) => any[][] = ps => {
 //   const result = []
 // }
+
+export const serializeMap = (m: TileMap) => {
+  const serialized = new Map<string, any>()
+  m.forEach((val, key) => {
+    serialized.set(JSON.stringify(key), val)
+  })
+  return serialized
+}
+
+export const deSerializeMap = (m: Map<string, any>) => {
+  const deSerialized = new Map<Point, any>()
+  m.forEach((val, key) => {
+    deSerialized.set(JSON.parse(key), val)
+  })
+  return deSerialized
+}

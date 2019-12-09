@@ -5,6 +5,7 @@ import {
   getShortestPath,
   gridToGraph,
   mergeLevels,
+  normalizeArray,
   normalizeLevel,
 } from './bfs'
 
@@ -433,5 +434,16 @@ describe('mergeLevels', () => {
       wall: new Map([[[4, 4], 'x']]),
     }
     expect(mergeLevels(l1, l2)).toEqual(expected)
+  })
+})
+
+describe('NormalizeArray function', () => {
+  it('should return the right value', () => {
+    const input = [[2], [undefined, undefined, 4, undefined]]
+    const expected = []
+    expect(normalizeArray(input)).toEqual([
+      [2, undefined, undefined, undefined],
+      [undefined, undefined, 4, undefined],
+    ])
   })
 })

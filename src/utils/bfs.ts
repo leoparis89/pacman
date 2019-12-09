@@ -178,3 +178,22 @@ export const deSerializeMap = (m: Map<string, any>) => {
   })
   return deSerialized
 }
+
+export const normalizeArray = (arr: any[][]) => {
+  const result: any[][] = []
+  const maxRowLength = arr.reduce((acc, curr) => {
+    if (curr.length > acc) {
+      acc = curr.length
+    }
+    return acc
+  }, 0)
+
+  arr.forEach(row => {
+    const newRow: any[] = []
+    for (let i = 0; i < maxRowLength; i++) {
+      newRow[i] = row[i] || undefined
+    }
+    result.push(newRow)
+  })
+  return result
+}

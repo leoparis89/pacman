@@ -72,8 +72,8 @@ function create() {
   }
 
   const newLevel = makeNewLevel()
-  const levelWithRoom1 = insertRoom(newLevel, 3, 3, [1, 1])
-  const levelWithRoom2 = insertRoom(levelWithRoom1, 3, 3, [6, 6])
+  const levelWithRoom1 = insertRoom(newLevel, 3, 3, [1, 2])
+  const levelWithRoom2 = insertRoom(levelWithRoom1, 5, 7, [6, 6])
   // myLevel.floor = coordsToArray(createFloor(3, 3, [5, 5]))
   // myLevel.wall = coordsToArray(createWallsForRoom(3, 3, [5, 5]))
   render(scene, levelWithRoom2)

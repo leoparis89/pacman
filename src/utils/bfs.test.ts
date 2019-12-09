@@ -400,6 +400,14 @@ describe('coordsToArray', () => {
       [undefined, undefined, undefined, undefined, 'x'],
     ])
   })
+
+  it('should normalize result array', () => {
+    const input: TileMap = new Map()
+    input.set([1, 1], 'x')
+    input.set([4, 4], 'x')
+
+    expect(coordsToArray(input)[0].length).toEqual(5)
+  })
 })
 
 describe('_mergeMaps', () => {
@@ -440,7 +448,6 @@ describe('mergeLevels', () => {
 describe('NormalizeArray function', () => {
   it('should return the right value', () => {
     const input = [[2], [undefined, undefined, 4, undefined]]
-    const expected = []
     expect(normalizeArray(input)).toEqual([
       [2, undefined, undefined, undefined],
       [undefined, undefined, 4, undefined],

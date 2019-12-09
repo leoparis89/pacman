@@ -144,7 +144,7 @@ export const coordsToArray: (ps: TileMap) => any[][] = ps => {
       result[i] = []
     }
   }
-  return result
+  return normalizeArray(result)
 }
 
 export const mergeLevels = (l1: Level, l2: Level) => {

@@ -1,10 +1,10 @@
 import Phaser, { Tilemaps } from 'phaser'
 
 import {
-  coordsToArray,
+  pointMaptoGrid,
   getShortestPath,
   gridToGraph,
-  levelCoordsToArray,
+  levelPointMapToGrid,
   mergeLevels,
   normalizeLevel,
 } from './utils/bfs'
@@ -168,7 +168,7 @@ function update(time, delta) {
 // }
 
 const render = (scene: Phaser.Scene, levelCoords: Level) => {
-  const level = levelCoordsToArray(levelCoords)
+  const level = levelPointMapToGrid(levelCoords)
   const floorMap = scene.make.tilemap({
     data: level.floor,
     tileWidth: 16,

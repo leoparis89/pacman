@@ -1,12 +1,12 @@
 import { Input } from 'phaser'
 import {
   _mergeMaps,
-  coordsToArray,
   getShortestPath,
   gridToGraph,
   mergeLevels,
   normalizeArray,
   normalizeLevel,
+  pointMaptoGrid,
 } from './bfs'
 
 describe('gridToGraph function', () => {
@@ -376,7 +376,7 @@ describe('coordsToArray', () => {
     input.set([5, 6], 'x')
     input.set([6, 6], 'x')
 
-    expect(coordsToArray(input)).toEqual([
+    expect(pointMaptoGrid(input)).toEqual([
       [],
       [],
       [],
@@ -392,7 +392,7 @@ describe('coordsToArray', () => {
     input.set([1, 1], 'x')
     input.set([4, 4], 'x')
 
-    expect(coordsToArray(input)).toEqual([
+    expect(pointMaptoGrid(input)).toEqual([
       [],
       [undefined, 'x'],
       [],
@@ -406,7 +406,7 @@ describe('coordsToArray', () => {
     input.set([1, 1], 'x')
     input.set([4, 4], 'x')
 
-    expect(coordsToArray(input)[0].length).toEqual(5)
+    expect(pointMaptoGrid(input)[0].length).toEqual(5)
   })
 })
 

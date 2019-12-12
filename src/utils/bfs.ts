@@ -1,5 +1,3 @@
-import { Tilemaps } from 'phaser'
-
 export const gridToGraph = (grid: any[][]) => {
   const getCell = _getCell(grid)
   const nodes: Vertex[] = []

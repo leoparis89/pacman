@@ -7,7 +7,7 @@ export const createWallsForRoom = (
   coords: Point,
 ) => {
   const [x, y] = coords
-  const result: TileMap = new Map()
+  const result: PointMap = new Map()
 
   for (let i = 0; i < width; i++) {
     for (let j = 0; j < height; j++) {
@@ -54,7 +54,7 @@ export const createWallsForRoom = (
 
 export const createFloor = (width: number, height: number, coords: Point) => {
   const [x, y] = coords
-  const result: TileMap = new Map()
+  const result: PointMap = new Map()
 
   for (let i = 0; i < width; i++) {
     for (let j = 0; j < height; j++) {

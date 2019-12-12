@@ -125,7 +125,7 @@ export const levelCoordsToArray = (l: Level) =>
     wall: coordsToArray(l.wall),
   } as LevelArrays)
 
-export const coordsToArray: (ps: TileMap) => any[][] = ps => {
+export const coordsToArray: (ps: PointMap) => any[][] = ps => {
   const result: any[][] = []
   ps.forEach((val, [x, y]) => {
     if (!result[y]) {
@@ -151,7 +151,7 @@ export const mergeLevels = (l1: Level, l2: Level) => {
     wall: _mergeMaps(l1.wall, l2.wall),
   } as Level
 }
-export const _mergeMaps = (m1: TileMap, m2: TileMap) => {
+export const _mergeMaps = (m1: PointMap, m2: PointMap) => {
   const serializedResult = new Map(
     [...serializeMap(m1)].concat([...serializeMap(m2)]),
   )
@@ -161,7 +161,7 @@ export const _mergeMaps = (m1: TileMap, m2: TileMap) => {
 //   const result = []
 // }
 
-export const serializeMap = (m: TileMap) => {
+export const serializeMap = (m: PointMap) => {
   const serialized = new Map<string, any>()
   m.forEach((val, key) => {
     serialized.set(JSON.stringify(key), val)

@@ -13,7 +13,7 @@ interface Graph {
 
 type Point = [number, number]
 
-type TileMap = Map<Point, any>
+type PointMap = Map<Point, any>
 
 type Grid = number[][]
 
@@ -23,6 +23,6 @@ interface LevelArrays {
 }
 
 interface Level {
-  floor: TileMap
-  wall: TileMap
+  floor: PointMap
+  wall: PointMap
 }

@@ -1,13 +1,5 @@
-import { Input } from 'phaser'
-import {
-  _mergeMaps,
-  getShortestPath,
-  gridToGraph,
-  mergeLevels,
-  normalizeArray,
-  pointMaptoGrid,
-} from './bfs'
-import { normalizeGrid } from './helpers'
+import { _mergeMaps, getShortestPath, gridToGraph, mergeLevels } from './bfs'
+import { normalizeArray, normalizeGrid, pointMaptoGrid } from './helpers'
 
 describe('gridToGraph function', () => {
   test('it should return the right value (single value)', () => {

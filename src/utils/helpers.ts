@@ -1,3 +1,6 @@
+/**
+ * For all cells, replaces "pathValue" with true and sets all other cells to undefined
+ */
 export function normalizeGrid(level: Grid, pathValue: any) {
   const result: any[] = []
   level.forEach(row => {

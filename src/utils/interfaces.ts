@@ -7,7 +7,7 @@ interface Vertex {
 type Edge = [string, string]
 
 interface Graph {
-  nodes: Vertex[]
+  vertices: Vertex[]
   edges: Edge[]
 }
 

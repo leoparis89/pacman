@@ -40,7 +40,7 @@ const makeId = (i, j) => `${i}:${j}`
 
 export const getShortestPath = (g: Graph, startId: string, goalId: string) => {
   const graph: Graph = JSON.parse(JSON.stringify(g))
-  const getNode = _getNode(graph.nodes)
+  const getNode = _getNode(graph.vertices)
 
   const seed = getNode(startId)
   const goal = getNode(goalId)
@@ -61,7 +61,7 @@ export const getShortestPath = (g: Graph, startId: string, goalId: string) => {
     const current = queue.pop()!
     // if current is the goal return current
     if (current.id === goalId) {
-      return getPath(graph.nodes, startId, goalId)
+      return getPath(graph.vertices, startId, goalId)
     }
     const neighbors = getNeighbors(current.id, graph)
 
@@ -78,7 +78,7 @@ export const getShortestPath = (g: Graph, startId: string, goalId: string) => {
 
 function getNeighbors(id, graph: Graph) {
   const connectedEdges = graph.edges.filter(e => e[0] === id)
-  const neighbors = graph.nodes.filter(n =>
+  const neighbors = graph.vertices.filter(n =>
     connectedEdges.some(e => n.id === e[1]),
   )
   return neighbors

@@ -1,12 +1,11 @@
 import Phaser, { Tilemaps } from 'phaser'
 
 import {
-  pointMaptoGrid,
   getShortestPath,
   gridToGraph,
   levelPointMapToGrid,
   mergeLevels,
-  normalizeLevel,
+  pointMaptoGrid,
 } from './utils/bfs'
 import {
   createFloor,

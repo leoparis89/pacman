@@ -5,9 +5,9 @@ import {
   gridToGraph,
   mergeLevels,
   normalizeArray,
-  normalizeLevel,
   pointMaptoGrid,
 } from './bfs'
+import { normalizeGrid } from './helpers'
 
 describe('gridToGraph function', () => {
   test('it should return the right value (single value)', () => {
@@ -350,12 +350,12 @@ describe('gridToGraph then getShortestPath', () => {
 
 describe('normalizeLevel function', () => {
   it('should put true on chosen path and undefined elsewhere ', () => {
-    const grid = [
+    const grid: Grid = [
       [8, 3, 3], ///////
       [8, 8, 8],
       [3, 3, 3], // Path closed !
     ]
-    expect(normalizeLevel(grid, 8)).toEqual([
+    expect(normalizeGrid(grid, 8)).toEqual([
       [true, undefined, undefined],
       [true, true, true],
       [undefined, undefined, undefined],

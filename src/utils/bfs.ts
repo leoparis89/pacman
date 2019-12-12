@@ -123,7 +123,7 @@ export const levelCoordsToArray = (l: Level) =>
   ({
     floor: coordsToArray(l.floor),
     wall: coordsToArray(l.wall),
-  } as LevelArrays)
+  } as LevelGrid)
 
 export const coordsToArray: (ps: PointMap) => any[][] = ps => {
   const result: any[][] = []

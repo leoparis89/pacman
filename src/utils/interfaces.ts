@@ -17,7 +17,7 @@ type PointMap = Map<Point, any>
 
 type Grid = number[][]
 
-interface LevelArrays {
+interface LevelGrid {
   floor: Grid
   wall: Grid
 }

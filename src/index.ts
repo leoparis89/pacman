@@ -66,7 +66,7 @@ let controls
 function create() {
   const scene: Phaser.Scene = this
 
-  const myLevel: LevelArrays = {
+  const myLevel: LevelGrid = {
     floor: [],
     wall: [],
   }

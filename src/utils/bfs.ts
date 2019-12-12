@@ -1,6 +1,6 @@
 export const gridToGraph = (grid: any[][]) => {
   const getCell = _getCell(grid)
-  const nodes: Vertex[] = []
+  const vertices: Vertex[] = []
 
   const edges: Edge[] = []
 
@@ -11,7 +11,7 @@ export const gridToGraph = (grid: any[][]) => {
         const vertex: Vertex = {
           id,
         }
-        nodes.push(vertex)
+        vertices.push(vertex)
 
         // node on top
         if (getCell(i, j + 1)) {
@@ -32,7 +32,7 @@ export const gridToGraph = (grid: any[][]) => {
       }
     })
   })
-  return { nodes, edges }
+  return { vertices, edges }
 }
 
 const _getCell = grid => (i, j) => grid[j] && grid[j][i]

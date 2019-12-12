@@ -6,7 +6,7 @@ export const gridToGraph = (grid: any[][]) => {
 
   grid.forEach((row, j) => {
     row.forEach((cell, i) => {
-      const id = makeId(i, j)
+      const id = _makeId(i, j)
       if (cell) {
         const vertex: Vertex = {
           id,
@@ -15,19 +15,19 @@ export const gridToGraph = (grid: any[][]) => {
 
         // node on top
         if (getCell(i, j + 1)) {
-          edges.push([id, makeId(i, j + 1)])
+          edges.push([id, _makeId(i, j + 1)])
         }
         // node under
         if (getCell(i, j - 1)) {
-          edges.push([id, makeId(i, j - 1)])
+          edges.push([id, _makeId(i, j - 1)])
         }
         // node on the left
         if (getCell(i - 1, j)) {
-          edges.push([id, makeId(i - 1, j)])
+          edges.push([id, _makeId(i - 1, j)])
         }
         // node on the right
         if (getCell(i + 1, j)) {
-          edges.push([id, makeId(i + 1, j)])
+          edges.push([id, _makeId(i + 1, j)])
         }
       }
     })
@@ -36,7 +36,7 @@ export const gridToGraph = (grid: any[][]) => {
 }
 
 const _getCell = grid => (i, j) => grid[j] && grid[j][i]
-const makeId = (i, j) => `${i}:${j}`
+const _makeId = (i, j) => `${i}:${j}`
 
 export const getShortestPath = (g: Graph, startId: string, goalId: string) => {
   const graph: Graph = JSON.parse(JSON.stringify(g))

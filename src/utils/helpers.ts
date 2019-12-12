@@ -1,4 +1,4 @@
-export function normalizeGrid(level: Grid[][], pathValue: any) {
+export function normalizeGrid(level: Grid, pathValue: any) {
   const result: any[] = []
   level.forEach(row => {
     const newRow: any[] = []

@@ -35,13 +35,8 @@ function preload() {
   const scene: Phaser.Scene = this
   scene.load.image('ground', 'assets/platform.png')
   scene.load.image('ghost', 'assets/ghost.png')
-  // scene.load.image('tiles', 'assets/jungle_set.png')
-  // scene.load.tilemapTiledJSON('map', 'assets/jungle_set.json')
 
-  const bar = scene.load.image(
-    'dungeonTiles',
-    'assets/0x72_DungeonTilesetII_v1.3.png',
-  )
+  scene.load.image('dungeonTiles', 'assets/0x72_DungeonTilesetII_v1.3.png')
   scene.load.tilemapTiledJSON(
     'dungeonMap',
     'assets/0x72_DungeonTilesetII_v1.3.json',

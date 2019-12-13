@@ -52,38 +52,17 @@ let cursors
 let ghost
 
 let controls
-// const gridPos = {
-//   x: 0,
-//   y: 0,
-// }
 
 function create() {
   const scene: Phaser.Scene = this
-
-  const myLevel: LevelGrid = {
-    floor: [],
-    wall: [],
-  }
 
   const newLevel = makeNewLevel()
   const levelWithRoom1 = insertRoom(newLevel, 3, 3, [1, 2])
   const levelWithRoom2 = insertRoom(levelWithRoom1, 5, 7, [6, 6])
   const levelWithRoom3 = insertRoom(levelWithRoom2, 4, 4, [10, 10])
-  // myLevel.floor = coordsToArray(createFloor(3, 3, [5, 5]))
-  // myLevel.wall = coordsToArray(createWallsForRoom(3, 3, [5, 5]))
+
   render(scene, levelWithRoom3)
-  // scene.add.image(400, 300, 'sky')
-  // ghost = scene.physics.add.image(200, 200, 'ghost')
-  // ghost.displayWidth = cellSize
-  // ghost.displayHeight = cellSize
 
-  // ghost.setCollideWorldBounds(true)
-  // scene.physics.add.collider(ghost, layer)
-
-  // cursors = scene.input.keyboard.createCursorKeys()
-
-  // scene.cameras.main.setSize(480, 480)
-  //  Camera controls
   cursors = this.input.keyboard.createCursorKeys()
 
   const controlConfig = {

@@ -1,15 +1,6 @@
-import Phaser, { Tilemaps } from 'phaser'
-
-import { getShortestPath, gridToGraph, mergeLevels } from './utils/bfs'
+import Phaser from 'phaser'
 import { levelPointMapToGrid } from './utils/helpers'
-import {
-  createFloor,
-  createWallsForRoom,
-  insertRoom,
-  makeNewLevel,
-} from './utils/shapeGenerator'
-
-const cellSize = 48
+import { insertRoom, makeNewLevel } from './utils/shapeGenerator'
 
 const config = {
   type: Phaser.AUTO,
@@ -54,9 +45,11 @@ function create() {
   const newLevel = makeNewLevel()
   const levelWithRoom1 = insertRoom(newLevel, 3, 3, [1, 2])
   const levelWithRoom2 = insertRoom(levelWithRoom1, 5, 7, [6, 6])
-  const levelWithRoom3 = insertRoom(levelWithRoom2, 4, 4, [10, 10])
+  const levelWithRoom3 = insertRoom(levelWithRoom2, 4, 4, [15, 10])
 
-  render(scene, levelWithRoom3)
+  const initalPos: Point = [1, 4]
+
+  render(scene, levelWithRoom3, initalPos)
 
   cursors = this.input.keyboard.createCursorKeys()
 
@@ -135,7 +128,7 @@ function update(time, delta) {
 //   }, 100)
 // }
 
-const render = (scene: Phaser.Scene, levelCoords: Level) => {
+const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   const level = levelPointMapToGrid(levelCoords)
   const floorMap = scene.make.tilemap({
     data: level.floor,
@@ -144,9 +137,12 @@ const render = (scene: Phaser.Scene, levelCoords: Level) => {
   } as Phaser.Types.Tilemaps.TilemapConfig)
   const tiles2 = floorMap.addTilesetImage('dungeonTiles')
   const layer2 = floorMap.createStaticLayer(0, tiles2, 0, 0)
-  layer2.scaleX = 4
-  layer2.scaleY = 4
+  layer2.scaleX = 3
+  layer2.scaleY = 3
 
+  const image = scene.add.image(10, 10, 'ghost')
+  image.scaleX = 0.1
+  image.scaleY = 0.1
   const wallMap = scene.make.tilemap({
     data: level.wall,
     tileWidth: 16,
@@ -156,6 +152,6 @@ const render = (scene: Phaser.Scene, levelCoords: Level) => {
   const tiles = wallMap.addTilesetImage('dungeonTiles')
   // map.setCollisionBetween(0, 9)
   const layer = wallMap.createStaticLayer(0, tiles, 0, 0)
-  layer.scaleX = 4
-  layer.scaleY = 4
+  layer.scaleX = 3
+  layer.scaleY = 3
 }

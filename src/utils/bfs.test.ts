@@ -14,7 +14,7 @@ describe('gridToGraph function', () => {
     ]
 
     const expected = {
-      nodes: [{ id: '2:2' }],
+      vertices: [{ id: '2:2' }],
       edges: [],
     }
 
@@ -33,7 +33,7 @@ describe('gridToGraph function', () => {
     ]
 
     const expected = {
-      nodes: [{ id: '2:2' }, { id: '4:3' }],
+      vertices: [{ id: '2:2' }, { id: '4:3' }],
       edges: [],
     }
 
@@ -52,7 +52,7 @@ describe('gridToGraph function', () => {
     ]
 
     const expected = {
-      nodes: [
+      vertices: [
         {
           id: '2:2',
         },
@@ -72,7 +72,7 @@ describe('gridToGraph function', () => {
     const grid = [[x, x, x], [o, o, o], [x, x, o]]
 
     const expected = {
-      nodes: [
+      vertices: [
         {
           id: '0:1',
         },
@@ -111,7 +111,7 @@ describe('gridToGraph function', () => {
 //   ]
 
 //   const expected = {
-//     nodes: [
+//     vertices: [
 //       {
 //         id: '2:2',
 //       },

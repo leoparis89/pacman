@@ -369,10 +369,42 @@ describe('coordsToArray', () => {
     input.set([6, 6], 'x')
 
     expect(pointMaptoGrid(input)).toEqual([
-      [],
-      [],
-      [],
-      [],
+      [
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+      ],
+      [
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+      ],
+      [
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+      ],
+      [
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+      ],
       [undefined, undefined, undefined, undefined, 'x', 'x', 'x'],
       [undefined, undefined, undefined, undefined, 'x', 'x', 'x'],
       [undefined, undefined, undefined, undefined, 'x', 'x', 'x'],
@@ -385,10 +417,7 @@ describe('coordsToArray', () => {
     input.set([4, 4], 'x')
 
     expect(pointMaptoGrid(input)).toEqual([
-      [],
-      [undefined, 'x'],
-      [],
-      [],
+      [undefined, 'x', undefined, undefined, undefined],
       [undefined, undefined, undefined, undefined, 'x'],
     ])
   })

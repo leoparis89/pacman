@@ -140,8 +140,12 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   layer2.scaleX = 3
   layer2.scaleY = 3
 
-  const image = scene.add.image(350, 350, 'ghost')
-  image.setDisplaySize(42, 42)
+  // const image = scene.add.image(350, 350, 'ghost')
+  // image.setDisplaySize(42, 42)
+
+  const char = scene.physics.add.image(30, 30, 'ghost')
+  char.setDisplaySize(42, 42)
+  char.setVelocityX(30)
 
   const wallMap = scene.make.tilemap({
     data: level.wall,

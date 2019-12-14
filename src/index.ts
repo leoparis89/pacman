@@ -37,6 +37,7 @@ function preload() {
 let cursors
 let ghost
 
+let char
 let controls
 
 function create() {
@@ -50,20 +51,21 @@ function create() {
   const initalPos: Point = [1, 4]
 
   render(scene, levelWithRoom3, initalPos)
+  cursors = scene.input.keyboard.createCursorKeys()
 
-  cursors = this.input.keyboard.createCursorKeys()
+  // cursors = this.input.keyboard.createCursorKeys()
 
-  const controlConfig = {
-    camera: this.cameras.main,
-    left: cursors.left,
-    right: cursors.right,
-    up: cursors.up,
-    down: cursors.down,
-    acceleration: 0.04,
-    drag: 0.0005,
-    maxSpeed: 0.7,
-  }
-  controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig)
+  // const controlConfig = {
+  //   camera: this.cameras.main,
+  //   left: cursors.left,
+  //   right: cursors.right,
+  //   up: cursors.up,
+  //   down: cursors.down,
+  //   acceleration: 0.04,
+  //   drag: 0.0005,
+  //   maxSpeed: 0.7,
+  // }
+  // controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig)
 }
 
 // function update() {
@@ -99,7 +101,19 @@ function create() {
 // }
 
 function update(time, delta) {
-  controls.update(delta)
+  // controls.update(delta)
+  if (cursors.left.isDown) {
+    char.setVelocityX(-160)
+  } else if (cursors.right.isDown) {
+    char.setVelocityX(160)
+  } else if (cursors.up.isDown) {
+    char.setVelocityY(-160)
+  } else if (cursors.down.isDown) {
+    char.setVelocityY(160)
+  } else {
+    char.setVelocityX(0)
+    char.setVelocityY(0)
+  }
 }
 
 // function refreshPos(ghost) {
@@ -143,9 +157,9 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   // const image = scene.add.image(350, 350, 'ghost')
   // image.setDisplaySize(42, 42)
 
-  const char = scene.physics.add.image(30, 30, 'ghost')
+  char = scene.physics.add.image(30, 30, 'ghost')
   char.setDisplaySize(42, 42)
-  char.setVelocityX(30)
+  // char.setVelocityX(30)
 
   const wallMap = scene.make.tilemap({
     data: level.wall,

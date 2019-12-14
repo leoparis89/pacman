@@ -140,9 +140,9 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   layer2.scaleX = 3
   layer2.scaleY = 3
 
-  const image = scene.add.image(10, 10, 'ghost')
-  image.scaleX = 0.1
-  image.scaleY = 0.1
+  const image = scene.add.image(350, 350, 'ghost')
+  image.setDisplaySize(42, 42)
+
   const wallMap = scene.make.tilemap({
     data: level.wall,
     tileWidth: 16,

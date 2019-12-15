@@ -37,7 +37,8 @@ function preload() {
 let cursors
 let ghost
 
-let char
+let char: Phaser.Physics.Arcade.Sprite
+
 let controls
 
 function create() {
@@ -100,11 +101,16 @@ function create() {
 //   // refreshPos(ghost)
 // }
 
+let stop
 function update(time, delta) {
   // controls.update(delta)
   if (cursors.left.isDown) {
     char.setVelocityX(-160)
   } else if (cursors.right.isDown) {
+    if (stop) {
+      char.setVelocityX(0)
+      return
+    }
     char.setVelocityX(160)
   } else if (cursors.up.isDown) {
     char.setVelocityY(-160)
@@ -154,19 +160,20 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   const floorLayer = floorMap.createStaticLayer(0, floorTiles, 0, 0)
   floorLayer.scaleX = 3
   floorLayer.scaleY = 3
-
   const boundsMap = scene.make.tilemap({
     data: reverseGrid(level.floor, 388),
     tileWidth: 16,
     tileHeight: 16,
   } as Phaser.Types.Tilemaps.TilemapConfig)
 
-  boundsMap.setCollision(388)
   // wallMap.setCollision([1, 33])
   const boundsTiles = boundsMap.addTilesetImage('dungeonTiles')
   const boundsLayer = boundsMap.createStaticLayer(0, boundsTiles, 0, 0)
   boundsLayer.scaleX = 3
   boundsLayer.scaleY = 3
+  boundsMap.setCollision(388)
+  boundsLayer.forEachTile((tile: Phaser.Tilemaps.Tile) => {})
+  // boundsLayer.setSize(1, 1)
   // const image = scene.add.image(350, 350, 'ghost')
   // image.setDisplaySize(42, 42)
 
@@ -174,7 +181,6 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   char.setDisplaySize(42, 42)
   char.setCollideWorldBounds(true)
   // char.setVelocityX(30)
-  scene.physics.add.collider(char, boundsLayer)
 
   const wallMap = scene.make.tilemap({
     data: level.wall,
@@ -188,5 +194,19 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   wallLayer.scaleX = 3
   wallLayer.scaleY = 3
 
+  wallLayer.forEachTile((tile: Phaser.Tilemaps.Tile) => {
+    console.log(tile.index)
+    if (tile.index === 256) {
+      tile.collisionCallback = handlecol
+    }
+  })
+
   scene.physics.add.collider(char, wallLayer)
+}
+
+const handlecol = (a, b: Phaser.Tilemaps.Tile, c) => {
+  if (a.x > b.pixelX * 3) {
+    stop = true
+  } else {
+  }
 }

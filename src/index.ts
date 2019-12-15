@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import { levelPointMapToGrid } from './utils/helpers'
+import { levelPointMapToGrid, reverseGrid } from './utils/helpers'
 import { insertRoom, makeNewLevel } from './utils/shapeGenerator'
 
 const config = {
@@ -155,6 +155,15 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   floorLayer.scaleX = 3
   floorLayer.scaleY = 3
 
+  const boundsMap = scene.make.tilemap({
+    data: reverseGrid(level.floor, 388),
+    tileWidth: 16,
+    tileHeight: 16,
+  } as Phaser.Types.Tilemaps.TilemapConfig)
+  const boundsTiles = boundsMap.addTilesetImage('dungeonTiles')
+  const boundsLayer = boundsMap.createStaticLayer(0, boundsTiles, 0, 0)
+  boundsLayer.scaleX = 3
+  boundsLayer.scaleY = 3
   // const image = scene.add.image(350, 350, 'ghost')
   // image.setDisplaySize(42, 42)
 

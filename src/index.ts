@@ -144,15 +144,16 @@ function update(time, delta) {
 
 const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   const level = levelPointMapToGrid(levelCoords)
+
   const floorMap = scene.make.tilemap({
     data: level.floor,
     tileWidth: 16,
     tileHeight: 16,
   } as Phaser.Types.Tilemaps.TilemapConfig)
-  const tiles2 = floorMap.addTilesetImage('dungeonTiles')
-  const layer2 = floorMap.createStaticLayer(0, tiles2, 0, 0)
-  layer2.scaleX = 3
-  layer2.scaleY = 3
+  const floorTiles = floorMap.addTilesetImage('dungeonTiles')
+  const floorLayer = floorMap.createStaticLayer(0, floorTiles, 0, 0)
+  floorLayer.scaleX = 3
+  floorLayer.scaleY = 3
 
   // const image = scene.add.image(350, 350, 'ghost')
   // image.setDisplaySize(42, 42)
@@ -168,12 +169,12 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
     tileHeight: 16,
   } as Phaser.Types.Tilemaps.TilemapConfig)
 
-  wallMap.setCollision([1, 33])
-  const tiles = wallMap.addTilesetImage('dungeonTiles')
+  // wallMap.setCollision([1, 33])
+  const wallTiles = wallMap.addTilesetImage('dungeonTiles')
   // map.(setCollision)Between(0, 9)
-  const layer = wallMap.createStaticLayer(0, tiles, 0, 0)
-  layer.scaleX = 3
-  layer.scaleY = 3
+  const wallLayer = wallMap.createStaticLayer(0, wallTiles, 0, 0)
+  wallLayer.scaleX = 3
+  wallLayer.scaleY = 3
 
-  scene.physics.add.collider(char, layer)
+  scene.physics.add.collider(char, wallLayer)
 }

@@ -160,6 +160,9 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
     tileWidth: 16,
     tileHeight: 16,
   } as Phaser.Types.Tilemaps.TilemapConfig)
+
+  boundsMap.setCollision(388)
+  // wallMap.setCollision([1, 33])
   const boundsTiles = boundsMap.addTilesetImage('dungeonTiles')
   const boundsLayer = boundsMap.createStaticLayer(0, boundsTiles, 0, 0)
   boundsLayer.scaleX = 3
@@ -171,6 +174,7 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   char.setDisplaySize(42, 42)
   char.setCollideWorldBounds(true)
   // char.setVelocityX(30)
+  scene.physics.add.collider(char, boundsLayer)
 
   const wallMap = scene.make.tilemap({
     data: level.wall,
@@ -178,7 +182,6 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
     tileHeight: 16,
   } as Phaser.Types.Tilemaps.TilemapConfig)
 
-  // wallMap.setCollision([1, 33])
   const wallTiles = wallMap.addTilesetImage('dungeonTiles')
   // map.(setCollision)Between(0, 9)
   const wallLayer = wallMap.createStaticLayer(0, wallTiles, 0, 0)

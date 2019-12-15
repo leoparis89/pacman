@@ -157,8 +157,9 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   // const image = scene.add.image(350, 350, 'ghost')
   // image.setDisplaySize(42, 42)
 
-  char = scene.physics.add.image(30, 30, 'ghost')
+  char = scene.physics.add.sprite(30, 30, 'ghost')
   char.setDisplaySize(42, 42)
+  char.setCollideWorldBounds(true)
   // char.setVelocityX(30)
 
   const wallMap = scene.make.tilemap({
@@ -167,9 +168,12 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
     tileHeight: 16,
   } as Phaser.Types.Tilemaps.TilemapConfig)
 
+  wallMap.setCollision([1, 33])
   const tiles = wallMap.addTilesetImage('dungeonTiles')
-  // map.setCollisionBetween(0, 9)
+  // map.(setCollision)Between(0, 9)
   const layer = wallMap.createStaticLayer(0, tiles, 0, 0)
   layer.scaleX = 3
   layer.scaleY = 3
+
+  scene.physics.add.collider(char, layer)
 }

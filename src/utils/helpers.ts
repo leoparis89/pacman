@@ -61,3 +61,14 @@ export const normalizeArray = (arr: any[][]) => {
   })
   return result
 }
+
+export const reverseGrid = (grid: any[][], filler) => {
+  const result: any[][] = JSON.parse(JSON.stringify(grid))
+
+  grid.forEach((row, j) => {
+    row.forEach((cell, i) => {
+      result[j][i] = cell ? undefined : filler
+    })
+  })
+  return result
+}

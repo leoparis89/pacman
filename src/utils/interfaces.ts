@@ -28,8 +28,8 @@ interface Level {
 }
 
 interface IStop {
-  top?: boolean
-  bottom?: boolean
+  up?: boolean
+  down?: boolean
   left?: boolean
   right?: boolean
 }

@@ -1,8 +1,7 @@
-import { isFlowBaseAnnotation } from '@babel/types'
 import Phaser from 'phaser'
 import settings from './settings'
-import { handleCursor } from './utils/controls'
-import { levelPointMapToGrid, reverseGrid } from './utils/helpers'
+import { handleCursor, handleWallCollision } from './utils/controls'
+import { levelPointMapToGrid } from './utils/helpers'
 import { insertRoom, makeNewLevel } from './utils/shapeGenerator'
 
 const { screen, tile } = settings
@@ -25,7 +24,7 @@ const config = {
   },
 }
 
-const stop = {
+let stop: IStop = {
   up: false,
   down: false,
   right: false,
@@ -194,6 +193,7 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
     if (tile.index === 256) {
       tile.collisionCallback = handlecol
     }
+    stop = handleWallCollision(character, tile)
   })
 
   scene.physics.add.collider(character, wallLayer)

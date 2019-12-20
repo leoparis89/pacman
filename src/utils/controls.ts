@@ -1,3 +1,5 @@
+import tileMapping from './tileMapping'
+
 export const handleCursor = (
   cursors: Phaser.Types.Input.Keyboard.CursorKeys,
   character: Phaser.Physics.Arcade.Sprite,
@@ -5,10 +7,6 @@ export const handleCursor = (
   if (cursors.left!.isDown) {
     character.setVelocityX(-160)
   } else if (cursors.right!.isDown) {
-    // if (stop) {
-    //   char.setVelocityX(0)
-    //   return
-    // }
     character.setVelocityX(160)
   } else if (cursors.up!.isDown) {
     character.setVelocityY(-160)
@@ -25,8 +23,14 @@ export const handleWallCollision = (
   tile: Phaser.Tilemaps.Tile,
 ) => {
   const result: IStop = {}
+  const charX = character.x
+  const tileX = tile.pixelX * 3
+  const charY = character.y
+  const tileY = tile.pixelY * 3
 
-  if (character.x > tile.pixelX * 3) {
+  const rightWall = tileMapping.wall.vertical.right.indexOf(tile.index) !== -1
+
+  if (rightWall && charX > tileX) {
     result.right = true
   }
 

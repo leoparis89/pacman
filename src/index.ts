@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import { handleCursor } from './utils/controls'
 import { levelPointMapToGrid, reverseGrid } from './utils/helpers'
 import { insertRoom, makeNewLevel } from './utils/shapeGenerator'
 
@@ -99,23 +100,7 @@ function create() {
 
 let stop
 function update(time, delta) {
-  // controls.update(delta)
-  if (cursors.left!.isDown) {
-    character.setVelocityX(-160)
-  } else if (cursors.right!.isDown) {
-    // if (stop) {
-    //   char.setVelocityX(0)
-    //   return
-    // }
-    character.setVelocityX(160)
-  } else if (cursors.up!.isDown) {
-    character.setVelocityY(-160)
-  } else if (cursors.down!.isDown) {
-    character.setVelocityY(160)
-  } else {
-    character.setVelocityX(0)
-    character.setVelocityY(0)
-  }
+  handleCursor(cursors, character)
 }
 
 // function refreshPos(ghost) {

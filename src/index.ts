@@ -141,11 +141,11 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   const floorLayer = floorMap.createStaticLayer(0, floorTiles, 0, 0)
   floorLayer.scaleX = 3
   floorLayer.scaleY = 3
-  const boundsMap = scene.make.tilemap({
-    data: reverseGrid(level.floor, 388),
-    tileWidth: 16,
-    tileHeight: 16,
-  } as Phaser.Types.Tilemaps.TilemapConfig)
+  // const boundsMap = scene.make.tilemap({
+  //   data: reverseGrid(level.floor, 388),
+  //   tileWidth: 16,
+  //   tileHeight: 16,
+  // } as Phaser.Types.Tilemaps.TilemapConfig)
 
   // wallMap.setCollision([1, 33])
   // const boundsTiles = boundsMap.addTilesetImage('dungeonTiles')

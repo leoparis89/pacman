@@ -4,20 +4,20 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "phaser": "^3.20.1"
+    "phaser": "^3.21.0"
   },
   "devDependencies": {
     "@poi/plugin-typescript": "^12.2.1",
-    "@types/jest": "^24.0.23",
+    "@types/jest": "^24.0.24",
     "@types/poi": "^12.5.0",
-    "@types/prettier": "^1.18.3",
+    "@types/prettier": "^1.19.0",
     "jest": "^24.9.0",
-    "poi": "^12.7.3",
-    "prettier": "^1.18.2",
-    "ts-jest": "^24.1.0",
+    "poi": "^12.7.5",
+    "prettier": "^1.19.1",
+    "ts-jest": "^24.2.0",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.3"
   },
   "scripts": {
     "dev": "yarn poi --serve src/index.ts",

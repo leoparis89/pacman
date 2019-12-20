@@ -107,10 +107,10 @@ function update(time, delta) {
   if (cursors.left.isDown) {
     char.setVelocityX(-160)
   } else if (cursors.right.isDown) {
-    if (stop) {
-      char.setVelocityX(0)
-      return
-    }
+    // if (stop) {
+    //   char.setVelocityX(0)
+    //   return
+    // }
     char.setVelocityX(160)
   } else if (cursors.up.isDown) {
     char.setVelocityY(-160)

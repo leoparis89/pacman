@@ -185,7 +185,10 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   scene.physics.add.collider(character, wallLayer)
 }
 
-const handlecol = (a, b: Phaser.Tilemaps.Tile, c) => {
+const handlecol = (
+  a: Phaser.Physics.Arcade.Sprite,
+  b: Phaser.Tilemaps.Tile,
+) => {
   if (a.x > b.pixelX * 3) {
     stop = true
   } else {

@@ -148,12 +148,12 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   } as Phaser.Types.Tilemaps.TilemapConfig)
 
   // wallMap.setCollision([1, 33])
-  const boundsTiles = boundsMap.addTilesetImage('dungeonTiles')
-  const boundsLayer = boundsMap.createStaticLayer(0, boundsTiles, 0, 0)
-  boundsLayer.scaleX = 3
-  boundsLayer.scaleY = 3
-  boundsMap.setCollision(388)
-  boundsLayer.forEachTile((tile: Phaser.Tilemaps.Tile) => {})
+  // const boundsTiles = boundsMap.addTilesetImage('dungeonTiles')
+  // const boundsLayer = boundsMap.createStaticLayer(0, boundsTiles, 0, 0)
+  // boundsLayer.scaleX = 3
+  // boundsLayer.scaleY = 3
+  // boundsMap.setCollision(388)
+  // boundsLayer.forEachTile((tile: Phaser.Tilemaps.Tile) => {})
   // boundsLayer.setSize(1, 1)
   // const image = scene.add.image(350, 350, 'ghost')
   // image.setDisplaySize(42, 42)

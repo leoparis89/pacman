@@ -189,22 +189,8 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   wallLayer.scaleY = tile.scaling
 
   wallLayer.forEachTile((tile: Phaser.Tilemaps.Tile) => {
-    console.log(tile)
-    if (tile.index === 256) {
-      tile.collisionCallback = handlecol
-    }
     stop = handleWallCollision(character, tile)
   })
 
   scene.physics.add.collider(character, wallLayer)
-}
-
-const handlecol = (
-  a: Phaser.Physics.Arcade.Sprite,
-  b: Phaser.Tilemaps.Tile,
-) => {
-  if (a.x > b.pixelX * 3) {
-    stop.right = true
-  } else {
-  }
 }

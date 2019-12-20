@@ -34,12 +34,8 @@ function preload() {
   )
 }
 
-let cursors
-let ghost
-
-let char: Phaser.Physics.Arcade.Sprite
-
-let controls
+let character: Phaser.Physics.Arcade.Sprite
+let cursors: Phaser.Types.Input.Keyboard.CursorKeys
 
 function create() {
   const scene: Phaser.Scene = this
@@ -104,21 +100,21 @@ function create() {
 let stop
 function update(time, delta) {
   // controls.update(delta)
-  if (cursors.left.isDown) {
-    char.setVelocityX(-160)
-  } else if (cursors.right.isDown) {
+  if (cursors.left!.isDown) {
+    character.setVelocityX(-160)
+  } else if (cursors.right!.isDown) {
     // if (stop) {
     //   char.setVelocityX(0)
     //   return
     // }
-    char.setVelocityX(160)
-  } else if (cursors.up.isDown) {
-    char.setVelocityY(-160)
-  } else if (cursors.down.isDown) {
-    char.setVelocityY(160)
+    character.setVelocityX(160)
+  } else if (cursors.up!.isDown) {
+    character.setVelocityY(-160)
+  } else if (cursors.down!.isDown) {
+    character.setVelocityY(160)
   } else {
-    char.setVelocityX(0)
-    char.setVelocityY(0)
+    character.setVelocityX(0)
+    character.setVelocityY(0)
   }
 }
 
@@ -177,9 +173,9 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   // const image = scene.add.image(350, 350, 'ghost')
   // image.setDisplaySize(42, 42)
 
-  char = scene.physics.add.sprite(430, 430, 'ghost')
-  char.setDisplaySize(42, 42)
-  char.setCollideWorldBounds(true)
+  character = scene.physics.add.sprite(430, 430, 'ghost')
+  character.setDisplaySize(42, 42)
+  character.setCollideWorldBounds(true)
   // char.setVelocityX(30)
 
   const wallMap = scene.make.tilemap({
@@ -201,7 +197,7 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
     }
   })
 
-  scene.physics.add.collider(char, wallLayer)
+  scene.physics.add.collider(character, wallLayer)
 }
 
 const handlecol = (a, b: Phaser.Tilemaps.Tile, c) => {

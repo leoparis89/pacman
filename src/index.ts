@@ -1,12 +1,15 @@
 import Phaser from 'phaser'
+import settings from './settings'
 import { handleCursor } from './utils/controls'
 import { levelPointMapToGrid, reverseGrid } from './utils/helpers'
 import { insertRoom, makeNewLevel } from './utils/shapeGenerator'
 
+const { screen, tile } = settings
+
 const config = {
   type: Phaser.AUTO,
-  width: 1024,
-  height: 1024,
+  width: screen.width,
+  height: screen.height,
   physics: {
     default: 'arcade',
     arcade: {
@@ -21,7 +24,11 @@ const config = {
   },
 }
 
+/**
+ * Side effect creates the game
+ */
 const game = new Phaser.Game(config)
+console.log(game)
 
 function preload() {
   const scene: Phaser.Scene = this
@@ -134,13 +141,13 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
 
   const floorMap = scene.make.tilemap({
     data: level.floor,
-    tileWidth: 16,
-    tileHeight: 16,
+    tileWidth: tile.size,
+    tileHeight: tile.size,
   } as Phaser.Types.Tilemaps.TilemapConfig)
   const floorTiles = floorMap.addTilesetImage('dungeonTiles')
   const floorLayer = floorMap.createStaticLayer(0, floorTiles, 0, 0)
-  floorLayer.scaleX = 3
-  floorLayer.scaleY = 3
+  floorLayer.scaleX = tile.scaling
+  floorLayer.scaleY = tile.scaling
   // const boundsMap = scene.make.tilemap({
   //   data: reverseGrid(level.floor, 388),
   //   tileWidth: 16,
@@ -165,18 +172,18 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
 
   const wallMap = scene.make.tilemap({
     data: level.wall,
-    tileWidth: 16,
-    tileHeight: 16,
+    tileWidth: tile.size,
+    tileHeight: tile.size,
   } as Phaser.Types.Tilemaps.TilemapConfig)
 
   const wallTiles = wallMap.addTilesetImage('dungeonTiles')
   // map.(setCollision)Between(0, 9)
   const wallLayer = wallMap.createStaticLayer(0, wallTiles, 0, 0)
-  wallLayer.scaleX = 3
-  wallLayer.scaleY = 3
+  wallLayer.scaleX = tile.scaling
+  wallLayer.scaleY = tile.scaling
 
   wallLayer.forEachTile((tile: Phaser.Tilemaps.Tile) => {
-    console.log(tile.index)
+    console.log(tile)
     if (tile.index === 256) {
       tile.collisionCallback = handlecol
     }

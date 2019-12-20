@@ -1,3 +1,4 @@
+import { isFlowBaseAnnotation } from '@babel/types'
 import Phaser from 'phaser'
 import settings from './settings'
 import { handleCursor } from './utils/controls'
@@ -22,6 +23,13 @@ const config = {
     create,
     update,
   },
+}
+
+const stop = {
+  up: false,
+  down: false,
+  right: false,
+  left: false,
 }
 
 /**
@@ -105,7 +113,6 @@ function create() {
 //   // refreshPos(ghost)
 // }
 
-let stop
 function update(time, delta) {
   handleCursor(cursors, character)
 }
@@ -197,7 +204,7 @@ const handlecol = (
   b: Phaser.Tilemaps.Tile,
 ) => {
   if (a.x > b.pixelX * 3) {
-    stop = true
+    stop.right = true
   } else {
   }
 }

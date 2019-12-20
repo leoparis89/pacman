@@ -19,3 +19,16 @@ export const handleCursor = (
     character.setVelocityY(0)
   }
 }
+
+export const handleWallCollision = (
+  character: Phaser.Physics.Arcade.Sprite,
+  tile: Phaser.Tilemaps.Tile,
+) => {
+  const result: IStop = {}
+
+  if (character.x > tile.pixelX * 3) {
+    result.right = true
+  }
+
+  return result
+}

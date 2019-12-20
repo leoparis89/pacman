@@ -26,3 +26,10 @@ interface Level {
   floor: PointMap
   wall: PointMap
 }
+
+interface IStop {
+  top?: boolean
+  bottom?: boolean
+  left?: boolean
+  right?: boolean
+}

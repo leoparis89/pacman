@@ -3,7 +3,10 @@ import tileMapping from './tileMapping'
 export const handleCursor = (
   cursors: Phaser.Types.Input.Keyboard.CursorKeys,
   character: Phaser.Physics.Arcade.Sprite,
+  stop: IStop,
 ) => {
+  console.log(stop.right)
+
   if (cursors.left!.isDown) {
     character.setVelocityX(-160)
   } else if (cursors.right!.isDown) {
@@ -16,6 +19,11 @@ export const handleCursor = (
     character.setVelocityX(0)
     character.setVelocityY(0)
   }
+
+  if (stop.right) {
+    character.setVelocityX(0)
+  }
+  console.log(cursors)
 }
 
 export const handleWallCollision = (

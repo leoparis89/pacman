@@ -113,7 +113,7 @@ function create() {
 // }
 
 function update(time, delta) {
-  handleCursor(cursors, character)
+  handleCursor(cursors, character, stop)
 }
 
 // function refreshPos(ghost) {
@@ -189,7 +189,9 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   wallLayer.scaleY = tile.scaling
 
   wallLayer.forEachTile((tile: Phaser.Tilemaps.Tile) => {
-    stop = handleWallCollision(character, tile)
+    tile.collisionCallback = () => {
+      stop = handleWallCollision(character, tile)
+    }
   })
 
   scene.physics.add.collider(character, wallLayer)

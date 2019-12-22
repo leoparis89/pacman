@@ -41,6 +41,10 @@ function preload() {
   const scene: Phaser.Scene = this
   scene.load.image('ground', 'assets/platform.png')
   scene.load.image('ghost', 'assets/ghost.png')
+  scene.load.spritesheet('hero', 'assets/hero.png', {
+    frameWidth: 32,
+    frameHeight: 32,
+  })
 
   scene.load.image('dungeonTiles', 'assets/0x72_DungeonTilesetII_v1.3.png')
   scene.load.tilemapTiledJSON(
@@ -171,8 +175,11 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   // const image = scene.add.image(350, 350, 'ghost')
   // image.setDisplaySize(42, 42)
 
-  character = scene.physics.add.sprite(430, 430, 'ghost')
-  character.setDisplaySize(settings.character.width, settings.character.height)
+  character = scene.physics.add.sprite(430, 430, 'hero')
+  // character.setSize(settings.character.width, settings.character.height)
+  // character.setDisplaySize(settings.character.width, settings.character.height)
+
+  console.log(character)
   character.setCollideWorldBounds(true)
   // char.setVelocityX(30)
 
@@ -189,6 +196,7 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   wallLayer.scaleY = tile.scaling
 
   wallLayer.forEachTile((tile: Phaser.Tilemaps.Tile) => {
+    tile.collideLeft = true
     tile.collisionCallback = () => {
       stop = handleWallCollision(character, tile)
     }

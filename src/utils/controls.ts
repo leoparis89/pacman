@@ -14,24 +14,18 @@ export const handleCursor = (
   }
 
   if (cursorDir.right && !stop.right) {
-    console.log('RIGHT!!')
     character.setVelocityX(160)
   } else if (cursorDir.left && !stop.left) {
-    console.log('RIGHT!!')
     character.setVelocityX(-160)
   } else {
-    console.log('STOOOPPP')
     character.setVelocityX(0)
   } //     character.setVelocityX(-160)
 
   if (cursorDir.up && !stop.right) {
-    console.log('RIGHT!!')
     character.setVelocityY(-160)
   } else if (cursorDir.down && !stop.down) {
-    console.log('RIGHT!!')
     character.setVelocityY(160)
   } else {
-    console.log('STOOOPPP')
     character.setVelocityY(0)
   } //     character.setVelocityX(-160)
 
@@ -51,8 +45,9 @@ export const handleWallCollision = (
   character: Phaser.Physics.Arcade.Sprite,
   tile: Phaser.Tilemaps.Tile,
 ) => {
+  const charWidth = settings.character.width
   const result: IDirection = {}
-  const charX = character.x
+  const charX = character.x - settings.character.width / 2
   const tileX = tile.pixelX * settings.tile.scaling
 
   const charY = character.y
@@ -66,11 +61,16 @@ export const handleWallCollision = (
 
   const leftWall = tileMapping.wall.vertical.left.includes(tile.index)
 
-  if ((rightWall || rightBotomCorner || rightTopCorner) && charX > tileX) {
+  if (rightWall) {
+    debugger
     result.right = true
   }
 
-  if ((leftWall || rightTopCorner) && charX < tileX) {
+  console.log('charX@', charX)
+  console.log('tileX', tileX)
+  // if (leftWall && charX < tileX + 16) {
+  if (leftWall) {
+    debugger
     result.left = true
   }
   return result

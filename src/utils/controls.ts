@@ -1,3 +1,4 @@
+import settings from '../settings'
 import tileMapping from './tileMapping'
 
 export const handleCursor = (
@@ -52,16 +53,25 @@ export const handleWallCollision = (
 ) => {
   const result: IDirection = {}
   const charX = character.x
-  const tileX = tile.pixelX * 3
+  const tileX = tile.pixelX * settings.tile.scaling
+
   const charY = character.y
-  const tileY = tile.pixelY * 3
+  const tileY = tile.pixelY * settings.tile.scaling
 
   const rightWall = tileMapping.wall.vertical.right.includes(tile.index)
-  const rightCorner = tileMapping.wall.corner.bottom.right.includes(tile.index)
+  const rightBotomCorner = tileMapping.wall.corner.bottom.right.includes(
+    tile.index,
+  )
+  const rightTopCorner = tileMapping.wall.corner.top.right.includes(tile.index)
 
-  if ((rightWall || rightCorner) && charX > tileX) {
+  const leftWall = tileMapping.wall.vertical.left.includes(tile.index)
+
+  if ((rightWall || rightBotomCorner || rightTopCorner) && charX > tileX) {
     result.right = true
   }
 
+  if ((leftWall || rightTopCorner) && charX < tileX) {
+    result.left = true
+  }
   return result
 }

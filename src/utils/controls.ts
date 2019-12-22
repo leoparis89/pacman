@@ -56,10 +56,10 @@ export const handleWallCollision = (
   const charY = character.y
   const tileY = tile.pixelY * 3
 
-  const rightWall = tileMapping.wall.vertical.right.indexOf(tile.index) !== -1
+  const rightWall = tileMapping.wall.vertical.right.includes(tile.index)
+  const rightCorner = tileMapping.wall.corner.bottom.right.includes(tile.index)
 
-  if (rightWall && charX > tileX) {
-    debugger
+  if ((rightWall || rightCorner) && charX > tileX) {
     result.right = true
   }
 

@@ -24,7 +24,7 @@ const config = {
   },
 }
 
-let stop: IStop = {
+let stop: IDirection = {
   up: false,
   down: false,
   right: false,

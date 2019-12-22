@@ -27,7 +27,7 @@ interface Level {
   wall: PointMap
 }
 
-interface IStop {
+interface IDirection {
   up?: boolean
   down?: boolean
   left?: boolean

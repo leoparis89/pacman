@@ -172,7 +172,7 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   // image.setDisplaySize(42, 42)
 
   character = scene.physics.add.sprite(430, 430, 'ghost')
-  character.setDisplaySize(42, 42)
+  character.setDisplaySize(settings.character.width, settings.character.height)
   character.setCollideWorldBounds(true)
   // char.setVelocityX(30)
 

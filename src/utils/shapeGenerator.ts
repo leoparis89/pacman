@@ -1,7 +1,5 @@
 import { mergeLevels } from './bfs'
-import TileMap2 from './tileMap2'
 import tileMap2 from './tileMap2'
-import TileMap from './tileMapping'
 
 // export const createWallsForRoom = (
 //   width: number,
@@ -54,7 +52,8 @@ import TileMap from './tileMapping'
 //   return result
 // }
 
-export const createFloor = (width: number, height: number, coords: Point) => {
+export const createRoom = (room: IRoom) => {
+  const { height, width, coords } = room
   const [x, y] = coords
   const result: PointMap = new Map()
 
@@ -66,15 +65,10 @@ export const createFloor = (width: number, height: number, coords: Point) => {
   return result
 }
 
-export const makeNewLevel = () =>
-  ({
-    floor: new Map(),
-  } as Level)
-
-export function insertRoom(level: Level, width, height, pos) {
-  const room: Level = {
-    floor: createFloor(width, height, pos),
-    // wall: createWallsForRoom(width, height, pos),
-  }
-  return mergeLevels(level, room)
-}
+// export function insertRoom(level: Level, width, height, pos) {
+//   const room: Level = {
+//     floor: createFloor(width, height, pos),
+//     // wall: createWallsForRoom(width, height, pos),
+//   }
+//   return mergeLevels(level, room)
+// }

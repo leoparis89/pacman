@@ -1,8 +1,9 @@
 import Phaser from 'phaser'
 import settings from './settings'
-import { handleCursor, handleWallCollision } from './utils/controls'
+import { handleCursor } from './utils/controls'
+import { makeNewLevel } from './utils/createLevel'
 import { levelPointMapToGrid } from './utils/helpers'
-import { insertRoom, makeNewLevel } from './utils/shapeGenerator'
+// import { insertRoom } from './utils/shapeGenerator'
 
 const { screen, tile } = settings
 
@@ -63,7 +64,7 @@ function create() {
   const scene: Phaser.Scene = this
 
   const newLevel = makeNewLevel()
-  const levelWithRoom1 = insertRoom(newLevel, 3, 3, [1, 2])
+  // const levelWithRoom1 = insertRoom(newLevel, 3, 3, [1, 2])
   // const levelWithRoom2 = insertRoom(levelWithRoom1, 5, 7, [6, 6])
   // const levelWithRoom3 = insertRoom(levelWithRoom2, 4, 4, [15, 10])
 

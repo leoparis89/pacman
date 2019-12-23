@@ -30,13 +30,13 @@ interface Level {
 
 interface LevelState {
   level: Level
-  roomsAdded: Room[]
+  roomsAdded: IRoom[]
 }
 
-interface Room {
+interface IRoom {
   height: number
   width: number
-  coord: Point
+  coords: Point
 }
 
 interface IDirection {

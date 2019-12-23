@@ -14,21 +14,21 @@ export const handleCursor = (
   }
 
   if (cursorDir.right && !stop.right) {
-    character.anims.play('right')
-    // character.setVelocityX(160)
+    character.anims.play('right', true)
+    character.setVelocityX(160)
   } else if (cursorDir.left) {
-    character.anims.play('left')
-    // character.setVelocityX(-160)
+    character.anims.play('left', true)
+    character.setVelocityX(-160)
   } else {
     character.setVelocityX(0)
   } //     character.setVelocityX(-160)
 
   if (cursorDir.up && !stop.right) {
-    character.anims.play('up')
-    // character.setVelocityY(-160)
+    character.anims.play('up', true)
+    character.setVelocityY(-160)
   } else if (cursorDir.down && !stop.down) {
-    character.anims.play('down')
-    // character.setVelocityY(160)
+    character.anims.play('down', true)
+    character.setVelocityY(160)
   } else {
     character.setVelocityY(0)
   } //     character.setVelocityX(-160)

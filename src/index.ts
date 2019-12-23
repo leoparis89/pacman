@@ -46,11 +46,14 @@ function preload() {
     frameHeight: 32,
   })
 
-  scene.load.image('dungeonTiles', 'assets/0x72_DungeonTilesetII_v1.3.png')
-  scene.load.tilemapTiledJSON(
-    'dungeonMap',
-    'assets/0x72_DungeonTilesetII_v1.3.json',
-  )
+  // scene.load.image('dungeonTiles', 'assets/0x72_DungeonTilesetII_v1.3.png')
+  // scene.load.tilemapTiledJSON(
+  //   'dungeonMap',
+  //   'assets/0x72_DungeonTilesetII_v1.3.json',
+  // )
+
+  scene.load.image('myTiles', 'assets/myTiles.png')
+  scene.load.tilemapTiledJSON('myTilesMap', 'assets/myTiles.json')
 }
 
 let character: Phaser.Physics.Arcade.Sprite
@@ -154,10 +157,8 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
     tileWidth: tile.size,
     tileHeight: tile.size,
   } as Phaser.Types.Tilemaps.TilemapConfig)
-  const floorTiles = floorMap.addTilesetImage('dungeonTiles')
+  const floorTiles = floorMap.addTilesetImage('myTiles')
   const floorLayer = floorMap.createStaticLayer(0, floorTiles, 0, 0)
-  floorLayer.scaleX = tile.scaling
-  floorLayer.scaleY = tile.scaling
   // const boundsMap = scene.make.tilemap({
   //   data: reverseGrid(level.floor, 388),
   //   tileWidth: 16,

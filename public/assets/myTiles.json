@@ -1,0 +1,14 @@
+{ "columns":8,
+ "image":"..\/DevWork\/pacman\/public\/assets\/myTiles.png",
+ "imageheight":4256,
+ "imagewidth":256,
+ "margin":0,
+ "name":"myTiles",
+ "spacing":0,
+ "tilecount":1064,
+ "tiledversion":"1.2.5",
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset",
+ "version":1.2
+}

@@ -64,12 +64,12 @@ function create() {
 
   const newLevel = makeNewLevel()
   const levelWithRoom1 = insertRoom(newLevel, 3, 3, [1, 2])
-  const levelWithRoom2 = insertRoom(levelWithRoom1, 5, 7, [6, 6])
-  const levelWithRoom3 = insertRoom(levelWithRoom2, 4, 4, [15, 10])
+  // const levelWithRoom2 = insertRoom(levelWithRoom1, 5, 7, [6, 6])
+  // const levelWithRoom3 = insertRoom(levelWithRoom2, 4, 4, [15, 10])
 
   const initalPos: Point = [1, 4]
 
-  render(scene, levelWithRoom3, initalPos)
+  render(scene, newLevel, initalPos)
   cursors = scene.input.keyboard.createCursorKeys()
 
   scene.anims.create({

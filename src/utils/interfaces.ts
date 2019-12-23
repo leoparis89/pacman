@@ -14,17 +14,29 @@ interface Graph {
 type Point = [number, number]
 
 type PointMap = Map<Point, any>
+type PointMapSer = Map<string, any>
 
 type Grid = number[][]
 
 interface LevelGrid {
   floor: Grid
-  wall: Grid
+  // wall: Grid
 }
 
 interface Level {
   floor: PointMap
-  wall: PointMap
+  wall?: PointMap
+}
+
+interface LevelState {
+  level: Level
+  roomsAdded: Room[]
+}
+
+interface Room {
+  height: number
+  width: number
+  coord: Point
 }
 
 interface IDirection {

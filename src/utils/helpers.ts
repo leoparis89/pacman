@@ -20,7 +20,7 @@ export function normalizeGrid(level: Grid, pathValue: any) {
 export const levelPointMapToGrid = (l: Level) =>
   ({
     floor: pointMaptoGrid(l.floor),
-    wall: pointMaptoGrid(l.wall),
+    // wall: pointMaptoGrid(l.wall),
   } as LevelGrid)
 
 export const pointMaptoGrid: (ps: PointMap) => Grid = ps => {

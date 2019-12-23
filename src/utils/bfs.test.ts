@@ -371,139 +371,60 @@ describe('normalizeLevel function', () => {
   })
 })
 
-describe('coordsToArray', () => {
-  it('should return the right value !', () => {
-    const input: PointMap = new Map()
-    input.set([4, 4], 'x')
-    input.set([5, 4], 'x')
-    input.set([6, 4], 'x')
-    input.set([4, 5], 'x')
-    input.set([5, 5], 'x')
-    input.set([6, 5], 'x')
-    input.set([4, 6], 'x')
-    input.set([5, 6], 'x')
-    input.set([6, 6], 'x')
-
-    expect(pointMaptoGrid(input)).toEqual([
-      [
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-      ],
-      [
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-      ],
-      [
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-      ],
-      [
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-      ],
-      [undefined, undefined, undefined, undefined, 'x', 'x', 'x'],
-      [undefined, undefined, undefined, undefined, 'x', 'x', 'x'],
-      [undefined, undefined, undefined, undefined, 'x', 'x', 'x'],
-    ])
-  })
-
-  it('should return the right value (case with seperated elements)', () => {
-    const input: PointMap = new Map()
-    input.set([1, 1], 'x')
-    input.set([4, 4], 'x')
-
-    expect(pointMaptoGrid(input)).toEqual([
-      [undefined, undefined, undefined, undefined, undefined],
-      [undefined, 'x', undefined, undefined, undefined],
-      [undefined, undefined, undefined, undefined, undefined],
-      [undefined, undefined, undefined, undefined, undefined],
-      [undefined, undefined, undefined, undefined, 'x'],
-    ])
-  })
-
-  it('should normalize result array', () => {
-    const input: PointMap = new Map()
-    input.set([1, 1], 'x')
-    input.set([4, 4], 'x')
-
-    expect(pointMaptoGrid(input)[0].length).toEqual(5)
-  })
-})
-
 describe('_mergeMaps', () => {
   it('should return the right value', () => {
     const m1: PointMap = new Map([
-      [[3, 4], 'x'],
-      [[3, 5], 'x'],
+      ['[3, 4]', 'x'],
+      ['[3, 5]', 'x'],
     ])
-    const m2: PointMap = new Map([[[1, 1], 'x']])
+    const m2: PointMap = new Map([['[1, 1]', 'x']])
     const expected = new Map([
-      [[3, 4], 'x'],
-      [[3, 5], 'x'],
-      [[1, 1], 'x'],
+      ['[3, 4]', 'x'],
+      ['[3, 5]', 'x'],
+      ['[1, 1]', 'x'],
     ])
     expect(_mergeMaps(m1, m2)).toEqual(expected)
   })
 
   it('should return the right value (case overriding)', () => {
     const m1: PointMap = new Map([
-      [[3, 4], 'x'],
-      [[3, 5], 'x'],
+      ['[3, 4]', 'x'],
+      ['[3, 5]', 'x'],
     ])
     const m2: PointMap = new Map([
-      [[3, 4], 'o'],
-      [[1, 1], 'o'],
+      ['[3, 4]', 'o'],
+      ['[1, 1]', 'o'],
     ])
     const expected = new Map([
-      [[3, 4], 'o'],
-      [[3, 5], 'x'],
-      [[1, 1], 'o'],
+      ['[3, 4]', 'o'],
+      ['[3, 5]', 'x'],
+      ['[1, 1]', 'o'],
     ])
     expect(_mergeMaps(m1, m2)).toEqual(expected)
   })
 })
 
-describe.skip('mergeLevels', () => {
-  it('it should return the right value', () => {
-    const l1: Level = {
-      floor: new Map([[[1, 1], 'o']]),
-      wall: new Map(),
-    }
-    const l2: Level = {
-      floor: new Map([[[1, 2], 'o']]),
-      wall: new Map([[[4, 4], 'x']]),
-    }
+// describe.skip('mergeLevels', () => {
+//   it('it should return the right value', () => {
+//     const l1: Level = {
+//       floor: new Map([[[1, 1], 'o']]),
+//       wall: new Map(),
+//     }
+//     const l2: Level = {
+//       floor: new Map([[[1, 2], 'o']]),
+//       wall: new Map([[[4, 4], 'x']]),
+//     }
 
-    const expected: Level = {
-      floor: new Map([
-        [[1, 2], 'o'],
-        [[1, 1], 'o'],
-      ]),
-      wall: new Map([[[4, 4], 'x']]),
-    }
-    // expect(mergeLevels(l1, l2)).toEqual(expected)
-  })
-})
+//     const expected: Level = {
+//       floor: new Map([
+//         [[1, 2], 'o'],
+//         [[1, 1], 'o'],
+//       ]),
+//       wall: new Map([[[4, 4], 'x']]),
+//     }
+//     // expect(mergeLevels(l1, l2)).toEqual(expected)
+//   })
+// })
 
 describe('NormalizeArray function', () => {
   it('should return the right value', () => {

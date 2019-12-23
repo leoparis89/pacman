@@ -25,7 +25,8 @@ export const levelPointMapToGrid = (l: Level) =>
 
 export const pointMaptoGrid: (ps: PointMap) => Grid = ps => {
   const result: any[][] = []
-  ps.forEach((val, [x, y]) => {
+  ps.forEach((val, coords) => {
+    const [x, y] = JSON.parse(coords)
     if (!result[y]) {
       const newRow: any[] = []
       newRow[x] = val

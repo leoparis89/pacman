@@ -13,7 +13,7 @@ interface Graph {
 
 type Point = [number, number]
 
-type PointMap = Map<Point, any>
+type PointMap = Map<string, any>
 type PointMapSer = Map<string, any>
 
 type Grid = number[][]

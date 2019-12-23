@@ -15,17 +15,20 @@ export const handleCursor = (
 
   if (cursorDir.right && !stop.right) {
     character.anims.play('right')
-    character.setVelocityX(160)
-  } else if (cursorDir.left && !stop.left) {
-    character.setVelocityX(-160)
+    // character.setVelocityX(160)
+  } else if (cursorDir.left) {
+    character.anims.play('left')
+    // character.setVelocityX(-160)
   } else {
     character.setVelocityX(0)
   } //     character.setVelocityX(-160)
 
   if (cursorDir.up && !stop.right) {
-    character.setVelocityY(-160)
+    character.anims.play('up')
+    // character.setVelocityY(-160)
   } else if (cursorDir.down && !stop.down) {
-    character.setVelocityY(160)
+    character.anims.play('down')
+    // character.setVelocityY(160)
   } else {
     character.setVelocityY(0)
   } //     character.setVelocityX(-160)

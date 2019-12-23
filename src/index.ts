@@ -87,7 +87,7 @@ function create() {
   })
 
   scene.anims.create({
-    key: 'left',
+    key: 'right',
     frames: this.anims.generateFrameNumbers('hero', { start: 6, end: 8 }),
     frameRate: 10,
     repeat: -1,

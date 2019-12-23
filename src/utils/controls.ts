@@ -62,7 +62,6 @@ export const handleWallCollision = (
   const leftWall = tileMapping.wall.vertical.left.includes(tile.index)
 
   if (rightWall) {
-    debugger
     result.right = true
   }
 
@@ -70,7 +69,6 @@ export const handleWallCollision = (
   console.log('tileX', tileX)
   // if (leftWall && charX < tileX + 16) {
   if (leftWall) {
-    debugger
     result.left = true
   }
   return result

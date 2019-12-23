@@ -24,7 +24,7 @@ const config = {
   },
 }
 
-let stop: IDirection = {
+const stop: IDirection = {
   up: false,
   down: false,
   right: false,
@@ -179,28 +179,25 @@ const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
   // character.setSize(settings.character.width, settings.character.height)
   // character.setDisplaySize(settings.character.width, settings.character.height)
 
-  console.log(character)
-  character.setCollideWorldBounds(true)
   // char.setVelocityX(30)
 
-  const wallMap = scene.make.tilemap({
-    data: level.wall,
-    tileWidth: tile.size,
-    tileHeight: tile.size,
-  } as Phaser.Types.Tilemaps.TilemapConfig)
+  // const wallMap = scene.make.tilemap({
+  //   data: level.wall,
+  //   tileWidth: tile.size,
+  //   tileHeight: tile.size,
+  // } as Phaser.Types.Tilemaps.TilemapConfig)
 
-  const wallTiles = wallMap.addTilesetImage('dungeonTiles')
-  // map.(setCollision)Between(0, 9)
-  const wallLayer = wallMap.createStaticLayer(0, wallTiles, 0, 0)
-  wallLayer.scaleX = tile.scaling
-  wallLayer.scaleY = tile.scaling
+  // const wallTiles = wallMap.addTilesetImage('dungeonTiles')
+  // // map.(setCollision)Between(0, 9)
+  // const wallLayer = wallMap.createStaticLayer(0, wallTiles, 0, 0)
+  // wallLayer.scaleX = tile.scaling
+  // wallLayer.scaleY = tile.scaling
 
-  wallLayer.forEachTile((tile: Phaser.Tilemaps.Tile) => {
-    tile.collideLeft = true
-    tile.collisionCallback = () => {
-      stop = handleWallCollision(character, tile)
-    }
-  })
+  // wallLayer.forEachTile((tile: Phaser.Tilemaps.Tile) => {
+  //   tile.collisionCallback = () => {
+  //     stop = handleWallCollision(character, tile)
+  //   }
+  // })
 
-  scene.physics.add.collider(character, wallLayer)
+  // scene.physics.add.collider(character, wallLayer)
 }

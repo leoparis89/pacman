@@ -20,6 +20,7 @@ export const handleCursor = (
     character.anims.play('left', true)
     character.setVelocityX(-160)
   } else {
+    // character.anims.stop()
     character.setVelocityX(0)
   } //     character.setVelocityX(-160)
 
@@ -30,6 +31,7 @@ export const handleCursor = (
     character.anims.play('down', true)
     character.setVelocityY(160)
   } else {
+    character.anims.stopOnRepeat()
     character.setVelocityY(0)
   } //     character.setVelocityX(-160)
 

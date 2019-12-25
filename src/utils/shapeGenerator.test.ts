@@ -1,3 +1,13 @@
-describe('insertRoom function', () => {
-  it('add room to existing level', () => {})
+import { roomToPointMap } from './shapeGenerator'
+
+describe('roomToPointMap function', () => {
+  it('should return the right value', () => {
+    const expected = new Map([
+      ['[3,4]', true],
+      ['[3,5]', true],
+      ['[4,5]', true],
+      ['[4,5]', true],
+    ])
+    expect(roomToPointMap({ height: 2, width: 2, coords: [3, 4] })).toEqual('')
+  })
 })

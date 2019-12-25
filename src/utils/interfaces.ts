@@ -14,24 +14,8 @@ interface Graph {
 type Point = [number, number]
 
 type PointMap = Map<string, any>
-type PointMapSer = Map<string, any>
 
 type Grid = number[][]
-
-interface LevelGrid {
-  floor: Grid
-  // wall: Grid
-}
-
-interface Level {
-  floor: PointMap
-  wall?: PointMap
-}
-
-interface LevelState {
-  level: Level
-  roomsAdded: IRoom[]
-}
 
 interface IRoom {
   height: number

@@ -1,4 +1,4 @@
-import { pointMaptoGrid, reverseGrid } from './helpers'
+import { normalizeArray, pointMaptoGrid, reverseGrid } from './helpers'
 
 test('reverse grid should return the right value', () => {
   const input = [
@@ -90,5 +90,15 @@ describe('pointMapToGrid', () => {
     input.set('[4, 4]', 'x')
 
     expect(pointMaptoGrid(input)[0].length).toEqual(5)
+  })
+})
+
+describe('NormalizeArray function', () => {
+  it('should return the right value', () => {
+    const input = [[2], [undefined, undefined, 4, undefined]]
+    expect(normalizeArray(input)).toEqual([
+      [2, undefined, undefined, undefined],
+      [undefined, undefined, 4, undefined],
+    ])
   })
 })

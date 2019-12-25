@@ -425,13 +425,3 @@ describe('_mergeMaps', () => {
 //     // expect(mergeLevels(l1, l2)).toEqual(expected)
 //   })
 // })
-
-describe('NormalizeArray function', () => {
-  it('should return the right value', () => {
-    const input = [[2], [undefined, undefined, 4, undefined]]
-    expect(normalizeArray(input)).toEqual([
-      [2, undefined, undefined, undefined],
-      [undefined, undefined, 4, undefined],
-    ])
-  })
-})

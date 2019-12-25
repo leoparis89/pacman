@@ -1,7 +1,10 @@
+import { flow } from 'lodash'
 import Phaser from 'phaser'
 import settings from './settings'
 import { handleCursor } from './utils/controls'
 import { makeNewLevel } from './utils/createLevel'
+import { paintGrid, pointMaptoGrid } from './utils/helpers'
+import { roomReducer } from './utils/shapeGenerator'
 // import { insertRoom } from './utils/shapeGenerator'
 
 const { screen, tile } = settings
@@ -67,9 +70,8 @@ function create() {
   // const levelWithRoom2 = insertRoom(levelWithRoom1, 5, 7, [6, 6])
   // const levelWithRoom3 = insertRoom(levelWithRoom2, 4, 4, [15, 10])
 
-  const initalPos: Point = [1, 4]
+  setup(scene)
 
-  // render(scene, newLevel, initalPos)
   cursors = scene.input.keyboard.createCursorKeys()
 
   scene.anims.create({
@@ -176,11 +178,20 @@ function update(time, delta) {
 //   }, 100)
 // }
 
-const render = (scene: Phaser.Scene, levelCoords: Grid, charPos: Point) => {
+const setup = (scene: Phaser.Scene) => {
   // const level = levelPointMapToGrid(levelCoords)
 
+  const level = roomReducer(
+    [
+      { height: 3, width: 3, coords: [4, 4] },
+      { height: 4, width: 3, coords: [9, 9] },
+      { height: 3, width: 13, coords: [1, 12] },
+    ],
+    new Map(),
+  )
+
   const floorMap = scene.make.tilemap({
-    data: [],
+    data: flow(pointMaptoGrid, paintGrid(292))(level),
     tileWidth: tile.size,
     tileHeight: tile.size,
   } as Phaser.Types.Tilemaps.TilemapConfig)

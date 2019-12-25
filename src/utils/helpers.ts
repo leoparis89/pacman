@@ -68,6 +68,16 @@ export const reverseGrid = (grid: any[][], filler) => {
   return result
 }
 
+export const paintGrid = filler => (grid: any[][]) => {
+  const result: any[][] = JSON.parse(JSON.stringify(grid))
+
+  grid.forEach((row, j) => {
+    row.forEach((cell, i) => {
+      result[j][i] = cell ? filler : undefined
+    })
+  })
+  return result
+}
 // export const _mergeMaps = (m1: PointMap, m2: PointMap) => {
 //   const serializedResult = new Map(
 //     [...serializeMap(m1)].concat([...serializeMap(m2)]),

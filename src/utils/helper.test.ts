@@ -102,3 +102,36 @@ describe('NormalizeArray function', () => {
     ])
   })
 })
+
+// describe('mergeMaps', () => {
+//   it('should return the right value', () => {
+//     const m1: PointMap = new Map([
+//       ['[3, 4]', 'x'],
+//       ['[3, 5]', 'x'],
+//     ])
+//     const m2: PointMap = new Map([['[1, 1]', 'x']])
+//     const expected = new Map([
+//       ['[3, 4]', 'x'],
+//       ['[3, 5]', 'x'],
+//       ['[1, 1]', 'x'],
+//     ])
+//     expect(mergeMaps(m1, m2)).toEqual(expected)
+//   })
+
+//   it('should return the right value (case overriding)', () => {
+//     const m1: PointMap = new Map([
+//       ['[3, 4]', 'x'],
+//       ['[3, 5]', 'x'],
+//     ])
+//     const m2: PointMap = new Map([
+//       ['[3, 4]', 'o'],
+//       ['[1, 1]', 'o'],
+//     ])
+//     const expected = new Map([
+//       ['[3, 4]', 'o'],
+//       ['[3, 5]', 'x'],
+//       ['[1, 1]', 'o'],
+//     ])
+//     expect(mergeMaps(m1, m2)).toEqual(expected)
+//   })
+// })

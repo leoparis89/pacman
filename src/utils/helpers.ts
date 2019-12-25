@@ -67,3 +67,10 @@ export const reverseGrid = (grid: any[][], filler) => {
   })
   return result
 }
+
+// export const _mergeMaps = (m1: PointMap, m2: PointMap) => {
+//   const serializedResult = new Map(
+//     [...serializeMap(m1)].concat([...serializeMap(m2)]),
+//   )
+//   return deSerializeMap(serializedResult)
+// }

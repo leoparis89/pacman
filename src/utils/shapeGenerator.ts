@@ -61,3 +61,11 @@ export const roomToPointMap = (room: IRoom) => {
   }
   return result
 }
+
+export const roomReducer = (rs: IRoom[], level: PointMap) => {
+  return rs.reduce((acc, curr) => {
+    const newRoom = roomToPointMap(curr)
+    const levelWithNewRoom = new Map([...acc].concat([...newRoom]))
+    return acc
+  }, level)
+}

@@ -1,4 +1,4 @@
-import { roomToPointMap } from './shapeGenerator'
+import { roomReducer, roomToPointMap } from './shapeGenerator'
 
 describe('roomToPointMap function', () => {
   it('should return the right value', () => {
@@ -11,5 +11,13 @@ describe('roomToPointMap function', () => {
     expect(roomToPointMap({ height: 2, width: 2, coords: [3, 4] })).toEqual(
       expected,
     )
+  })
+})
+
+describe('roomReducer', () => {
+  it('should add rooms to level', () => {
+    const rooms: IRoom[] = [{ height: 2, width: 2, coords: [4, 3] }]
+
+    expect(roomReducer(rooms, new Map())).toEqual('')
   })
 })

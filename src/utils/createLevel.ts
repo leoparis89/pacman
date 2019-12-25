@@ -6,7 +6,4 @@ export const createLevel = () => {
 
 export const addRoom = (levelState: LevelState, room: IRoom) => {}
 
-export const makeNewLevel = () =>
-  ({
-    floor: new Map(),
-  } as Level)
+export const makeNewLevel = () => new Map()

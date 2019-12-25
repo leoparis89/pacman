@@ -1,5 +1,3 @@
-import tileMap2 from './tileMap2'
-
 // export const createWallsForRoom = (
 //   width: number,
 //   height: number,
@@ -63,11 +61,3 @@ export const roomToPointMap = (room: IRoom) => {
   }
   return result
 }
-
-// export function insertRoom(level: Level, width, height, pos) {
-//   const room: Level = {
-//     floor: createFloor(width, height, pos),
-//     // wall: createWallsForRoom(width, height, pos),
-//   }
-//   return mergeLevels(level, room)
-// }

@@ -1,4 +1,3 @@
-import { mergeLevels } from './bfs'
 import tileMap2 from './tileMap2'
 
 // export const createWallsForRoom = (

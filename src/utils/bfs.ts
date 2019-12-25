@@ -103,13 +103,6 @@ function getPath(nodes: Vertex[], seedId, goalId) {
 const _getNode = (nodes: Vertex[]) => (id: string) =>
   nodes.find(n => n.id === id)
 
-export const mergeLevels = (l1: Level, l2: Level) => {
-  return {
-    // floor: _mergeMaps(l1.floor, l2.floor),
-    // wall: _mergeMaps(l1.wall, l2.wall),
-  } as Level
-}
-
 export const _mergeMaps = (m1: PointMap, m2: PointMap) => {
   const serializedResult = new Map(
     [...serializeMap(m1)].concat([...serializeMap(m2)]),

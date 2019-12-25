@@ -2,7 +2,6 @@ import Phaser from 'phaser'
 import settings from './settings'
 import { handleCursor } from './utils/controls'
 import { makeNewLevel } from './utils/createLevel'
-import { levelPointMapToGrid } from './utils/helpers'
 // import { insertRoom } from './utils/shapeGenerator'
 
 const { screen, tile } = settings
@@ -70,7 +69,7 @@ function create() {
 
   const initalPos: Point = [1, 4]
 
-  render(scene, newLevel, initalPos)
+  // render(scene, newLevel, initalPos)
   cursors = scene.input.keyboard.createCursorKeys()
 
   scene.anims.create({
@@ -177,11 +176,11 @@ function update(time, delta) {
 //   }, 100)
 // }
 
-const render = (scene: Phaser.Scene, levelCoords: Level, charPos: Point) => {
-  const level = levelPointMapToGrid(levelCoords)
+const render = (scene: Phaser.Scene, levelCoords: Grid, charPos: Point) => {
+  // const level = levelPointMapToGrid(levelCoords)
 
   const floorMap = scene.make.tilemap({
-    data: level.floor,
+    data: [],
     tileWidth: tile.size,
     tileHeight: tile.size,
   } as Phaser.Types.Tilemaps.TilemapConfig)

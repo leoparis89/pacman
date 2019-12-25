@@ -5,9 +5,11 @@ describe('roomToPointMap function', () => {
     const expected = new Map([
       ['[3,4]', true],
       ['[3,5]', true],
-      ['[4,5]', true],
+      ['[4,4]', true],
       ['[4,5]', true],
     ])
-    expect(roomToPointMap({ height: 2, width: 2, coords: [3, 4] })).toEqual('')
+    expect(roomToPointMap({ height: 2, width: 2, coords: [3, 4] })).toEqual(
+      expected,
+    )
   })
 })

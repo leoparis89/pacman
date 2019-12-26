@@ -73,5 +73,44 @@ export const roomReducer = (rs: IRoom[], level: PointMap = new Map()) => {
 export const enoughIsSpace = (
   level: PointMap,
   { coords, dir }: PointAndDirection,
-  roomToCheck = { height: 8, width: 8 },
-) => {}
+  roomToCheck = { height: 8, width: 7 },
+) => {
+  const { height, width } = roomToCheck
+  const [x, y] = coords
+
+  let startI
+  let endI
+  let startJ
+  let endJ
+
+  if (dir === 'up') {
+    startI = x - Math.floor(width / 2)
+    endI = x + Math.floor(width / 2)
+    startJ = y - height
+    endJ = y
+  } else if (dir === 'down') {
+    startI = x - Math.floor(width / 2)
+    endI = x + Math.floor(width / 2)
+    startJ = y
+    endJ = y + height
+  } else if (dir === 'left') {
+    startI = x - width
+    endI = x
+    startJ = y - Math.floor(height / 2)
+    endJ = y + Math.floor(height / 2)
+  } else if (dir === 'right') {
+    startI = x
+    endI = x + width
+    startJ = y - Math.floor(height / 2)
+    endJ = y + Math.floor(height / 2)
+  }
+
+  for (let i = startI; i < endI; i++) {
+    for (let j = startJ; j < endJ; j++) {
+      if (level.get(JSON.stringify([i, j]))) {
+        return false
+      }
+    }
+  }
+  return true
+}

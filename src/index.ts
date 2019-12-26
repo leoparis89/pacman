@@ -181,14 +181,11 @@ function update(time, delta) {
 const setup = (scene: Phaser.Scene) => {
   // const level = levelPointMapToGrid(levelCoords)
 
-  const level = roomReducer(
-    [
-      { height: 3, width: 3, coords: [4, 4] },
-      { height: 4, width: 3, coords: [9, 9] },
-      { height: 3, width: 13, coords: [1, 12] },
-    ],
-    new Map(),
-  )
+  const level = roomReducer([
+    { height: 3, width: 3, coords: [4, 4] },
+    { height: 4, width: 3, coords: [9, 9] },
+    { height: 3, width: 13, coords: [1, 12] },
+  ])
 
   const floorMap = scene.make.tilemap({
     data: flow(pointMaptoGrid, paintGrid(292))(level),

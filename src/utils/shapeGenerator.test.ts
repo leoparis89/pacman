@@ -63,6 +63,22 @@ describe('hasRoom function', () => {
     expect(enoughIsSpace(level, { coords: [4, 0], dir: 'left' })).toEqual(false)
   })
 
+  it('should return false if there is no room (edge case)', () => {
+    const rooms: IRoom[] = [
+      { height: 4, width: 4, coords: [0, 0] },
+      { height: 4, width: 4, coords: [0, 5] },
+    ]
+    const level = roomReducer(rooms)
+
+    expect(
+      enoughIsSpace(
+        level,
+        { coords: [0, 4], dir: 'down' },
+        { width: 8, height: 2 },
+      ),
+    ).toEqual(false)
+  })
+
   it('should return true if there is room', () => {
     const rooms: IRoom[] = [
       { height: 4, width: 4, coords: [0, 0] },
@@ -72,12 +88,20 @@ describe('hasRoom function', () => {
 
     expect(enoughIsSpace(level, { coords: [4, 0], dir: 'right' })).toEqual(true)
   })
-  // it('should return false if there is no room', () => {
-  //   const rooms: IRoom[] = [
-  //     { height: 4, width: 4, coords: [0, 0] },
-  //     { height: 4, width: 4, coords: [0, 5] },
-  //   ]
-  //   const level = roomReducer(rooms)
-  //   expect(enoughIsSpace(level, { coords: [0, 4], dir: 'down' })).toEqual(false)
-  // })
+
+  it('should return true if there is room (edge case)', () => {
+    const rooms: IRoom[] = [
+      { height: 4, width: 4, coords: [0, 0] },
+      { height: 4, width: 4, coords: [0, 5] },
+    ]
+    const level = roomReducer(rooms)
+
+    expect(
+      enoughIsSpace(
+        level,
+        { coords: [0, 4], dir: 'down' },
+        { width: 8, height: 1 },
+      ),
+    ).toEqual(true)
+  })
 })

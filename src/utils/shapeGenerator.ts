@@ -114,3 +114,13 @@ export const enoughSpace = (
   }
   return true
 }
+
+const generateLevel = (rooms: IRoom[]) => {}
+
+export const getPossibleDirections = ({ height, width, coords }: IRoom) => {
+  const result: IDirection[] = []
+
+  for (let i = 0; i < width; i++) {
+    for (let j = 0; j < height; j++) {}
+  }
+}

@@ -1,4 +1,9 @@
-import { enoughSpace, roomReducer, roomToPointMap } from './shapeGenerator'
+import {
+  enoughSpace,
+  getPossibleDirections,
+  roomReducer,
+  roomToPointMap,
+} from './shapeGenerator'
 
 describe('roomToPointMap function', () => {
   it('should return the right value', () => {
@@ -103,5 +108,13 @@ describe('hasRoom function', () => {
         { width: 8, height: 1 },
       ),
     ).toEqual(true)
+  })
+})
+
+describe('getPossibleDirections function', () => {
+  it('should return the right value', () => {
+    expect(
+      getPossibleDirections({ height: 3, width: 2, coords: [4, 4] }),
+    ).toEqual('')
   })
 })

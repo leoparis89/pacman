@@ -1,4 +1,4 @@
-import { enoughIsSpace, roomReducer, roomToPointMap } from './shapeGenerator'
+import { enoughSpace, roomReducer, roomToPointMap } from './shapeGenerator'
 
 describe('roomToPointMap function', () => {
   it('should return the right value', () => {
@@ -58,9 +58,9 @@ describe('hasRoom function', () => {
     ]
     const level = roomReducer(rooms)
 
-    expect(enoughIsSpace(level, { coords: [0, 4], dir: 'down' })).toEqual(false)
+    expect(enoughSpace(level, { coords: [0, 4], dir: 'down' })).toEqual(false)
 
-    expect(enoughIsSpace(level, { coords: [4, 0], dir: 'left' })).toEqual(false)
+    expect(enoughSpace(level, { coords: [4, 0], dir: 'left' })).toEqual(false)
   })
 
   it('should return false if there is no room (edge case)', () => {
@@ -71,7 +71,7 @@ describe('hasRoom function', () => {
     const level = roomReducer(rooms)
 
     expect(
-      enoughIsSpace(
+      enoughSpace(
         level,
         { coords: [0, 4], dir: 'down' },
         { width: 8, height: 2 },
@@ -86,7 +86,7 @@ describe('hasRoom function', () => {
     ]
     const level = roomReducer(rooms)
 
-    expect(enoughIsSpace(level, { coords: [4, 0], dir: 'right' })).toEqual(true)
+    expect(enoughSpace(level, { coords: [4, 0], dir: 'right' })).toEqual(true)
   })
 
   it('should return true if there is room (edge case)', () => {
@@ -97,7 +97,7 @@ describe('hasRoom function', () => {
     const level = roomReducer(rooms)
 
     expect(
-      enoughIsSpace(
+      enoughSpace(
         level,
         { coords: [0, 4], dir: 'down' },
         { width: 8, height: 1 },

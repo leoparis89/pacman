@@ -69,3 +69,9 @@ export const roomReducer = (rs: IRoom[], level: PointMap = new Map()) => {
     return levelWithNewRoom
   }, level)
 }
+
+export const enoughIsSpace = (
+  level: PointMap,
+  { coords, dir }: PointAndDirection,
+  roomToCheck = { height: 8, width: 8 },
+) => {}

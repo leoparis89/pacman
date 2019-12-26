@@ -1,4 +1,4 @@
-import { roomReducer, roomToPointMap } from './shapeGenerator'
+import { enoughIsSpace, roomReducer, roomToPointMap } from './shapeGenerator'
 
 describe('roomToPointMap function', () => {
   it('should return the right value', () => {
@@ -30,5 +30,24 @@ describe('roomReducer', () => {
       ['[5,4]', true],
     ])
     expect(roomReducer(rooms, new Map())).toEqual(result)
+  })
+})
+
+describe('hasRoom function', () => {
+  it('should return true if there is room', () => {
+    const rooms: IRoom[] = [
+      { height: 3, width: 3, coords: [0, 0] },
+      { height: 3, width: 3, coords: [4, 4] },
+    ]
+    const level = roomReducer(rooms)
+    expect(enoughIsSpace(level, { coords: [2, 0], dir: 'right' })).toEqual(true)
+  })
+  it('should return false if there is no room', () => {
+    const rooms: IRoom[] = [
+      { height: 3, width: 3, coords: [0, 0] },
+      { height: 3, width: 3, coords: [4, 4] },
+    ]
+    const level = roomReducer(rooms)
+    expect(enoughIsSpace(level, { coords: [0, 2], dir: 'down' })).toEqual(false)
   })
 })

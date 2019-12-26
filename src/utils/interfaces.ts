@@ -29,3 +29,10 @@ interface IDirection {
   left?: boolean
   right?: boolean
 }
+
+type Direction = 'left' | 'right' | 'up' | 'down'
+
+interface PointAndDirection {
+  coords: Point
+  dir: Direction
+}

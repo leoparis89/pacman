@@ -118,9 +118,27 @@ export const enoughSpace = (
 const generateLevel = (rooms: IRoom[]) => {}
 
 export const getPossibleDirections = ({ height, width, coords }: IRoom) => {
-  const result: IDirection[] = []
+  const result: PointAndDirection[] = []
+  const [x, y] = coords
 
-  for (let i = 0; i < width; i++) {
-    for (let j = 0; j < height; j++) {}
+  for (let i = x; i < x + width; i++) {
+    for (let j = y; y < height; j++) {
+      if (i === x) {
+        result.push({ dir: 'left', coords: [i, j] })
+      }
+
+      if (i === x + width - 1) {
+        result.push({ dir: 'right', coords: [i, j] })
+      }
+
+      // if (j === y) {
+      //   result.push({ dir: 'up', coords: [i, j] })
+      // }
+
+      // if (j === y - (height - 1)) {
+      //   result.push({ dir: 'down', coords: [i, j] })
+      // }
+    }
   }
+  return result
 }

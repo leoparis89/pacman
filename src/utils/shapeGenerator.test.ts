@@ -114,7 +114,7 @@ describe('hasRoom function', () => {
 describe('getPossibleDirections function', () => {
   it('should return the right value', () => {
     expect(
-      getPossibleDirections({ height: 3, width: 2, coords: [4, 4] }),
+      getPossibleDirections({ height: 2, width: 2, coords: [0, 0] }),
     ).toEqual('')
   })
 })

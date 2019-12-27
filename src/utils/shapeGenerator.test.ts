@@ -115,6 +115,15 @@ describe('getPossibleDirections function', () => {
   it('should return the right value', () => {
     expect(
       getPossibleDirections({ height: 2, width: 2, coords: [0, 0] }),
-    ).toEqual('')
+    ).toEqual([
+      { coords: [0, 0], dir: 'left' },
+      { coords: [0, 0], dir: 'up' },
+      { coords: [0, 1], dir: 'left' },
+      { coords: [0, 1], dir: 'down' },
+      { coords: [1, 0], dir: 'right' },
+      { coords: [1, 0], dir: 'up' },
+      { coords: [1, 1], dir: 'right' },
+      { coords: [1, 1], dir: 'down' },
+    ])
   })
 })

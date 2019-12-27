@@ -102,23 +102,3 @@ function getPath(nodes: Vertex[], seedId, goalId) {
 
 const _getNode = (nodes: Vertex[]) => (id: string) =>
   nodes.find(n => n.id === id)
-
-// export const getBounds: (ps: Point[]) => any[][] = ps => {
-//   const result = []
-// }
-
-export const serializeMap = (m: PointMap) => {
-  const serialized = new Map<string, any>()
-  m.forEach((val, key) => {
-    serialized.set(JSON.stringify(key), val)
-  })
-  return serialized
-}
-
-export const deSerializeMap = (m: Map<string, any>) => {
-  const deSerialized = new Map<Point, any>()
-  m.forEach((val, key) => {
-    deSerialized.set(JSON.parse(key), val)
-  })
-  return deSerialized
-}

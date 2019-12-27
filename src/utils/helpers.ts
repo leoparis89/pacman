@@ -78,9 +78,41 @@ export const paintGrid = filler => (grid: any[][]) => {
   })
   return result
 }
-// export const _mergeMaps = (m1: PointMap, m2: PointMap) => {
-//   const serializedResult = new Map(
-//     [...serializeMap(m1)].concat([...serializeMap(m2)]),
-//   )
-//   return deSerializeMap(serializedResult)
-// }
+
+export const shiftPointMapOutOfNegative = (level: PointMap) => {
+  const [minX, minY] = getMinXY(level)
+
+  const result: PointMap = new Map()
+
+  level.forEach((val, key) => {
+    let [x, y]: Point = JSON.parse(key)
+
+    if (minX < 0) {
+      x = x - minX
+    }
+
+    if (minY < 0) {
+      y = y - minY
+    }
+    result.set(JSON.stringify([x, y]), val)
+  })
+  return result
+}
+
+const getMinXY = (level: PointMap) => {
+  let minX = 0
+  let minY = 0
+
+  level.forEach((_, key) => {
+    const [x, y] = JSON.parse(key)
+
+    if (x < minX) {
+      minX = x
+    }
+
+    if (y < minY) {
+      minY = y
+    }
+  })
+  return [minX, minY]
+}

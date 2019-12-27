@@ -1,4 +1,9 @@
-import { normalizeArray, pointMaptoGrid, reverseGrid } from './helpers'
+import {
+  normalizeArray,
+  pointMaptoGrid,
+  reverseGrid,
+  shiftPointMapOutOfNegative,
+} from './helpers'
 
 test('reverse grid should return the right value', () => {
   const input = [
@@ -135,3 +140,20 @@ describe('NormalizeArray function', () => {
 //     expect(mergeMaps(m1, m2)).toEqual(expected)
 //   })
 // })
+
+describe('shifPointMapOutOfNegative function', () => {
+  it('should shift point map so that it has no negative coordinates', () => {
+    const input: PointMap = new Map([
+      ['[-3,-2]', true],
+      ['[-1,-1]', true],
+      ['[4,6]', true],
+    ])
+
+    const expected: PointMap = new Map([
+      ['[0,0]', true],
+      ['[2,1]', true],
+      ['[7,8]', true],
+    ])
+    expect(shiftPointMapOutOfNegative(input)).toEqual(expected)
+  })
+})

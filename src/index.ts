@@ -62,8 +62,12 @@ function preload() {
 let character: Phaser.Physics.Arcade.Sprite
 let cursors: Phaser.Types.Input.Keyboard.CursorKeys
 
+let camera: Phaser.Cameras.Scene2D.Camera
+
 function create() {
   const scene: Phaser.Scene = this
+
+  camera = scene.cameras.main
 
   const newLevel = makeNewLevel()
   // const levelWithRoom1 = insertRoom(newLevel, 3, 3, [1, 2])
@@ -212,6 +216,7 @@ const setup = (scene: Phaser.Scene) => {
   // image.setDisplaySize(42, 42)
 
   character = scene.physics.add.sprite(430, 430, 'hero')
+  camera.startFollow(character)
   // character.setSize(settings.character.width, settings.character.height)
   // character.setDisplaySize(settings.character.width, settings.character.height)
 

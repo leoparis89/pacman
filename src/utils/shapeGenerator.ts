@@ -139,3 +139,19 @@ export const getPossibleDirections = ({ height, width, coords }: IRoom) => {
   }
   return result
 }
+
+export const createRoomOnDirection = (
+  { dir, coords }: PointAndDirection,
+  { height, width },
+): IRoom => {
+  const [x, y] = coords
+
+  if (dir === 'up') {
+    return {
+      coords: [x - Math.floor(width / 2), y + height],
+      height,
+      width,
+    }
+  }
+  return { coords: [x, y], height, width }
+}

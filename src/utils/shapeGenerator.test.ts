@@ -1,4 +1,5 @@
 import {
+  createRoomOnDirection,
   enoughSpace,
   getPossibleDirections,
   roomReducer,
@@ -125,5 +126,16 @@ describe('getPossibleDirections function', () => {
       { coords: [1, 1], dir: 'right' },
       { coords: [1, 1], dir: 'down' },
     ])
+  })
+})
+
+describe('createRoomOnDIrection function', () => {
+  it('should create room (case up)', () => {
+    expect(
+      createRoomOnDirection(
+        { dir: 'up', coords: [10, 10] },
+        { height: 2, width: 2 },
+      ),
+    ).toEqual('')
   })
 })

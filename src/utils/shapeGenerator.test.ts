@@ -138,4 +138,22 @@ describe('createRoomOnDIrection function', () => {
       ),
     ).toEqual({ coords: [9, 12], height: 2, width: 2 })
   })
+
+  it('should create room (case down)', () => {
+    expect(
+      createRoomOnDirection(
+        { dir: 'down', coords: [10, 10] },
+        { height: 2, width: 2 },
+      ),
+    ).toEqual({ coords: [9, 11], height: 2, width: 2 })
+  })
+
+  it('should create room (case left)', () => {
+    expect(
+      createRoomOnDirection(
+        { dir: 'left', coords: [10, 10] },
+        { height: 2, width: 2 },
+      ),
+    ).toEqual({ coords: [8, 11], height: 2, width: 2 })
+  })
 })

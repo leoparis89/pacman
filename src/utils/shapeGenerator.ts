@@ -153,5 +153,21 @@ export const createRoomOnDirection = (
       width,
     }
   }
+
+  if (dir === 'down') {
+    return {
+      coords: [x - Math.floor(width / 2), y + 1],
+      height,
+      width,
+    }
+  }
+
+  if (dir === 'left') {
+    return {
+      coords: [x - width, y + Math.floor(height / 2)],
+      height,
+      width,
+    }
+  }
   return { coords: [x, y], height, width }
 }

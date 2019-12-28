@@ -3,6 +3,7 @@ import Phaser from 'phaser'
 import settings from './settings'
 import { handleCursor } from './utils/controls'
 import { paintGrid, pointMaptoGrid } from './utils/helpers'
+import { makeLevel } from './utils/makeLevel'
 import { roomReducer } from './utils/shapeGenerator'
 
 const { screen, tile } = settings
@@ -103,6 +104,8 @@ const setup = (scene: Phaser.Scene) => {
     { height: 4, width: 3, coords: [9, 9] },
     { height: 3, width: 13, coords: [1, 12] },
   ])
+
+  makeLevel()
 
   const floorMap = scene.make.tilemap({
     data: flow(pointMaptoGrid, paintGrid(292))(level),

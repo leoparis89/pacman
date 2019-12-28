@@ -148,7 +148,7 @@ export const createRoomOnDirection = (
 
   if (dir === 'up') {
     return {
-      coords: [x - Math.floor(width / 2), y + height],
+      coords: [x - Math.floor(width / 2), y - height],
       height,
       width,
     }

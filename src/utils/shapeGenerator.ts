@@ -164,7 +164,7 @@ export const createRoomOnDirection = (
 
   if (dir === 'left') {
     return {
-      coords: [x - width, y + Math.floor(height / 2)],
+      coords: [x - width, y - Math.floor(height / 2)],
       height,
       width,
     }

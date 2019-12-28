@@ -168,15 +168,22 @@ describe('createRoomOnDIrection function', () => {
         { dir: 'left', coords: [10, 10] },
         { height: 2, width: 2 },
       ),
-    ).toEqual({ coords: [8, 11], height: 2, width: 2 })
-  })
+    ).toEqual({ coords: [8, 9], height: 2, width: 2 })
 
-  it('should create room (case right)', () => {
     expect(
       createRoomOnDirection(
-        { dir: 'right', coords: [10, 10] },
-        { height: 2, width: 2 },
+        { dir: 'left', coords: [10, 10] },
+        { height: 5, width: 3 },
       ),
-    ).toEqual({ coords: [11, 11], height: 2, width: 2 })
+    ).toEqual({ coords: [7, 8], height: 5, width: 3 })
   })
+
+  // it('should create room (case right)', () => {
+  //   expect(
+  //     createRoomOnDirection(
+  //       { dir: 'right', coords: [10, 10] },
+  //       { height: 2, width: 2 },
+  //     ),
+  //   ).toEqual({ coords: [11, 11], height: 2, width: 2 })
+  // })
 })

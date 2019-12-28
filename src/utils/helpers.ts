@@ -116,3 +116,8 @@ const getMinXY = (level: PointMap) => {
   })
   return [minX, minY]
 }
+
+export const getRandomFromArray = (arr: any[]) => {
+  const randomIndex = Math.floor(Math.random() * arr.length)
+  return arr[randomIndex]
+}

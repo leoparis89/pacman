@@ -105,10 +105,8 @@ const setup = (scene: Phaser.Scene) => {
     { height: 3, width: 13, coords: [1, 12] },
   ])
 
-  makeLevel()
-
   const floorMap = scene.make.tilemap({
-    data: flow(pointMaptoGrid, paintGrid(292))(level),
+    data: makeLevel(),
     tileWidth: tile.size,
     tileHeight: tile.size,
   } as Phaser.Types.Tilemaps.TilemapConfig)

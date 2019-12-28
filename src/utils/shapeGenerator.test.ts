@@ -136,6 +136,6 @@ describe('createRoomOnDIrection function', () => {
         { dir: 'up', coords: [10, 10] },
         { height: 2, width: 2 },
       ),
-    ).toEqual('')
+    ).toEqual({ coords: [9, 12], height: 2, width: 2 })
   })
 })

@@ -172,7 +172,7 @@ export const createRoomOnDirection = (
 
   // right case
   return {
-    coords: [x + width - 1, y + Math.floor(height / 2)],
+    coords: [x + 1, y - Math.floor(height / 2)],
     height,
     width,
   }

@@ -169,5 +169,11 @@ export const createRoomOnDirection = (
       width,
     }
   }
-  return { coords: [x, y], height, width }
+
+  // right case
+  return {
+    coords: [x + width - 1, y + Math.floor(height / 2)],
+    height,
+    width,
+  }
 }

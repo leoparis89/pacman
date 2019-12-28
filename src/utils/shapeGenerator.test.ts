@@ -153,6 +153,13 @@ describe('createRoomOnDIrection function', () => {
         { height: 2, width: 2 },
       ),
     ).toEqual({ coords: [9, 11], height: 2, width: 2 })
+
+    expect(
+      createRoomOnDirection(
+        { dir: 'down', coords: [10, 10] },
+        { height: 3, width: 7 },
+      ),
+    ).toEqual({ coords: [7, 11], height: 3, width: 7 })
   })
 
   it('should create room (case left)', () => {

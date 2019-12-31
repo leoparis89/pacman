@@ -79,34 +79,34 @@ export const enoughSpace = (
   const [x, y] = coords
 
   let startI
-  let endI
+  let beforeI
   let startJ
-  let endJ
+  let beforeJ
 
   if (dir === 'up') {
     startI = x - Math.floor(width / 2)
-    endI = x + Math.floor(width / 2)
+    beforeI = x + Math.ceil(width / 2)
     startJ = y - height
-    endJ = y
+    beforeJ = y
   } else if (dir === 'down') {
     startI = x - Math.floor(width / 2)
-    endI = x + Math.floor(width / 2)
-    startJ = y
-    endJ = y + height
+    beforeI = x + Math.ceil(width / 2)
+    startJ = y + 1
+    beforeJ = y + 1 + height
   } else if (dir === 'left') {
     startI = x - width
-    endI = x
+    beforeI = x
     startJ = y - Math.floor(height / 2)
-    endJ = y + Math.floor(height / 2)
+    beforeJ = y + Math.ceil(height / 2)
   } else if (dir === 'right') {
-    startI = x
-    endI = x + width
+    startI = x + 1
+    beforeI = x + 1 + width
     startJ = y - Math.floor(height / 2)
-    endJ = y + Math.floor(height / 2)
+    beforeJ = y + Math.ceil(height / 2)
   }
 
-  for (let i = startI; i < endI; i++) {
-    for (let j = startJ; j < endJ; j++) {
+  for (let i = startI; i < beforeI; i++) {
+    for (let j = startJ; j < beforeJ; j++) {
       if (level.get(JSON.stringify([i, j]))) {
         return false
       }
@@ -114,8 +114,6 @@ export const enoughSpace = (
   }
   return true
 }
-
-const generateLevel = (rooms: IRoom[]) => {}
 
 export const getPossibleDirections = ({ height, width, coords }: IRoom) => {
   const result: PointAndDirection[] = []
@@ -176,4 +174,9 @@ export const createRoomOnDirection = (
     height,
     width,
   }
+}
+
+export const nextRoom = (level: PointMap, room: IRoom) => {
+  const possibleDirs = getPossibleDirections(room)
+  while (possibleDirs.length) {}
 }

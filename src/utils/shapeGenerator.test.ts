@@ -109,26 +109,10 @@ describe('hasRoom function', () => {
     ).toEqual(true)
   })
 
-  it('should return true if there is no room (depth case up 1 space left)', () => {
-    const rooms: IRoom[] = [
-      { height: 4, width: 4, coords: [4, 4] },
-      { height: 2, width: 4, coords: [4, 1] },
-    ]
-    const level = roomReducer(rooms)
-
-    expect(
-      enoughSpace(
-        level,
-        { coords: [4, 4], dir: 'up' },
-        { height: 1, width: 2 },
-      ),
-    ).toEqual(true)
-  })
-
   it('lego case up (1x1)', () => {
     const rooms: IRoom[] = [
       { height: 4, width: 4, coords: [4, 4] },
-      { height: 6, width: 6, coords: [2, 2] },
+      { height: 100, width: 100, coords: [1, 1] },
     ]
     const level = roomReducer(rooms)
     level.delete(JSON.stringify([4, 3]))
@@ -153,7 +137,7 @@ describe('hasRoom function', () => {
   it('lego case up (2x2)', () => {
     const rooms: IRoom[] = [
       { height: 4, width: 4, coords: [4, 4] },
-      { height: 7, width: 7, coords: [1, 1] },
+      { height: 100, width: 100, coords: [1, 1] },
     ]
     const level = roomReducer(rooms)
     level.delete(JSON.stringify([4, 3]))
@@ -176,6 +160,71 @@ describe('hasRoom function', () => {
         { height: 3, width: 2 },
       ),
     ).toEqual(false)
+  })
+
+  it('lego case left (1x1)', () => {
+    const rooms: IRoom[] = [
+      { height: 4, width: 4, coords: [4, 4] },
+      { height: 100, width: 100, coords: [1, 1] },
+    ]
+    const level = roomReducer(rooms)
+    level.delete(JSON.stringify([3, 4]))
+
+    expect(
+      enoughSpace(
+        level,
+        { coords: [4, 4], dir: 'left' },
+        { height: 1, width: 1 },
+      ),
+    ).toEqual(true)
+
+    expect(
+      enoughSpace(
+        level,
+        { coords: [4, 4], dir: 'left' },
+        { height: 2, width: 1 },
+      ),
+    ).toEqual(false)
+  })
+
+  it('lego case down (1x1)', () => {
+    const rooms: IRoom[] = [
+      { height: 4, width: 4, coords: [4, 4] },
+      { height: 100, width: 100, coords: [1, 1] },
+    ]
+    const level = roomReducer(rooms)
+    level.delete(JSON.stringify([4, 8]))
+
+    expect(
+      enoughSpace(
+        level,
+        { coords: [4, 7], dir: 'down' },
+        { height: 1, width: 1 },
+      ),
+    ).toEqual(true)
+
+    expect(
+      enoughSpace(
+        level,
+        { coords: [4, 7], dir: 'down' },
+        { height: 2, width: 1 },
+      ),
+    ).toEqual(false)
+
+    expect(
+      enoughSpace(
+        level,
+        { coords: [4, 7], dir: 'down' },
+        { height: 1, width: 2 },
+      ),
+    ).toEqual(false)
+    // expect(
+    //   enoughSpace(
+    //     level,
+    //     { coords: [4, 7], dir: 'down' },
+    //     { height: 2, width: 1 },
+    //   ),
+    // ).toEqual(false)
   })
   // it('should return true if there is room (edge case)', () => {
   //   const rooms: IRoom[] = [

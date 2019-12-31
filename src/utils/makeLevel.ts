@@ -15,7 +15,7 @@ import {
 
 export const cookUpLevel = (
   seed: IRoom = { height: 2, width: 2, coords: [0, 0] },
-  steps: number = 5,
+  steps: number = 20,
 ): IRoom[] => {
   const result: IRoom[] = []
 

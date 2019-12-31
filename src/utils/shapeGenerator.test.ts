@@ -140,6 +140,14 @@ describe('hasRoom function', () => {
         { height: 1, width: 1 },
       ),
     ).toEqual(true)
+
+    expect(
+      enoughSpace(
+        level,
+        { coords: [4, 4], dir: 'up' },
+        { height: 2, width: 1 },
+      ),
+    ).toEqual(false)
   })
 
   it('lego case up (2x2)', () => {
@@ -160,6 +168,14 @@ describe('hasRoom function', () => {
         { height: 2, width: 2 },
       ),
     ).toEqual(true)
+
+    expect(
+      enoughSpace(
+        level,
+        { coords: [4, 4], dir: 'up' },
+        { height: 3, width: 2 },
+      ),
+    ).toEqual(false)
   })
   // it('should return true if there is room (edge case)', () => {
   //   const rooms: IRoom[] = [
@@ -176,25 +192,6 @@ describe('hasRoom function', () => {
   //     ),
   //   ).toEqual(true)
   // })
-
-  it.skip('should return true if there is room (edge case LEGO)', () => {
-    const rooms: IRoom[] = [
-      { height: 4, width: 4, coords: [4, 4] },
-      { height: 5, width: 5, coords: [3, 3] },
-    ]
-    const level = roomReducer(rooms)
-
-    level.delete(JSON.stringify([4, 4]))
-    level.delete(JSON.stringify([4, 5]))
-
-    expect(
-      enoughSpace(
-        level,
-        { coords: [4, 4], dir: 'down' },
-        { width: 1, height: 1 },
-      ),
-    ).toEqual(true)
-  })
 })
 
 describe('getPossibleDirections function', () => {

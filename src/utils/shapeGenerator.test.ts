@@ -226,6 +226,40 @@ describe('hasRoom function', () => {
     //   ),
     // ).toEqual(false)
   })
+
+  it('lego case right (1x1)', () => {
+    const rooms: IRoom[] = [
+      { height: 4, width: 4, coords: [4, 4] },
+      { height: 100, width: 100, coords: [1, 1] },
+    ]
+    const level = roomReducer(rooms)
+    level.delete(JSON.stringify([8, 4]))
+
+    expect(
+      enoughSpace(
+        level,
+        { coords: [7, 4], dir: 'right' },
+        { height: 1, width: 1 },
+      ),
+    ).toEqual(true)
+
+    expect(
+      enoughSpace(
+        level,
+        { coords: [7, 4], dir: 'right' },
+        { height: 2, width: 1 },
+      ),
+    ).toEqual(false)
+
+    expect(
+      enoughSpace(
+        level,
+        { coords: [7, 4], dir: 'right' },
+        { height: 1, width: 2 },
+      ),
+    ).toEqual(false)
+  })
+
   // it('should return true if there is room (edge case)', () => {
   //   const rooms: IRoom[] = [
   //     { height: 4, width: 4, coords: [0, 0] },

@@ -360,4 +360,46 @@ describe('createRoomOnDIrection function', () => {
   })
 })
 
-describe('Name of the group', () => {})
+describe('next room', () => {
+  it('should return the next possible room (case room on right)', () => {
+    const currentRoom: IRoom = { height: 4, width: 4, coords: [4, 4] }
+    const rooms: IRoom[] = [
+      currentRoom,
+      { height: 100, width: 100, coords: [1, 1] },
+    ]
+    const level = roomReducer(rooms)
+    level.delete(JSON.stringify([8, 4]))
+    expect(nextRoom(level, currentRoom, { height: 1, width: 1 })).toEqual({
+      dir: { coords: [7, 4], dir: 'right' },
+      height: 1,
+      width: 1,
+    })
+  })
+
+  it('should return the next possible room (case room on top)', () => {
+    const currentRoom: IRoom = { height: 4, width: 4, coords: [4, 4] }
+    const rooms: IRoom[] = [
+      currentRoom,
+      { height: 100, width: 100, coords: [1, 1] },
+    ]
+    const level = roomReducer(rooms)
+    level.delete(JSON.stringify([5, 3]))
+    expect(nextRoom(level, currentRoom, { height: 1, width: 1 })).toEqual({
+      dir: { coords: [5, 4], dir: 'up' },
+      height: 1,
+      width: 1,
+    })
+  })
+
+  it('should return null if there is no next possible room', () => {
+    const currentRoom: IRoom = { height: 4, width: 4, coords: [4, 4] }
+    const rooms: IRoom[] = [
+      currentRoom,
+      { height: 100, width: 100, coords: [1, 1] },
+    ]
+    const level = roomReducer(rooms)
+    level.delete(JSON.stringify([8, 4]))
+    expect(nextRoom(level, currentRoom, { height: 2, width: 1 })).toEqual(null)
+    expect(nextRoom(level, currentRoom, { height: 1, width: 2 })).toEqual(null)
+  })
+})

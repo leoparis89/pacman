@@ -1,3 +1,5 @@
+import { getRandomIndexFromArray } from './helpers'
+
 // export const createWallsForRoom = (
 //   width: number,
 //   height: number,
@@ -176,7 +178,20 @@ export const createRoomOnDirection = (
   }
 }
 
-export const nextRoom = (level: PointMap, room: IRoom) => {
+export const nextRoom = (
+  level: PointMap,
+  room: IRoom,
+  nextRoomDims = { height: 4, width: 4 },
+) => {
   const possibleDirs = getPossibleDirections(room)
-  while (possibleDirs.length) {}
+  while (possibleDirs.length) {
+    const i = getRandomIndexFromArray(possibleDirs)
+    const dir = possibleDirs[i]
+    const hasSpace = enoughSpace(level, dir, nextRoomDims)
+    if (hasSpace) {
+      return { dir, ...nextRoomDims }
+    }
+    possibleDirs.splice(i, 1)
+  }
+  return null
 }

@@ -40,17 +40,13 @@ export const cookUpLevel = (
 }
 
 export const makeLevel = () => {
-  const firstRoom: IRoom = { height: 2, width: 2, coords: [0, 0] }
-  const possibleDirs = getPossibleDirections(firstRoom)
-  const dir = getRandomElFromArray(possibleDirs)
-  const secondRoom = createRoomOnDirection(dir, { height: 5, width: 5 })
-
+  const rooms = cookUpLevel()
   const level = flow(
     roomReducer,
     shiftPointMapOutOfNegative,
     pointMaptoGrid,
     paintGrid(292),
-  )([firstRoom, secondRoom])
+  )(rooms)
 
   return level
 }

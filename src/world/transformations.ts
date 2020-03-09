@@ -1,3 +1,7 @@
+/**
+ *
+ * @param room
+ */
 export const roomToPointMap = (room: IRoom) => {
   const { height, width, coords } = room
   const [x, y] = coords

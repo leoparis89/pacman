@@ -1,13 +1,13 @@
 import {
+  addRoomToPointMap,
   createRoomOnDirection,
   enoughSpace,
   getPossibleDirections,
   nextRoom,
-  addRoomToPointMap,
 } from './shapeGenerator'
 import { roomToPointMap } from './transformations'
 
-describe('roomReducer', () => {
+describe('addRoomToPointMap', () => {
   it('should add rooms to level (case 1)', () => {
     const rooms: IRoom[] = [
       { height: 2, width: 1, coords: [9, 9] },

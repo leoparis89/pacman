@@ -1,21 +1,14 @@
 import { flow } from 'lodash'
 import {
-  getRandomElFromArray,
-  getRandomIndexFromArray,
   paintGrid,
   pointMaptoGrid,
   shiftPointMapOutOfNegative,
 } from './helpers'
-import {
-  createRoomOnDirection,
-  getPossibleDirections,
-  nextRoom,
-  roomReducer,
-} from './shapeGenerator'
+import { createRoomOnDirection, nextRoom, roomReducer } from './shapeGenerator'
 
 export const cookUpLevel = (
   seed: IRoom = { height: 2, width: 2, coords: [0, 0] },
-  steps: number = 20,
+  steps: number = 90,
 ): IRoom[] => {
   const result: IRoom[] = []
 

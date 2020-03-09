@@ -1,8 +1,6 @@
-import { flow } from 'lodash'
 import Phaser from 'phaser'
 import settings from './settings'
 import { handleCursor } from './utils/controls'
-import { paintGrid, pointMaptoGrid } from './utils/helpers'
 import { makeLevel } from './utils/makeLevel'
 import { roomReducer } from './utils/shapeGenerator'
 

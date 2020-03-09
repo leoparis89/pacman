@@ -1,14 +1,9 @@
 import Phaser from 'phaser'
 import settings from './settings'
 import { handleCursor } from './utils/controls'
-<<<<<<< HEAD
 import { paintGrid, pointMaptoGrid } from './world/helpers'
 import { makeLevel } from './world/makeLevel'
 import { addRoomToPointMap } from './world/shapeGenerator'
-=======
-import { makeLevel } from './utils/makeLevel'
-import { roomReducer } from './utils/shapeGenerator'
->>>>>>> 3aa451cf86a4ece6fa95a5dbbbbe9454e2ce1979
 
 const { screen, tile } = settings
 

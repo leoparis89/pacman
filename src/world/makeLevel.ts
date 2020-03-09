@@ -4,7 +4,11 @@ import {
   pointMaptoGrid,
   shiftPointMapOutOfNegative,
 } from './helpers'
-import { createRoomOnDirection, nextRoom, roomReducer } from './shapeGenerator'
+import {
+  createRoomOnDirection,
+  nextRoom,
+  addRoomToPointMap,
+} from './shapeGenerator'
 
 export const cookUpLevel = (
   seed: IRoom = { height: 2, width: 2, coords: [0, 0] },
@@ -15,7 +19,7 @@ export const cookUpLevel = (
   result.push(seed)
 
   for (let i = 0; i < steps; i++) {
-    const level: PointMap = roomReducer(result)
+    const level: PointMap = addRoomToPointMap(result)
 
     const curr = result[result.length - 1]
 
@@ -35,7 +39,7 @@ export const cookUpLevel = (
 export const makeLevel = () => {
   const rooms = cookUpLevel()
   const level = flow(
-    roomReducer,
+    addRoomToPointMap,
     shiftPointMapOutOfNegative,
     pointMaptoGrid,
     paintGrid(292),

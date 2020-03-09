@@ -3,7 +3,7 @@ import {
   enoughSpace,
   getPossibleDirections,
   nextRoom,
-  roomReducer,
+  addRoomToPointMap,
 } from './shapeGenerator'
 import { roomToPointMap } from './transformations'
 
@@ -22,7 +22,7 @@ describe('roomReducer', () => {
       ['[5,3]', true],
       ['[5,4]', true],
     ])
-    expect(roomReducer(rooms, new Map())).toEqual(result)
+    expect(addRoomToPointMap(rooms, new Map())).toEqual(result)
   })
 
   // it('should add rooms to level (case 2)', () => {
@@ -74,7 +74,7 @@ describe('hasRoom function', () => {
 
   it('should return true if there is room (case up)', () => {
     const rooms: IRoom[] = [{ height: 4, width: 4, coords: [4, 4] }]
-    const level = roomReducer(rooms)
+    const level = addRoomToPointMap(rooms)
 
     expect(enoughSpace(level, { coords: [4, 4], dir: 'up' })).toEqual(true)
   })
@@ -84,7 +84,7 @@ describe('hasRoom function', () => {
       { height: 4, width: 4, coords: [4, 4] },
       { height: 2, width: 4, coords: [4, 0] },
     ]
-    const level = roomReducer(rooms)
+    const level = addRoomToPointMap(rooms)
 
     expect(
       enoughSpace(
@@ -100,7 +100,7 @@ describe('hasRoom function', () => {
       { height: 4, width: 4, coords: [4, 4] },
       { height: 100, width: 100, coords: [1, 1] },
     ]
-    const level = roomReducer(rooms)
+    const level = addRoomToPointMap(rooms)
     level.delete(JSON.stringify([4, 3]))
 
     expect(
@@ -125,7 +125,7 @@ describe('hasRoom function', () => {
       { height: 4, width: 4, coords: [4, 4] },
       { height: 100, width: 100, coords: [1, 1] },
     ]
-    const level = roomReducer(rooms)
+    const level = addRoomToPointMap(rooms)
     level.delete(JSON.stringify([4, 3]))
     level.delete(JSON.stringify([4, 2]))
     level.delete(JSON.stringify([3, 3]))
@@ -153,7 +153,7 @@ describe('hasRoom function', () => {
       { height: 4, width: 4, coords: [4, 4] },
       { height: 100, width: 100, coords: [1, 1] },
     ]
-    const level = roomReducer(rooms)
+    const level = addRoomToPointMap(rooms)
     level.delete(JSON.stringify([3, 4]))
 
     expect(
@@ -178,7 +178,7 @@ describe('hasRoom function', () => {
       { height: 4, width: 4, coords: [4, 4] },
       { height: 100, width: 100, coords: [1, 1] },
     ]
-    const level = roomReducer(rooms)
+    const level = addRoomToPointMap(rooms)
     level.delete(JSON.stringify([4, 8]))
 
     expect(
@@ -218,7 +218,7 @@ describe('hasRoom function', () => {
       { height: 4, width: 4, coords: [4, 4] },
       { height: 100, width: 100, coords: [1, 1] },
     ]
-    const level = roomReducer(rooms)
+    const level = addRoomToPointMap(rooms)
     level.delete(JSON.stringify([8, 4]))
 
     expect(
@@ -353,7 +353,7 @@ describe('next room', () => {
       currentRoom,
       { height: 100, width: 100, coords: [1, 1] },
     ]
-    const level = roomReducer(rooms)
+    const level = addRoomToPointMap(rooms)
     level.delete(JSON.stringify([8, 4]))
     expect(nextRoom(level, currentRoom, { height: 1, width: 1 })).toEqual({
       dir: { coords: [7, 4], dir: 'right' },
@@ -368,7 +368,7 @@ describe('next room', () => {
       currentRoom,
       { height: 100, width: 100, coords: [1, 1] },
     ]
-    const level = roomReducer(rooms)
+    const level = addRoomToPointMap(rooms)
     level.delete(JSON.stringify([5, 3]))
     expect(nextRoom(level, currentRoom, { height: 1, width: 1 })).toEqual({
       dir: { coords: [5, 4], dir: 'up' },
@@ -383,7 +383,7 @@ describe('next room', () => {
       currentRoom,
       { height: 100, width: 100, coords: [1, 1] },
     ]
-    const level = roomReducer(rooms)
+    const level = addRoomToPointMap(rooms)
     level.delete(JSON.stringify([8, 4]))
     expect(nextRoom(level, currentRoom, { height: 2, width: 1 })).toEqual(null)
     expect(nextRoom(level, currentRoom, { height: 1, width: 2 })).toEqual(null)

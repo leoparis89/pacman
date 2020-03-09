@@ -4,7 +4,7 @@ import settings from './settings'
 import { handleCursor } from './utils/controls'
 import { paintGrid, pointMaptoGrid } from './world/helpers'
 import { makeLevel } from './world/makeLevel'
-import { roomReducer } from './world/shapeGenerator'
+import { addRoomToPointMap } from './world/shapeGenerator'
 
 const { screen, tile } = settings
 
@@ -99,7 +99,7 @@ function update(time, delta) {
 }
 
 const setup = (scene: Phaser.Scene) => {
-  const level = roomReducer([
+  const level = addRoomToPointMap([
     { height: 3, width: 3, coords: [4, 4] },
     { height: 4, width: 3, coords: [9, 9] },
     { height: 3, width: 13, coords: [1, 12] },

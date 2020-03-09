@@ -1,7 +1,7 @@
 import { getRandomIndexFromArray } from './helpers'
 import { roomToPointMap } from './transformations'
 
-export const roomReducer = (rs: IRoom[], level: PointMap = new Map()) => {
+export const addRoomToPointMap = (rs: IRoom[], level: PointMap = new Map()) => {
   return rs.reduce((acc, curr) => {
     const newRoom = roomToPointMap(curr)
     const levelWithNewRoom = new Map([...acc].concat([...newRoom]))

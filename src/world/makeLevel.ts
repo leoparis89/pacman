@@ -5,14 +5,14 @@ import {
   shiftPointMapOutOfNegative,
 } from './helpers'
 import {
+  addRoomToPointMap,
   createRoomOnDirection,
   nextRoom,
-  addRoomToPointMap,
 } from './shapeGenerator'
 
 export const cookUpLevel = (
   seed: IRoom = { height: 2, width: 2, coords: [0, 0] },
-  steps: number = 20,
+  steps: number = 90,
 ): IRoom[] => {
   const result: IRoom[] = []
 

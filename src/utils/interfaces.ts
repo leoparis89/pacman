@@ -32,7 +32,7 @@ interface IDirection {
 
 type Direction = 'left' | 'right' | 'up' | 'down'
 
-interface PointAndDirection {
+interface IUnitVector {
   coords: Point
   dir: Direction
 }

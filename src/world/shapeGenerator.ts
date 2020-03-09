@@ -15,7 +15,7 @@ const _reducePointMap = (ps: PointMap[], level: PointMap = new Map()) => {
 
 export const enoughSpace = (
   level: PointMap,
-  { coords, dir }: PointAndDirection,
+  { coords, dir }: IUnitVector,
   roomToCheck = { height: 8, width: 7 },
 ) => {
   const { height, width } = roomToCheck
@@ -59,7 +59,7 @@ export const enoughSpace = (
 }
 
 export const getPossibleDirections = ({ height, width, coords }: IRoom) => {
-  const result: PointAndDirection[] = []
+  const result: IUnitVector[] = []
   const [x, y] = coords
 
   for (let i = x; i < x + width; i++) {
@@ -82,7 +82,7 @@ export const getPossibleDirections = ({ height, width, coords }: IRoom) => {
 }
 
 export const createRoomOnDirection = (
-  { dir, coords }: PointAndDirection,
+  { dir, coords }: IUnitVector,
   { height, width },
 ): IRoom => {
   const [x, y] = coords

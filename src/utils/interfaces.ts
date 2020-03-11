@@ -17,9 +17,12 @@ type PointMap = Map<string, any>
 
 type Grid = number[][]
 
-interface IRoom {
+interface IRoomDims {
   height: number
   width: number
+}
+
+interface IRoom extends IRoomDims {
   coords: Point
 }
 

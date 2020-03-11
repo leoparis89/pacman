@@ -3,7 +3,7 @@ import {
   enoughSpace,
   getPossibleDirections,
   nextRoom,
-} from './shapeGenerator'
+} from './mazeLogic'
 
 describe('addRoomToPointMap', () => {
   it('should add rooms to level (case 1)', () => {

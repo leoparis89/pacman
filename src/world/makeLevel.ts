@@ -4,7 +4,7 @@ import {
   pointMaptoGrid,
   shiftPointMapOutOfNegative,
 } from './helpers'
-import { addRoomToPointMap, nextRoom } from './shapeGenerator'
+import { addRoomToPointMap, nextRoom } from './mazeLogic'
 import { createRoomOnDirection, roomsToPointMap } from './transformations'
 
 export const cookUpLevel = (

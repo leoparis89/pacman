@@ -2,7 +2,7 @@ import Phaser from 'phaser'
 import settings from './settings'
 import { handleCursor } from './utils/controls'
 import { makeLevel } from './world'
-import { addRoomToPointMap } from './world/shapeGenerator'
+import { addRoomToPointMap } from './world/mazeLogic'
 
 const { screen, tile } = settings
 

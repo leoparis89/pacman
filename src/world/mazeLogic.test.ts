@@ -22,23 +22,6 @@ describe('addRoomToPointMap', () => {
     ])
     expect(addRoomsToPointMap(rooms, new Map())).toEqual(result)
   })
-
-  // it('should add rooms to level (case 2)', () => {
-  //   const rooms: IRoom[] = [
-  //     { height: 4, width: 4, coords: [0, 0] },
-  //     { height: 4, width: 4, coords: [0, 5] },
-  //   ]
-
-  //   const result = new Map([
-  //     // ['[9,9]', true],
-  //     // ['[9,10]', true],
-  //     // ['[4,3]', true],
-  //     // ['[4,4]', true],
-  //     // ['[5,3]', true],
-  //     // ['[5,4]', true],
-  //   ])
-  //   expect(roomReducer(rooms, new Map())).toEqual(result)
-  // })
 })
 
 describe('hasRoom function', () => {

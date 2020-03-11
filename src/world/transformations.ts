@@ -15,15 +15,6 @@ export const roomToPointMap = (room: IRoom) => {
   return result
 }
 
-export const roomsToPointMap = (rooms: IRoom[]) => {
-  const maps = rooms.map(roomToPointMap)
-  const temp: any[] = []
-  maps.forEach(m => {
-    temp.push(...m)
-  })
-  return new Map(temp) as PointMap
-}
-
 export const createRoomOnDirection = (
   { dir, coords }: IUnitVector,
   { height, width },

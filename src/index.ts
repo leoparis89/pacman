@@ -2,7 +2,7 @@ import Phaser from 'phaser'
 import settings from './settings'
 import { handleCursor } from './utils/controls'
 import { makeLevel } from './world'
-import { addRoomToPointMap } from './world/mazeLogic'
+import { addRoomsToPointMap } from './world/mazeLogic'
 
 const { screen, tile } = settings
 
@@ -97,7 +97,7 @@ function update(time, delta) {
 }
 
 const setup = (scene: Phaser.Scene) => {
-  const level = addRoomToPointMap([
+  const level = addRoomsToPointMap([
     { height: 3, width: 3, coords: [4, 4] },
     { height: 4, width: 3, coords: [9, 9] },
     { height: 3, width: 13, coords: [1, 12] },

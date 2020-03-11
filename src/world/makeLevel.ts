@@ -4,7 +4,7 @@ import {
   pointMaptoGrid,
   shiftPointMapOutOfNegative,
 } from './helpers'
-import { addRoomToPointMap, nextRoom } from './mazeLogic'
+import { addRoomsToPointMap, nextRoom } from './mazeLogic'
 import { createRoomOnDirection, roomsToPointMap } from './transformations'
 
 export const cookUpLevel = (
@@ -36,7 +36,7 @@ export const cookUpLevel = (
 export const makeLevel = () => {
   const rooms = cookUpLevel()
   const level = flow(
-    addRoomToPointMap,
+    addRoomsToPointMap,
     shiftPointMapOutOfNegative,
     pointMaptoGrid,
     paintGrid(292),

@@ -1,7 +1,10 @@
 import { getRandomIndexFromArray } from './helpers'
 import { roomToPointMap } from './transformations'
 
-export const addRoomToPointMap = (rs: IRoom[], level: PointMap = new Map()) => {
+export const addRoomsToPointMap = (
+  rs: IRoom[],
+  level: PointMap = new Map(),
+) => {
   const ps = rs.map(roomToPointMap)
   return _reducePointMap(ps, level)
 }
@@ -58,6 +61,12 @@ export const enoughSpace = (
   return true
 }
 
+/**
+ * Returns all the possible directions around a room wich are as a list of unit vectors
+ * surrounding the rooom and pointing outwards.
+ *
+ * @param param0
+ */
 export const getPossibleDirections = ({ height, width, coords }: IRoom) => {
   const result: IUnitVector[] = []
   const [x, y] = coords

@@ -9,6 +9,7 @@ import {
   createRoomOnDirection,
   nextRoom,
 } from './shapeGenerator'
+import { roomsToPointMap } from './transformations'
 
 export const cookUpLevel = (
   seed: IRoom = { height: 2, width: 2, coords: [0, 0] },
@@ -23,7 +24,7 @@ export const cookUpLevel = (
 
     const curr = result[result.length - 1]
 
-    const res = nextRoom(result, curr)
+    const res = nextRoom(roomsToPointMap(result), curr)
 
     if (res) {
       const roomToAdd = createRoomOnDirection(res.dir, {

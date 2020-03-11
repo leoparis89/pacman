@@ -1,5 +1,5 @@
 import { getRandomIndexFromArray } from './helpers'
-import { roomsToPointMap, roomToPointMap } from './transformations'
+import { roomToPointMap } from './transformations'
 
 export const addRoomToPointMap = (rs: IRoom[], level: PointMap = new Map()) => {
   const ps = rs.map(roomToPointMap)

@@ -1,5 +1,5 @@
 import { getRandomIndexFromArray } from './helpers'
-import { roomToPointMap } from './transformations'
+import { roomsToPointMap, roomToPointMap } from './transformations'
 
 export const addRoomToPointMap = (rs: IRoom[], level: PointMap = new Map()) => {
   const ps = rs.map(roomToPointMap)
@@ -79,44 +79,6 @@ export const getPossibleDirections = ({ height, width, coords }: IRoom) => {
     }
   }
   return result
-}
-
-export const createRoomOnDirection = (
-  { dir, coords }: IUnitVector,
-  { height, width },
-): IRoom => {
-  const [x, y] = coords
-
-  if (dir === 'up') {
-    return {
-      coords: [x - Math.floor(width / 2), y - height],
-      height,
-      width,
-    }
-  }
-
-  if (dir === 'down') {
-    return {
-      coords: [x - Math.floor(width / 2), y + 1],
-      height,
-      width,
-    }
-  }
-
-  if (dir === 'left') {
-    return {
-      coords: [x - width, y - Math.floor(height / 2)],
-      height,
-      width,
-    }
-  }
-
-  // right case
-  return {
-    coords: [x + 1, y - Math.floor(height / 2)],
-    height,
-    width,
-  }
 }
 
 export const nextRoom = (

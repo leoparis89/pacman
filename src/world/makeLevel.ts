@@ -4,12 +4,8 @@ import {
   pointMaptoGrid,
   shiftPointMapOutOfNegative,
 } from './helpers'
-import {
-  addRoomToPointMap,
-  createRoomOnDirection,
-  nextRoom,
-} from './shapeGenerator'
-import { roomsToPointMap } from './transformations'
+import { addRoomToPointMap, nextRoom } from './shapeGenerator'
+import { createRoomOnDirection, roomsToPointMap } from './transformations'
 
 export const cookUpLevel = (
   seed: IRoom = { height: 2, width: 2, coords: [0, 0] },

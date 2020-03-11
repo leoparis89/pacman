@@ -92,10 +92,10 @@ export const getPossibleDirections = ({ height, width, coords }: IRoom) => {
 
 export const nextRoom = (
   level: PointMap,
-  room: IRoom,
+  appendTo: IRoom,
   nextRoomDims = { height: 4, width: 4 },
 ) => {
-  const possibleDirs = getPossibleDirections(room)
+  const possibleDirs = getPossibleDirections(appendTo)
   while (possibleDirs.length) {
     const i = getRandomIndexFromArray(possibleDirs)
     const dir = possibleDirs[i]

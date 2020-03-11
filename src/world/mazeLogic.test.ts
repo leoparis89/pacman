@@ -24,7 +24,7 @@ describe('addRoomToPointMap', () => {
   })
 })
 
-describe('hasRoom function', () => {
+describe('enoughSpace function', () => {
   // it('should return false if there is no room', () => {
   //   const rooms: IRoom[] = [
   //     { height: 4, width: 4, coords: [0, 0] },

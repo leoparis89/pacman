@@ -19,11 +19,11 @@ export const cookUpLevel = (
   result.push(seed)
 
   for (let i = 0; i < steps; i++) {
-    const level: PointMap = addRoomToPointMap(result)
+    // const level: PointMap = addRoomToPointMap(result)
 
     const curr = result[result.length - 1]
 
-    const res = nextRoom(level, curr)
+    const res = nextRoom(result, curr)
 
     if (res) {
       const roomToAdd = createRoomOnDirection(res.dir, {

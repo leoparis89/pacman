@@ -106,6 +106,7 @@ function update(time, delta) {
 
 const setup = (scene: Phaser.Scene) => {
   const levelPointMap = makeLevel()
+  debugger
 
   const [minX, minY] = getMinXY(levelPointMap)
   console.log(minX, minY)

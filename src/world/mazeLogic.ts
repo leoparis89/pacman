@@ -1,21 +1,6 @@
 import { getRandomIndexFromArray } from './helpers'
 import { roomToPointMap } from './transformations'
 
-export const addRoomsToPointMap = (
-  rs: IRoom[],
-  level: PointMap = new Map(),
-) => {
-  const ps = rs.map(roomToPointMap)
-  return _reducePointMap(ps, level)
-}
-
-const _reducePointMap = (ps: PointMap[], level: PointMap = new Map()) => {
-  return ps.reduce((acc, curr) => {
-    const levelWithNewRoom = new Map([...acc].concat([...curr]))
-    return levelWithNewRoom
-  }, level)
-}
-
 export const enoughSpace = (
   level: PointMap,
   { coords, dir }: IUnitVector,

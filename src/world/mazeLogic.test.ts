@@ -1,9 +1,5 @@
-import {
-  addRoomsToPointMap,
-  enoughSpace,
-  getPossibleDirections,
-  nextRoom,
-} from './mazeLogic'
+import { enoughSpace, getPossibleDirections, nextRoom } from './mazeLogic'
+import { addRoomsToPointMap } from './transformations'
 
 describe('addRoomToPointMap', () => {
   it('should add rooms to level (case 1)', () => {

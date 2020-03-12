@@ -4,8 +4,8 @@ import {
   pointMaptoGrid,
   shiftPointMapOutOfNegative,
 } from './helpers'
-import { addRoomsToPointMap, nextRoom } from './mazeLogic'
-import { createRoomOnDirection } from './transformations'
+import { nextRoom } from './mazeLogic'
+import { addRoomsToPointMap, createRoomOnDirection } from './transformations'
 
 export const cookUpLevel = (
   seed: IRoom = { height: 9, width: 9, coords: [0, 0] },

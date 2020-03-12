@@ -15,7 +15,7 @@ type Point = [number, number]
 
 type PointMap = Map<string, any>
 
-type Grid = number[][]
+type Grid = Array<Array<number | undefined>>
 
 interface IRoomDims {
   height: number

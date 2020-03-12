@@ -11,6 +11,7 @@ import {
   reverseGrid,
   shiftPointMapOutOfNegative,
 } from './world/helpers'
+import { addBorder } from './world/mazeLogic'
 import { pointMaptoGrid } from './world/transformations'
 
 const { screen, tile } = settings
@@ -114,6 +115,7 @@ const setup = (scene: Phaser.Scene) => {
   const grid = flow(
     shiftPointMapOutOfNegative,
     pointMaptoGrid,
+    addBorder,
     paintGrid(292),
   )(levelPointMap)
 

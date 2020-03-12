@@ -92,3 +92,12 @@ export const nextRoom = (
   }
   return null
 }
+
+export const addBorder = (g: Grid) => {
+  const newGrid = JSON.parse(JSON.stringify(g))
+  newGrid.forEach(row => {
+    row.push(undefined)
+    row.unshift(undefined)
+  })
+  return newGrid
+}

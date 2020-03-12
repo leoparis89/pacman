@@ -31,6 +31,7 @@ export const cookUpLevel = (
 
 export const makeLevel = () => {
   const rooms = cookUpLevel()
+
   const level = addRoomsToPointMap(rooms)
   // shiftPointMapOutOfNegative,
   // pointMaptoGrid,

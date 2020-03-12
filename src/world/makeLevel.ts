@@ -1,9 +1,5 @@
 import { flow } from 'lodash'
-import {
-  paintGrid,
-  pointMaptoGrid,
-  shiftPointMapOutOfNegative,
-} from './helpers'
+import { paintGrid, shiftPointMapOutOfNegative } from './helpers'
 import { nextRoom } from './mazeLogic'
 import { addRoomsToPointMap, createRoomOnDirection } from './transformations'
 

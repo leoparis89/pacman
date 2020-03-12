@@ -1,3 +1,5 @@
+import { normalizeArray } from './helpers'
+
 /**
  *
  * @param room
@@ -66,4 +68,25 @@ const _reducePointMap = (ps: PointMap[], level: PointMap = new Map()) => {
     const levelWithNewRoom = new Map([...acc].concat([...curr]))
     return levelWithNewRoom
   }, level)
+}
+
+export const pointMaptoGrid: (ps: PointMap) => Grid = ps => {
+  const result: any[][] = []
+  ps.forEach((val, coords) => {
+    const [x, y] = JSON.parse(coords)
+    if (!result[y]) {
+      const newRow: any[] = []
+      newRow[x] = val
+      result[y] = newRow
+    } else {
+      result[y][x] = val
+    }
+  })
+
+  for (let i = 0; i < result.length; i++) {
+    if (!result[i]) {
+      result[i] = []
+    }
+  }
+  return normalizeArray(result)
 }

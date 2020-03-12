@@ -4,13 +4,14 @@ import settings from './settings'
 import { handleCursor } from './utils/controls'
 import tileMapping from './utils/tileMap'
 import { makeLevel } from './world'
+
 import {
   getMinXY,
   paintGrid,
-  pointMaptoGrid,
   reverseGrid,
   shiftPointMapOutOfNegative,
 } from './world/helpers'
+import { pointMaptoGrid } from './world/transformations'
 
 const { screen, tile } = settings
 
@@ -106,7 +107,6 @@ function update(time, delta) {
 
 const setup = (scene: Phaser.Scene) => {
   const levelPointMap = makeLevel()
-  debugger
 
   const [minX, minY] = getMinXY(levelPointMap)
   console.log(minX, minY)

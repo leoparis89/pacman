@@ -1,5 +1,5 @@
 export default {
   floor: {
-    sample1: 292,
+    grass: [0],
   },
 }

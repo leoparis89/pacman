@@ -2,7 +2,7 @@ import { flow } from 'lodash'
 import Phaser from 'phaser'
 import settings from './settings'
 import { handleCursor } from './utils/controls'
-import tileMapping from './utils/tileMapping'
+import tileMapping from './utils/tileMap'
 import { makeLevel } from './world'
 import {
   getMinXY,
@@ -117,14 +117,14 @@ const setup = (scene: Phaser.Scene) => {
   )(levelPointMap)
 
   const boundsMap = scene.make.tilemap({
-    data: reverseGrid(grid, tileMapping.floor.sample2),
+    data: reverseGrid(grid, [tileMapping.floor.grass[0]]),
     tileWidth: tile.size,
     tileHeight: tile.size,
   } as Phaser.Types.Tilemaps.TilemapConfig)
 
   const boundsTiles = boundsMap.addTilesetImage('myTiles')
   const boundsLayer = boundsMap.createStaticLayer(0, boundsTiles, 0, 0)
-  boundsMap.setCollision([tileMapping.floor.sample2])
+  boundsMap.setCollision([tileMapping.floor.grass[0]])
 
   const floorMap = scene.make.tilemap({
     data: grid,

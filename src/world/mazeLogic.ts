@@ -93,11 +93,14 @@ export const nextRoom = (
   return null
 }
 
-export const addBorder = (g: Grid) => {
-  const newGrid = JSON.parse(JSON.stringify(g))
-  newGrid.forEach(row => {
-    row.push(undefined)
-    row.unshift(undefined)
+export const addBorder = (size: number) => (g: Grid) => {
+  const border = new Array(size).fill(undefined)
+  const result: any[] = []
+  g.forEach(row => {
+    const newRow = [...border, ...row, ...border]
+    result.push(newRow)
   })
-  return newGrid
+  const emptyRow = new Array(result[0].length).fill(undefined)
+  const padding = new Array(size).fill(emptyRow)
+  return [...padding, ...result, ...padding]
 }

@@ -112,10 +112,12 @@ const setup = (scene: Phaser.Scene) => {
   const [minX, minY] = getMinXY(levelPointMap)
   console.log(minX, minY)
 
+  const borderWidth = 50
+
   const grid = flow(
     shiftPointMapOutOfNegative,
     pointMaptoGrid,
-    addBorder,
+    addBorder(borderWidth),
     paintGrid(292),
   )(levelPointMap)
 
@@ -138,8 +140,8 @@ const setup = (scene: Phaser.Scene) => {
   const floorLayer = floorMap.createStaticLayer(0, floorTiles, 0, 0)
 
   const charOffset = {
-    x: -(minX - 4) * settings.tile.size,
-    y: -(minY - 4) * settings.tile.size,
+    x: -(minX - borderWidth - 4) * settings.tile.size,
+    y: -(minY - borderWidth - 4) * settings.tile.size,
   }
   character = scene.physics.add.sprite(charOffset.x, charOffset.y, 'hero')
   camera.startFollow(character)

@@ -11,7 +11,6 @@ import {
   reverseGrid,
   shiftPointMapOutOfNegative,
 } from './world/helpers'
-import { addRoomsToPointMap } from './world/mazeLogic'
 
 const { screen, tile } = settings
 
@@ -135,19 +134,7 @@ const setup = (scene: Phaser.Scene) => {
   const floorTiles = floorMap.addTilesetImage('myTiles')
   const floorLayer = floorMap.createStaticLayer(0, floorTiles, 0, 0)
 
-  // wallMap.setCollision([1, 33])
-  // const boundsTiles = boundsMap.addTilesetImage('dungeonTiles')
-  // const boundsLayer = boundsMap.createStaticLayer(0, boundsTiles, 0, 0)
-  // boundsLayer.scaleX = 3
-  // boundsLayer.scaleY = 3
-  // boundsMap.setCollision(388)
-  // boundsLayer.forEachTile((tile: Phaser.Tilemaps.Tile) => {}) // boundsLayer.setSize(1, 1)
-  // const image = scene.add.image(350, 350, 'ghost')
-  // image.setDisplaySize(42, 42)
-
   const charOffset = {
-    // x: (3 + 1) * settings.tile.size,
-    // y: 1 * settings.tile.size,
     x: -(minX - 4) * settings.tile.size,
     y: -(minY - 4) * settings.tile.size,
   }
@@ -155,28 +142,4 @@ const setup = (scene: Phaser.Scene) => {
   camera.startFollow(character)
 
   scene.physics.add.collider(character, boundsLayer)
-  // character.setSize(settings.character.width, settings.character.height)
-  // character.setDisplaySize(settings.character.width, settings.character.height)
-
-  // char.setVelocityX(30)
-
-  // const wallMap = scene.make.tilemap({
-  //   data: level.wall,
-  //   tileWidth: tile.size,
-  //   tileHeight: tile.size,
-  // } as Phaser.Types.Tilemaps.TilemapConfig)
-
-  // const wallTiles = wallMap.addTilesetImage('dungeonTiles')
-  // // map.(setCollision)Between(0, 9)
-  // const wallLayer = wallMap.createStaticLayer(0, wallTiles, 0, 0)
-  // wallLayer.scaleX = tile.scaling
-  // wallLayer.scaleY = tile.scaling
-
-  // wallLayer.forEachTile((tile: Phaser.Tilemaps.Tile) => {
-  //   tile.collisionCallback = () => {
-  //     stop = handleWallCollision(character, tile)
-  //   }
-  // })
-
-  // scene.physics.add.collider(character, wallLayer)
 }

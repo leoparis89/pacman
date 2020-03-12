@@ -99,7 +99,7 @@ export const shiftPointMapOutOfNegative = (level: PointMap) => {
   return result
 }
 
-const getMinXY = (level: PointMap) => {
+export const getMinXY = (level: PointMap) => {
   let minX = 0
   let minY = 0
 

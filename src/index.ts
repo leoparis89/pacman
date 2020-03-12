@@ -1,7 +1,14 @@
+import { flow } from 'lodash'
 import Phaser from 'phaser'
 import settings from './settings'
 import { handleCursor } from './utils/controls'
 import { makeLevel } from './world'
+import {
+  getMinXY,
+  paintGrid,
+  pointMaptoGrid,
+  shiftPointMapOutOfNegative,
+} from './world/helpers'
 import { addRoomsToPointMap } from './world/mazeLogic'
 
 const { screen, tile } = settings
@@ -97,14 +104,19 @@ function update(time, delta) {
 }
 
 const setup = (scene: Phaser.Scene) => {
-  const level = addRoomsToPointMap([
-    { height: 3, width: 3, coords: [4, 4] },
-    { height: 4, width: 3, coords: [9, 9] },
-    { height: 3, width: 13, coords: [1, 12] },
-  ])
+  const levelPointMap = makeLevel()
+
+  const [minX, minY] = getMinXY(levelPointMap)
+  console.log(minX, minY)
+
+  const grid = flow(
+    shiftPointMapOutOfNegative,
+    pointMaptoGrid,
+    paintGrid(292),
+  )(levelPointMap)
 
   const floorMap = scene.make.tilemap({
-    data: makeLevel(),
+    data: grid,
     tileWidth: tile.size,
     tileHeight: tile.size,
   } as Phaser.Types.Tilemaps.TilemapConfig)
@@ -126,7 +138,13 @@ const setup = (scene: Phaser.Scene) => {
   // const image = scene.add.image(350, 350, 'ghost')
   // image.setDisplaySize(42, 42)
 
-  character = scene.physics.add.sprite(430, 430, 'hero')
+  const charOffset = {
+    // x: (3 + 1) * settings.tile.size,
+    // y: 1 * settings.tile.size,
+    x: -minX * settings.tile.size,
+    y: -minY * settings.tile.size,
+  }
+  character = scene.physics.add.sprite(charOffset.x, charOffset.y, 'hero')
   camera.startFollow(character)
   // character.setSize(settings.character.width, settings.character.height)
   // character.setDisplaySize(settings.character.width, settings.character.height)

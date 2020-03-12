@@ -9,7 +9,7 @@ import { createRoomOnDirection } from './transformations'
 
 export const cookUpLevel = (
   seed: IRoom = { height: 2, width: 2, coords: [0, 0] },
-  steps: number = 90,
+  steps: number = 30,
 ): IRoom[] => {
   const result: IRoom[] = []
 
@@ -35,12 +35,10 @@ export const cookUpLevel = (
 
 export const makeLevel = () => {
   const rooms = cookUpLevel()
-  const level = flow(
-    addRoomsToPointMap,
-    shiftPointMapOutOfNegative,
-    pointMaptoGrid,
-    paintGrid(292),
-  )(rooms)
+  const level = addRoomsToPointMap(rooms)
+  // shiftPointMapOutOfNegative,
+  // pointMaptoGrid,
+  // paintGrid(292),
 
   return level
 }

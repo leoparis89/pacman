@@ -141,8 +141,8 @@ const setup = (scene: Phaser.Scene) => {
   const charOffset = {
     // x: (3 + 1) * settings.tile.size,
     // y: 1 * settings.tile.size,
-    x: -minX * settings.tile.size,
-    y: -minY * settings.tile.size,
+    x: -(minX - 4) * settings.tile.size,
+    y: -(minY - 4) * settings.tile.size,
   }
   character = scene.physics.add.sprite(charOffset.x, charOffset.y, 'hero')
   camera.startFollow(character)

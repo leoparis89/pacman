@@ -8,8 +8,8 @@ import { addRoomsToPointMap, nextRoom } from './mazeLogic'
 import { createRoomOnDirection } from './transformations'
 
 export const cookUpLevel = (
-  seed: IRoom = { height: 2, width: 2, coords: [0, 0] },
-  steps: number = 30,
+  seed: IRoom = { height: 9, width: 9, coords: [0, 0] },
+  steps: number = 40,
 ): IRoom[] => {
   const result: IRoom[] = []
 

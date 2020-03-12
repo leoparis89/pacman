@@ -2,11 +2,13 @@ import { flow } from 'lodash'
 import Phaser from 'phaser'
 import settings from './settings'
 import { handleCursor } from './utils/controls'
+import tileMapping from './utils/tileMapping'
 import { makeLevel } from './world'
 import {
   getMinXY,
   paintGrid,
   pointMaptoGrid,
+  reverseGrid,
   shiftPointMapOutOfNegative,
 } from './world/helpers'
 import { addRoomsToPointMap } from './world/mazeLogic'
@@ -115,6 +117,16 @@ const setup = (scene: Phaser.Scene) => {
     paintGrid(292),
   )(levelPointMap)
 
+  const boundsMap = scene.make.tilemap({
+    data: reverseGrid(grid, tileMapping.floor.sample2),
+    tileWidth: tile.size,
+    tileHeight: tile.size,
+  } as Phaser.Types.Tilemaps.TilemapConfig)
+
+  const boundsTiles = boundsMap.addTilesetImage('myTiles')
+  const boundsLayer = boundsMap.createStaticLayer(0, boundsTiles, 0, 0)
+  boundsMap.setCollision([tileMapping.floor.sample2])
+
   const floorMap = scene.make.tilemap({
     data: grid,
     tileWidth: tile.size,
@@ -122,11 +134,6 @@ const setup = (scene: Phaser.Scene) => {
   } as Phaser.Types.Tilemaps.TilemapConfig)
   const floorTiles = floorMap.addTilesetImage('myTiles')
   const floorLayer = floorMap.createStaticLayer(0, floorTiles, 0, 0)
-  // const boundsMap = scene.make.tilemap({
-  //   data: reverseGrid(level.floor, 388),
-  //   tileWidth: 16,
-  //   tileHeight: 16,
-  // } as Phaser.Types.Tilemaps.TilemapConfig)
 
   // wallMap.setCollision([1, 33])
   // const boundsTiles = boundsMap.addTilesetImage('dungeonTiles')
@@ -146,6 +153,8 @@ const setup = (scene: Phaser.Scene) => {
   }
   character = scene.physics.add.sprite(charOffset.x, charOffset.y, 'hero')
   camera.startFollow(character)
+
+  scene.physics.add.collider(character, boundsLayer)
   // character.setSize(settings.character.width, settings.character.height)
   // character.setDisplaySize(settings.character.width, settings.character.height)
 

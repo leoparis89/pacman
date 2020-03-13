@@ -1,4 +1,4 @@
-import { enoughSpace, getPossibleDirections, nextRoom } from './mazeLogic'
+import { enoughSpace, getPossibleDirections, _nextRoom } from './mazeLogic'
 import { addRoomsToPointMap } from './transformations'
 
 describe('addRoomToPointMap', () => {
@@ -266,7 +266,7 @@ describe('next room', () => {
     ]
     const level = addRoomsToPointMap(rooms)
     level.delete(JSON.stringify([8, 4]))
-    expect(nextRoom(level, currentRoom, { height: 1, width: 1 })).toEqual({
+    expect(_nextRoom(level, currentRoom, { height: 1, width: 1 })).toEqual({
       dir: { coords: [7, 4], dir: 'right' },
       height: 1,
       width: 1,
@@ -281,7 +281,7 @@ describe('next room', () => {
     ]
     const level = addRoomsToPointMap(rooms)
     level.delete(JSON.stringify([5, 3]))
-    expect(nextRoom(level, currentRoom, { height: 1, width: 1 })).toEqual({
+    expect(_nextRoom(level, currentRoom, { height: 1, width: 1 })).toEqual({
       dir: { coords: [5, 4], dir: 'up' },
       height: 1,
       width: 1,
@@ -296,7 +296,7 @@ describe('next room', () => {
     ]
     const level = addRoomsToPointMap(rooms)
     level.delete(JSON.stringify([8, 4]))
-    expect(nextRoom(level, currentRoom, { height: 2, width: 1 })).toEqual(null)
-    expect(nextRoom(level, currentRoom, { height: 1, width: 2 })).toEqual(null)
+    expect(_nextRoom(level, currentRoom, { height: 2, width: 1 })).toEqual(null)
+    expect(_nextRoom(level, currentRoom, { height: 1, width: 2 })).toEqual(null)
   })
 })

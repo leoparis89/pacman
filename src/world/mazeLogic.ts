@@ -1,5 +1,9 @@
 import { getRandomIndexFromArray } from './helpers'
-import { addRoomsToPointMap, roomToPointMap } from './transformations'
+import {
+  addRoomsToPointMap,
+  createRoomOnDirection,
+  roomToPointMap,
+} from './transformations'
 
 export const enoughSpace = (
   level: PointMap,
@@ -75,11 +79,20 @@ export const getPossibleDirections = ({ height, width, coords }: IRoom) => {
   return result
 }
 
-export const nextRoom = (
-  level: IRoom[],
-  appendTo: IRoom,
-  nextRoomDims = { height: 4, width: 4 },
-) => _nextRoom(addRoomsToPointMap(level), appendTo, nextRoomDims)
+export const nextRoom = (level: IRoom[], appendTo: IRoom) => {
+  const nextRoomDims = { height: 4, width: 4 }
+
+  const room = _nextRoom(addRoomsToPointMap(level), appendTo, nextRoomDims)
+
+  if (!room) {
+    return null
+  }
+  const roomToAdd = createRoomOnDirection(room.dir, {
+    width: room.width,
+    height: room.width,
+  })
+  return roomToAdd
+}
 
 export const _nextRoom = (
   level: PointMap,
@@ -110,3 +123,5 @@ export const addBorder = (size: number) => (g: Grid) => {
   const padding = new Array(size).fill(emptyRow)
   return [...padding, ...result, ...padding]
 }
+
+const generateRoom = () => {}

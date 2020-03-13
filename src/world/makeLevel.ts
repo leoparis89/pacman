@@ -1,7 +1,5 @@
-import { flow } from 'lodash'
-import { paintGrid, shiftPointMapOutOfNegative } from './helpers'
-import { _nextRoom, nextRoom } from './mazeLogic'
-import { addRoomsToPointMap, createRoomOnDirection } from './transformations'
+import { nextRoom } from './mazeLogic'
+import { addRoomsToPointMap } from './transformations'
 
 export const cookUpLevel = (
   seed: IRoom = { height: 9, width: 9, coords: [0, 0] },
@@ -16,13 +14,9 @@ export const cookUpLevel = (
 
     const curr = result[result.length - 1]
 
-    const res = nextRoom(result, curr)
+    const roomToAdd = nextRoom(result, curr)
 
-    if (res) {
-      const roomToAdd = createRoomOnDirection(res.dir, {
-        width: res.width,
-        height: res.width,
-      })
+    if (roomToAdd) {
       result.push(roomToAdd)
     }
   }

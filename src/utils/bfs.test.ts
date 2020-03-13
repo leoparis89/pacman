@@ -1,5 +1,5 @@
+import { normalizeGrid } from '../world/helpers'
 import { getShortestPath, gridToGraph } from './bfs'
-import { normalizeArray, normalizeGrid, pointMaptoGrid } from '../world/helpers'
 
 describe('gridToGraph function', () => {
   test('it should return the right value (single value)', () => {

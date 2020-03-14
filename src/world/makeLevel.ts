@@ -3,7 +3,7 @@ import { addRoomsToPointMap } from './transformations'
 
 export const cookUpLevel = (
   seed: IRoom = { height: 9, width: 9, coords: [0, 0] },
-  steps: number = 40,
+  steps: number = 200,
 ): IRoom[] => {
   const result: IRoom[] = []
 
@@ -14,7 +14,8 @@ export const cookUpLevel = (
 
     const curr = result[result.length - 1]
 
-    const roomToAdd = nextRoom(result, curr)
+    const nextRoomDims = { height: 5, width: 5 }
+    const roomToAdd = nextRoom(result, curr, nextRoomDims)
 
     if (roomToAdd) {
       result.push(roomToAdd)

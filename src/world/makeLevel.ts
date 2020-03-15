@@ -27,7 +27,6 @@ export const cookUpLevel = (
       steps++
     }
   }
-  console.log(result.length)
   return result
 }
 

@@ -55,10 +55,7 @@ export const createRoomOnDirection = (
   }
 }
 
-export const addRoomsToPointMap = (
-  rs: IRoom[],
-  level: PointMap = new Map(),
-) => {
+export const roomsToPointMap = (rs: IRoom[], level: PointMap = new Map()) => {
   const ps = rs.map(roomToPointMap)
   return _reducePointMap(ps, level)
 }

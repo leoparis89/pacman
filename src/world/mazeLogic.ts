@@ -1,6 +1,6 @@
 import { getRandomIndexFromArray } from './helpers'
 import {
-  addRoomsToPointMap,
+  roomsToPointMap,
   createRoomOnDirection,
   roomToPointMap,
 } from './transformations'
@@ -80,7 +80,7 @@ export const getPossibleDirections = ({ height, width, coords }: IRoom) => {
 }
 
 export const nextRoom = (level: IRoom[], appendTo: IRoom, nextRoomDims) => {
-  const room = _nextRoom(addRoomsToPointMap(level), appendTo, nextRoomDims)
+  const room = _nextRoom(roomsToPointMap(level), appendTo, nextRoomDims)
 
   if (!room) {
     return null

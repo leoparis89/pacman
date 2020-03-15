@@ -1,5 +1,5 @@
 import { nextRoom } from './mazeLogic'
-import { addRoomsToPointMap } from './transformations'
+import { roomsToPointMap } from './transformations'
 
 export const cookUpLevel = (
   seed: IRoom = { height: 9, width: 9, coords: [0, 0] },
@@ -28,7 +28,7 @@ export const cookUpLevel = (
 export const makeLevel = () => {
   const rooms = cookUpLevel()
 
-  const level = addRoomsToPointMap(rooms)
+  const level = roomsToPointMap(rooms)
   // shiftPointMapOutOfNegative,
   // pointMaptoGrid,
   // paintGrid(292),

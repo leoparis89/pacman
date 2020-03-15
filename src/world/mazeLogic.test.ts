@@ -1,5 +1,5 @@
 import { enoughSpace, getPossibleDirections, _nextRoom } from './mazeLogic'
-import { addRoomsToPointMap } from './transformations'
+import { roomsToPointMap } from './transformations'
 
 describe('addRoomToPointMap', () => {
   it('should add rooms to level (case 1)', () => {
@@ -16,7 +16,7 @@ describe('addRoomToPointMap', () => {
       ['[5,3]', true],
       ['[5,4]', true],
     ])
-    expect(addRoomsToPointMap(rooms, new Map())).toEqual(result)
+    expect(roomsToPointMap(rooms, new Map())).toEqual(result)
   })
 })
 
@@ -51,7 +51,7 @@ describe('enoughSpace function', () => {
 
   it('should return true if there is room (case up)', () => {
     const rooms: IRoom[] = [{ height: 4, width: 4, coords: [4, 4] }]
-    const level = addRoomsToPointMap(rooms)
+    const level = roomsToPointMap(rooms)
 
     expect(enoughSpace(level, { coords: [4, 4], dir: 'up' })).toEqual(true)
   })
@@ -61,7 +61,7 @@ describe('enoughSpace function', () => {
       { height: 4, width: 4, coords: [4, 4] },
       { height: 2, width: 4, coords: [4, 0] },
     ]
-    const level = addRoomsToPointMap(rooms)
+    const level = roomsToPointMap(rooms)
 
     expect(
       enoughSpace(
@@ -77,7 +77,7 @@ describe('enoughSpace function', () => {
       { height: 4, width: 4, coords: [4, 4] },
       { height: 100, width: 100, coords: [1, 1] },
     ]
-    const level = addRoomsToPointMap(rooms)
+    const level = roomsToPointMap(rooms)
     level.delete(JSON.stringify([4, 3]))
 
     expect(
@@ -102,7 +102,7 @@ describe('enoughSpace function', () => {
       { height: 4, width: 4, coords: [4, 4] },
       { height: 100, width: 100, coords: [1, 1] },
     ]
-    const level = addRoomsToPointMap(rooms)
+    const level = roomsToPointMap(rooms)
     level.delete(JSON.stringify([4, 3]))
     level.delete(JSON.stringify([4, 2]))
     level.delete(JSON.stringify([3, 3]))
@@ -130,7 +130,7 @@ describe('enoughSpace function', () => {
       { height: 4, width: 4, coords: [4, 4] },
       { height: 100, width: 100, coords: [1, 1] },
     ]
-    const level = addRoomsToPointMap(rooms)
+    const level = roomsToPointMap(rooms)
     level.delete(JSON.stringify([3, 4]))
 
     expect(
@@ -155,7 +155,7 @@ describe('enoughSpace function', () => {
       { height: 4, width: 4, coords: [4, 4] },
       { height: 100, width: 100, coords: [1, 1] },
     ]
-    const level = addRoomsToPointMap(rooms)
+    const level = roomsToPointMap(rooms)
     level.delete(JSON.stringify([4, 8]))
 
     expect(
@@ -195,7 +195,7 @@ describe('enoughSpace function', () => {
       { height: 4, width: 4, coords: [4, 4] },
       { height: 100, width: 100, coords: [1, 1] },
     ]
-    const level = addRoomsToPointMap(rooms)
+    const level = roomsToPointMap(rooms)
     level.delete(JSON.stringify([8, 4]))
 
     expect(
@@ -264,7 +264,7 @@ describe('next room', () => {
       currentRoom,
       { height: 100, width: 100, coords: [1, 1] },
     ]
-    const level = addRoomsToPointMap(rooms)
+    const level = roomsToPointMap(rooms)
     level.delete(JSON.stringify([8, 4]))
     expect(_nextRoom(level, currentRoom, { height: 1, width: 1 })).toEqual({
       dir: { coords: [7, 4], dir: 'right' },
@@ -279,7 +279,7 @@ describe('next room', () => {
       currentRoom,
       { height: 100, width: 100, coords: [1, 1] },
     ]
-    const level = addRoomsToPointMap(rooms)
+    const level = roomsToPointMap(rooms)
     level.delete(JSON.stringify([5, 3]))
     expect(_nextRoom(level, currentRoom, { height: 1, width: 1 })).toEqual({
       dir: { coords: [5, 4], dir: 'up' },
@@ -294,7 +294,7 @@ describe('next room', () => {
       currentRoom,
       { height: 100, width: 100, coords: [1, 1] },
     ]
-    const level = addRoomsToPointMap(rooms)
+    const level = roomsToPointMap(rooms)
     level.delete(JSON.stringify([8, 4]))
     expect(_nextRoom(level, currentRoom, { height: 2, width: 1 })).toEqual(null)
     expect(_nextRoom(level, currentRoom, { height: 1, width: 2 })).toEqual(null)

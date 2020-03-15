@@ -122,7 +122,7 @@ const setup = (scene: Phaser.Scene) => {
   )(levelPointMap)
 
   const boundsMap = scene.make.tilemap({
-    data: reverseGrid(grid, [tileMapping.floor.grass[0]]),
+    data: reverseGrid(grid, [563]),
     tileWidth: tile.size,
     tileHeight: tile.size,
   } as Phaser.Types.Tilemaps.TilemapConfig)

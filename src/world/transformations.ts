@@ -19,11 +19,15 @@ export const roomToPointMap = (room: IRoom) => {
 }
 
 export const getTile = (type?: RoomType) => {
+  const random = Math.random() * 100
   if (type === 'suite') {
     return tileMap.floor.blue.tile[0]
   }
   if (type === 'coridoor') {
-    return tileMap.floor.blue.clean[0]
+    if (random > 50) {
+      return tileMap.floor.blue.clean[0]
+    }
+    return tileMap.floor.blue.clean[1]
   }
   return true
 }

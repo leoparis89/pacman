@@ -145,5 +145,9 @@ const setup = (scene: Phaser.Scene) => {
   character = scene.physics.add.sprite(charOffset.x, charOffset.y, 'hero')
   camera.startFollow(character)
 
+  /**
+   * You can zoom out by changing this porperty to lower values than 1
+   */
+  camera.zoom = 1
   scene.physics.add.collider(character, boundsLayer)
 }

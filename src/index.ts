@@ -118,7 +118,6 @@ const setup = (scene: Phaser.Scene) => {
     shiftPointMapOutOfNegative,
     pointMaptoGrid,
     addBorder(borderWidth),
-    paintGrid(292),
   )(levelPointMap)
 
   const boundsMap = scene.make.tilemap({

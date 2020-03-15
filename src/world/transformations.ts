@@ -11,7 +11,7 @@ export const roomToPointMap = (room: IRoom) => {
 
   for (let i = 0; i < width; i++) {
     for (let j = 0; j < height; j++) {
-      result.set(JSON.stringify([i + x, j + y]), true)
+      result.set(JSON.stringify([i + x, j + y]), 291)
     }
   }
   return result

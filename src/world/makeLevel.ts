@@ -3,7 +3,7 @@ import { addRoomsToPointMap } from './transformations'
 
 export const cookUpLevel = (
   seed: IRoom = { height: 9, width: 9, coords: [0, 0] },
-  steps: number = 200,
+  steps: number = 10,
 ): IRoom[] => {
   const result: IRoom[] = []
 
@@ -14,7 +14,8 @@ export const cookUpLevel = (
 
     const curr = result[result.length - 1]
 
-    const nextRoomDims = { height: 5, width: 5 }
+    const nextRoomDims = getNextRoomDims()
+
     const roomToAdd = nextRoom(result, curr, nextRoomDims)
 
     if (roomToAdd) {
@@ -33,4 +34,24 @@ export const makeLevel = () => {
   // paintGrid(292),
 
   return level
+}
+
+export const getNextRoomDims = () => {
+  const chance = Math.random() * 100
+
+  if (chance > 80) {
+    return { height: 8, width: 6 }
+  }
+
+  if (chance > 60) {
+    return { height: 6, width: 8 }
+  }
+
+  if (chance > 40) {
+    return { height: 5, width: 5 }
+  }
+
+  if (chance > 10) {
+    return { height: 10, width: 10 }
+  }
 }

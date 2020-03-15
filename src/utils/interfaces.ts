@@ -24,7 +24,10 @@ interface IRoomDims {
 
 interface IRoom extends IRoomDims {
   coords: Point
+  type?: RoomType
 }
+
+type RoomType = 'coridoor' | 'suite'
 
 interface IDirection {
   up?: boolean

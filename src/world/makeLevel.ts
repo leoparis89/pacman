@@ -14,9 +14,9 @@ export const cookUpLevel = (
 
     const curr = result[result.length - 1]
 
-    const nextRoomDims = getNextRoomDims()
+    const nextRoomDetails = getNextRoomDetails()
 
-    const roomToAdd = nextRoom(result, curr, nextRoomDims)
+    const roomToAdd = nextRoom(result, curr, nextRoomDetails.dims)
 
     if (roomToAdd) {
       result.push(roomToAdd)
@@ -54,4 +54,15 @@ export const getNextRoomDims = () => {
   if (chance > 10) {
     return { height: 10, width: 10 }
   }
+}
+
+export const getNextRoomDetails = (): {
+  type: RoomType
+  dims: IRoomDims
+} => {
+  const chance = Math.random() * 100
+  if (chance > 90) {
+    return { dims: { height: 8, width: 10 }, type: 'suite' }
+  }
+  return { dims: { height: 4, width: 4 }, type: 'coridoor' }
 }

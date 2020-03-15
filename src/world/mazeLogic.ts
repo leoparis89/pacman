@@ -101,6 +101,13 @@ export const _nextRoom = (
   while (possibleDirs.length) {
     const i = getRandomIndexFromArray(possibleDirs)
     const dir = possibleDirs[i]
+
+    // COuld use this for bigger space
+    // const biggerDims: IRoomDims = {
+    //   height: nextRoomDims.height,
+    //   width: nextRoomDims.width,
+    // }
+
     const hasSpace = enoughSpace(level, dir, nextRoomDims)
     if (hasSpace) {
       return { dir, ...nextRoomDims }

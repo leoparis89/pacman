@@ -48,15 +48,13 @@ console.log(game)
 
 function preload() {
   const scene: Phaser.Scene = this
-  scene.load.image('ground', 'assets/platform.png')
-  scene.load.image('ghost', 'assets/ghost.png')
   scene.load.spritesheet('hero', 'assets/hero.png', {
     frameWidth: 32,
     frameHeight: 32,
   })
 
-  scene.load.image('myTiles', 'assets/myTiles.png')
-  scene.load.tilemapTiledJSON('myTilesMap', 'assets/myTiles.json')
+  scene.load.image('myTiles', 'assets/RogueEnvironment16x16.png')
+  scene.load.tilemapTiledJSON('myTilesMap', 'assets/rogue.json')
 }
 
 let character: Phaser.Physics.Arcade.Sprite
@@ -121,14 +119,14 @@ const setup = (scene: Phaser.Scene) => {
   )(levelPointMap)
 
   const boundsMap = scene.make.tilemap({
-    data: reverseGrid(grid, [563]),
+    data: reverseGrid(grid, []),
     tileWidth: tile.size,
     tileHeight: tile.size,
   } as Phaser.Types.Tilemaps.TilemapConfig)
 
   const boundsTiles = boundsMap.addTilesetImage('myTiles')
   const boundsLayer = boundsMap.createStaticLayer(0, boundsTiles, 0, 0)
-  boundsMap.setCollision([tileMapping.floor.grass[0]])
+  // boundsMap.setCollision([tileMapping.floor.grass[0]])
 
   const floorMap = scene.make.tilemap({
     data: grid,

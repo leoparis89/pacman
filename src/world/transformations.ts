@@ -1,3 +1,4 @@
+import tileMap from '../utils/tileMap'
 import { normalizeArray } from './helpers'
 
 /**
@@ -19,12 +20,12 @@ export const roomToPointMap = (room: IRoom) => {
 
 export const getTile = (type?: RoomType) => {
   if (type === 'suite') {
-    return 292
+    return tileMap.floor.blue.tile[0]
   }
   if (type === 'coridoor') {
-    return 317
+    return tileMap.floor.blue.clean[0]
   }
-  return 3
+  return true
 }
 export const createRoomOnDirection = (
   { dir, coords }: IUnitVector,

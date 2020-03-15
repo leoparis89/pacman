@@ -1,5 +1,9 @@
 export default {
   floor: {
-    grass: [0],
+    blue: {
+      clean: [5, 21],
+      broken: [6, 22],
+      tile: [7, 23],
+    },
   },
 }

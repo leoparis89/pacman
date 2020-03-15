@@ -11,12 +11,21 @@ export const roomToPointMap = (room: IRoom) => {
 
   for (let i = 0; i < width; i++) {
     for (let j = 0; j < height; j++) {
-      result.set(JSON.stringify([i + x, j + y]), 291)
+      result.set(JSON.stringify([i + x, j + y]), getTile(room.type))
     }
   }
   return result
 }
 
+export const getTile = (type?: RoomType) => {
+  if (type === 'suite') {
+    return 292
+  }
+  if (type === 'coridoor') {
+    return 317
+  }
+  return 3
+}
 export const createRoomOnDirection = (
   { dir, coords }: IUnitVector,
   { height, width },

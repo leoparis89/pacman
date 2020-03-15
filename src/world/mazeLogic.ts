@@ -1,9 +1,5 @@
 import { getRandomIndexFromArray } from './helpers'
-import {
-  roomsToPointMap,
-  createRoomOnDirection,
-  roomToPointMap,
-} from './transformations'
+import { createRoomOnDirection, roomsToPointMap } from './transformations'
 
 export const enoughSpace = (
   level: PointMap,

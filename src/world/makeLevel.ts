@@ -19,6 +19,7 @@ export const cookUpLevel = (
     const roomToAdd = nextRoom(result, curr, nextRoomDetails.dims)
 
     if (roomToAdd) {
+      roomToAdd.type = nextRoomDetails.type
       result.push(roomToAdd)
     }
   }

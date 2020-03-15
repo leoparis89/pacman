@@ -36,26 +36,6 @@ export const makeLevel = () => {
   return level
 }
 
-export const getNextRoomDims = () => {
-  const chance = Math.random() * 100
-
-  if (chance > 80) {
-    return { height: 8, width: 6 }
-  }
-
-  if (chance > 60) {
-    return { height: 6, width: 8 }
-  }
-
-  if (chance > 40) {
-    return { height: 5, width: 5 }
-  }
-
-  if (chance > 10) {
-    return { height: 10, width: 10 }
-  }
-}
-
 export const getNextRoomDetails = (): {
   type: RoomType
   dims: IRoomDims

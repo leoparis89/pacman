@@ -75,7 +75,11 @@ export const getPossibleDirections = ({ height, width, coords }: IRoom) => {
   return result
 }
 
-export const nextRoom = (level: IRoom[], appendTo: IRoom, nextRoomDims) => {
+export const nextRoom = (
+  level: IRoom[],
+  appendTo: IRoom,
+  nextRoomDims: IRoomDims,
+) => {
   const room = _nextRoom(roomsToPointMap(level), appendTo, nextRoomDims)
 
   if (!room) {

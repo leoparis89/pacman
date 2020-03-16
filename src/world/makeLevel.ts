@@ -2,7 +2,12 @@ import { nextRoom, wrapLevel } from './mazeLogic'
 import { roomsToPointMap } from './transformations'
 
 export const cookUpLevel = (
-  seed: IRoom = { height: 9, width: 9, coords: [0, 0] },
+  seed: IRoom = {
+    type: 'suite',
+    height: 9,
+    width: 9,
+    coords: [0, 0],
+  },
   steps: number = 100,
 ): IRoom[] => {
   const result: IRoom[] = []

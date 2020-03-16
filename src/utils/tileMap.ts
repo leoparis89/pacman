@@ -13,6 +13,16 @@ export default {
           clean: [32],
           cracked: [4, 35],
         },
+        corner: {
+          bottom: {
+            left: [48],
+            right: [51],
+          },
+          top: {
+            left: [0],
+            right: [3],
+          },
+        },
       },
     },
   },

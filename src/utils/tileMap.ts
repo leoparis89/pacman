@@ -9,6 +9,10 @@ export default {
           clean: [2],
           cracked: [36, 37],
         },
+        vertical: {
+          clean: [32],
+          cracked: [4, 35],
+        },
       },
     },
   },

@@ -147,6 +147,16 @@ export const wrapLevel = (level: PointMap) => {
         tileMap.floor.blue.wall.horizontal.clean[0],
       )
     }
+
+    const coordLeft = getRelativeCoords(key, 'left')
+    if (!levelWithBorder.get(coordLeft)) {
+      levelWithBorder.set(coordLeft, tileMap.floor.blue.wall.vertical.clean[0])
+    }
+
+    const coordRight = getRelativeCoords(key, 'right')
+    if (!levelWithBorder.get(coordRight)) {
+      levelWithBorder.set(coordRight, tileMap.floor.blue.wall.vertical.clean[0])
+    }
   })
   return levelWithBorder
 }

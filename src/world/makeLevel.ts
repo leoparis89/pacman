@@ -1,4 +1,4 @@
-import { nextRoom } from './mazeLogic'
+import { nextRoom, wrapLevel } from './mazeLogic'
 import { roomsToPointMap } from './transformations'
 
 export const cookUpLevel = (
@@ -39,7 +39,7 @@ export const makeLevel = () => {
   // pointMaptoGrid,
   // paintGrid(292),
 
-  return level
+  return wrapLevel(level)
 }
 
 export const getNextRoomDetails = (): {

@@ -321,5 +321,9 @@ describe('wrapLevel', () => {
     expect(wrapped.get('[6,3]')).toEqual(
       tileMap.floor.blue.wall.horizontal.clean[0],
     )
+
+    expect(wrapped.get('[4,8]')).toEqual(undefined)
+    expect(wrapped.get('[5,8]')).toEqual(undefined)
+    expect(wrapped.get('[6,8]')).toEqual(undefined)
   })
 })

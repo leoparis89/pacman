@@ -1,6 +1,6 @@
 export const gridToGraph = (grid: any[][]) => {
   const getCell = _getCell(grid)
-  const vertices: Vertex[] = []
+  const vertices: IVertex[] = []
 
   const edges: Edge[] = []
 
@@ -8,7 +8,7 @@ export const gridToGraph = (grid: any[][]) => {
     row.forEach((cell, i) => {
       const id = _makeId(i, j)
       if (cell) {
-        const vertex: Vertex = {
+        const vertex: IVertex = {
           id,
         }
         vertices.push(vertex)
@@ -38,8 +38,8 @@ export const gridToGraph = (grid: any[][]) => {
 const _getCell = grid => (i, j) => grid[j] && grid[j][i]
 const _makeId = (i, j) => `${i}:${j}`
 
-export const getShortestPath = (g: Graph, startId: string, goalId: string) => {
-  const graph: Graph = JSON.parse(JSON.stringify(g))
+export const getShortestPath = (g: IGraph, startId: string, goalId: string) => {
+  const graph: IGraph = JSON.parse(JSON.stringify(g))
   const getNode = _getNode(graph.vertices)
 
   const seed = getNode(startId)
@@ -53,7 +53,7 @@ export const getShortestPath = (g: Graph, startId: string, goalId: string) => {
     throw new Error(`Goal node with id "${goalId}" doesn't exist!`)
   }
 
-  const queue: Vertex[] = []
+  const queue: IVertex[] = []
   seed.discovered = true
   queue.unshift(seed)
 
@@ -76,7 +76,7 @@ export const getShortestPath = (g: Graph, startId: string, goalId: string) => {
   return null
 }
 
-function getNeighbors(id, graph: Graph) {
+function getNeighbors(id, graph: IGraph) {
   const connectedEdges = graph.edges.filter(e => e[0] === id)
   const neighbors = graph.vertices.filter(n =>
     connectedEdges.some(e => n.id === e[1]),
@@ -84,7 +84,7 @@ function getNeighbors(id, graph: Graph) {
   return neighbors
 }
 
-function getPath(nodes: Vertex[], seedId, goalId) {
+function getPath(nodes: IVertex[], seedId, goalId) {
   const getNode = _getNode(nodes)
   const result = [goalId]
 
@@ -100,5 +100,5 @@ function getPath(nodes: Vertex[], seedId, goalId) {
   return result.reverse()
 }
 
-const _getNode = (nodes: Vertex[]) => (id: string) =>
+const _getNode = (nodes: IVertex[]) => (id: string) =>
   nodes.find(n => n.id === id)

@@ -134,7 +134,7 @@ describe('gridToGraph function', () => {
 
 describe('getShortestPath function', () => {
   test('it should return the shortest path from seed node to goal node', () => {
-    const input: Graph = {
+    const input: IGraph = {
       vertices: [
         {
           id: 'a',
@@ -174,7 +174,7 @@ describe('gridToGraph then getShortestPath', () => {
       [x, x, o],
     ]
 
-    const expected: Graph = {
+    const expected: IGraph = {
       vertices: [
         {
           id: '0:1',

@@ -1,4 +1,4 @@
-interface Vertex {
+interface IVertex {
   id: string
   discovered?: boolean
   parent?: string
@@ -6,8 +6,8 @@ interface Vertex {
 
 type Edge = [string, string]
 
-interface Graph {
-  vertices: Vertex[]
+interface IGraph {
+  vertices: IVertex[]
   edges: Edge[]
 }
 

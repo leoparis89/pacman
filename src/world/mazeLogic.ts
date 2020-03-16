@@ -1,3 +1,4 @@
+import tileMap from '../utils/tileMap'
 import { getRandomIndexFromArray } from './helpers'
 import { createRoomOnDirection, roomsToPointMap } from './transformations'
 
@@ -129,4 +130,32 @@ export const addBorder = (size: number) => (g: Grid) => {
   return [...padding, ...result, ...padding]
 }
 
-const generateRoom = () => {}
+export const wrapLevel = (level: PointMap) => {
+  const levelWithBorder = new Map()
+  level.forEach((val, key) => levelWithBorder.set(key, val))
+
+  level.forEach((_, key) => {
+    const coordUp = getRelativeCoords(key, 'up')
+    if (!levelWithBorder.get(coordUp)) {
+      levelWithBorder.set(coordUp, tileMap.floor.blue.wall.horizontal.clean[0])
+    }
+  })
+  return levelWithBorder
+}
+
+const getRelativeCoords = (serializedKey: string, dir: Direction) => {
+  const [x, y]: Point = JSON.parse(serializedKey)
+  if (dir === 'up') {
+    return JSON.stringify([x, y - 1])
+  }
+  if (dir === 'down') {
+    return JSON.stringify([x, y + 1])
+  }
+  if (dir === 'left') {
+    return JSON.stringify([x - 1, y])
+  }
+  if (dir === 'right') {
+    return JSON.stringify([x + 1, y])
+  }
+  return 'bar'
+}

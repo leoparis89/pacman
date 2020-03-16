@@ -1,4 +1,10 @@
-import { enoughSpace, getPossibleDirections, _nextRoom } from './mazeLogic'
+import tileMap from '../utils/tileMap'
+import {
+  _nextRoom,
+  enoughSpace,
+  getPossibleDirections,
+  wrapLevel,
+} from './mazeLogic'
 import { roomsToPointMap } from './transformations'
 
 describe('addRoomToPointMap', () => {
@@ -298,5 +304,22 @@ describe('next room', () => {
     level.delete(JSON.stringify([8, 4]))
     expect(_nextRoom(level, currentRoom, { height: 2, width: 1 })).toEqual(null)
     expect(_nextRoom(level, currentRoom, { height: 1, width: 2 })).toEqual(null)
+  })
+})
+
+describe('wrapLevel', () => {
+  it('should add top border', () => {
+    const room: IRoom = { height: 4, width: 4, coords: [4, 4] }
+    const level = roomsToPointMap([room])
+    const wrapped = wrapLevel(level)
+    expect(wrapped.get('[4,3]')).toEqual(
+      tileMap.floor.blue.wall.horizontal.clean[0],
+    )
+    expect(wrapped.get('[5,3]')).toEqual(
+      tileMap.floor.blue.wall.horizontal.clean[0],
+    )
+    expect(wrapped.get('[6,3]')).toEqual(
+      tileMap.floor.blue.wall.horizontal.clean[0],
+    )
   })
 })

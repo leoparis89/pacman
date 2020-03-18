@@ -135,12 +135,35 @@ export const wrapLevel = (level: PointMap) => {
   level.forEach((val, key) => levelWithBorder.set(key, val))
 
   level.forEach((_, key) => {
+    const [x, y] = deserrializeKey(key)
+
     const coordUp = getRelativeCoords(key, 'up')
+    const coordDown = getRelativeCoords(key, 'down')
+    const coordLeft = getRelativeCoords(key, 'left')
+    const coordRight = getRelativeCoords(key, 'right')
+
+    if (!levelWithBorder.get(coordUp) && !levelWithBorder.get(coordLeft)) {
+      // levelWithBorder.set(coordUp, tileMap.floor.blue.wall.horizontal.clean[0])
+      // levelWithBorder.set(getRelativeCoords(, ''))
+      levelWithBorder.set(
+        JSON.stringify([x - 1, y - 1]),
+        tileMap.floor.blue.wall.corner.top.left[0],
+      )
+    }
+
+    if (!levelWithBorder.get(coordUp) && !levelWithBorder.get(coordRight)) {
+      // levelWithBorder.set(coordUp, tileMap.floor.blue.wall.horizontal.clean[0])
+      // levelWithBorder.set(getRelativeCoords(, ''))
+      levelWithBorder.set(
+        JSON.stringify([x + 1, y - 1]),
+        tileMap.floor.blue.wall.corner.top.right[0],
+      )
+    }
+
     if (!levelWithBorder.get(coordUp)) {
       levelWithBorder.set(coordUp, tileMap.floor.blue.wall.horizontal.clean[0])
     }
 
-    const coordDown = getRelativeCoords(key, 'down')
     if (!levelWithBorder.get(coordDown)) {
       levelWithBorder.set(
         coordDown,
@@ -148,11 +171,9 @@ export const wrapLevel = (level: PointMap) => {
       )
     }
 
-    const coordLeft = getRelativeCoords(key, 'left')
     if (!levelWithBorder.get(coordLeft)) {
       levelWithBorder.set(coordLeft, tileMap.floor.blue.wall.vertical.clean[0])
     }
-    const coordRight = getRelativeCoords(key, 'right')
     if (!levelWithBorder.get(coordRight)) {
       levelWithBorder.set(coordRight, tileMap.floor.blue.wall.vertical.clean[0])
     }
@@ -160,8 +181,10 @@ export const wrapLevel = (level: PointMap) => {
   return levelWithBorder
 }
 
+const deserrializeKey = (key: string): Point => JSON.parse(key)
+
 const getRelativeCoords = (serializedKey: string, dir: Direction) => {
-  const [x, y]: Point = JSON.parse(serializedKey)
+  const [x, y]: Point = deserrializeKey(serializedKey)
   if (dir === 'up') {
     return JSON.stringify([x, y - 1])
   }

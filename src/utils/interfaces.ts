@@ -37,6 +37,7 @@ interface IDirection {
 }
 
 type Direction = 'left' | 'right' | 'up' | 'down'
+type Dir8 = Direction | 'bottom-right'
 
 interface IUnitVector {
   coords: Point

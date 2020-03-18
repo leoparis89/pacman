@@ -29,7 +29,7 @@ export const normalizeArray = (arr: any[][]) => {
   arr.forEach(row => {
     const newRow: any[] = []
     for (let i = 0; i < maxRowLength; i++) {
-      newRow[i] = row[i] || undefined
+      newRow[i] = row[i] === undefined ? undefined : row[i]
     }
     result.push(newRow)
   })

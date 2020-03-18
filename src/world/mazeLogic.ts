@@ -160,6 +160,23 @@ export const wrapLevel = (level: PointMap) => {
       )
     }
 
+    if (!levelWithBorder.get(coordDown) && !levelWithBorder.get(coordLeft)) {
+      // levelWithBorder.set(coordUp, tileMap.floor.blue.wall.horizontal.clean[0])
+      // levelWithBorder.set(getRelativeCoords(, ''))
+      levelWithBorder.set(
+        JSON.stringify([x - 1, y + 1]),
+        tileMap.floor.blue.wall.corner.bottom.left[0],
+      )
+    }
+
+    if (!levelWithBorder.get(coordDown) && !levelWithBorder.get(coordRight)) {
+      // levelWithBorder.set(coordUp, tileMap.floor.blue.wall.horizontal.clean[0])
+      // levelWithBorder.set(getRelativeCoords(, ''))
+      levelWithBorder.set(
+        JSON.stringify([x + 1, y + 1]),
+        tileMap.floor.blue.wall.corner.bottom.right[0],
+      )
+    }
     if (!levelWithBorder.get(coordUp)) {
       levelWithBorder.set(coordUp, tileMap.floor.blue.wall.horizontal.clean[0])
     }

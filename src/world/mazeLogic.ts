@@ -149,6 +149,23 @@ export const wrapLevel = (level: PointMap) => {
     const coordDownLeft = JSON.stringify([x - 1, y + 1])
     const coordDownRight = JSON.stringify([x + 1, y + 1])
 
+    /**
+     * tricy
+     */
+    // if (!levelWithBorder.get(coordLeft) && levelWithBorder.get(coordDownLeft)) {
+    //   levelWithBorder.set(
+    //     coordLeft,
+    //     tileMap.floor.blue.wall.corner.bottom.right[0],
+    //   )
+    // levelWithBorder.set(
+    //   JSON.stringify([x - 2, y]),
+    //   tileMap.floor.blue.wall.corner.bottom.right[0],
+    // )
+    // }
+
+    /**
+     * standard cornders
+     */
     if (!levelWithBorder.get(coordUp) && !levelWithBorder.get(coordLeft)) {
       levelWithBorder.set(
         coordUpLeft,
@@ -176,6 +193,10 @@ export const wrapLevel = (level: PointMap) => {
         tileMap.floor.blue.wall.corner.bottom.right[0],
       )
     }
+
+    // /**
+    //  * Straightforward wallz
+    //  */
     if (!levelWithBorder.get(coordUp)) {
       levelWithBorder.set(coordUp, tileMap.floor.blue.wall.horizontal.clean[0])
     }

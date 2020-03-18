@@ -103,7 +103,10 @@ export const _nextRoom = (
     const i = getRandomIndexFromArray(possibleDirs)
     const dir = possibleDirs[i]
 
-    // COuld use this for bigger space
+    /**
+     * Could use this for bigger space
+     */
+
     // const biggerDims: IRoomDims = {
     //   height: nextRoomDims.height,
     //   width: nextRoomDims.width,
@@ -141,39 +144,35 @@ export const wrapLevel = (level: PointMap) => {
     const coordDown = getRelativeCoords(key, 'down')
     const coordLeft = getRelativeCoords(key, 'left')
     const coordRight = getRelativeCoords(key, 'right')
+    const coordUpLeft = JSON.stringify([x - 1, y - 1])
+    const coordUpRight = JSON.stringify([x + 1, y - 1])
+    const coordDownLeft = JSON.stringify([x - 1, y + 1])
+    const coordDownRight = JSON.stringify([x + 1, y + 1])
 
     if (!levelWithBorder.get(coordUp) && !levelWithBorder.get(coordLeft)) {
-      // levelWithBorder.set(coordUp, tileMap.floor.blue.wall.horizontal.clean[0])
-      // levelWithBorder.set(getRelativeCoords(, ''))
       levelWithBorder.set(
-        JSON.stringify([x - 1, y - 1]),
+        coordUpLeft,
         tileMap.floor.blue.wall.corner.top.left[0],
       )
     }
 
     if (!levelWithBorder.get(coordUp) && !levelWithBorder.get(coordRight)) {
-      // levelWithBorder.set(coordUp, tileMap.floor.blue.wall.horizontal.clean[0])
-      // levelWithBorder.set(getRelativeCoords(, ''))
       levelWithBorder.set(
-        JSON.stringify([x + 1, y - 1]),
+        coordUpRight,
         tileMap.floor.blue.wall.corner.top.right[0],
       )
     }
 
     if (!levelWithBorder.get(coordDown) && !levelWithBorder.get(coordLeft)) {
-      // levelWithBorder.set(coordUp, tileMap.floor.blue.wall.horizontal.clean[0])
-      // levelWithBorder.set(getRelativeCoords(, ''))
       levelWithBorder.set(
-        JSON.stringify([x - 1, y + 1]),
+        coordDownLeft,
         tileMap.floor.blue.wall.corner.bottom.left[0],
       )
     }
 
     if (!levelWithBorder.get(coordDown) && !levelWithBorder.get(coordRight)) {
-      // levelWithBorder.set(coordUp, tileMap.floor.blue.wall.horizontal.clean[0])
-      // levelWithBorder.set(getRelativeCoords(, ''))
       levelWithBorder.set(
-        JSON.stringify([x + 1, y + 1]),
+        coordDownRight,
         tileMap.floor.blue.wall.corner.bottom.right[0],
       )
     }

@@ -152,45 +152,45 @@ export const wrapLevel = (level: PointMap) => {
     /**
      * tricy
      */
-    // if (!levelWithBorder.get(coordLeft) && levelWithBorder.get(coordDownLeft)) {
-    //   levelWithBorder.set(
-    //     coordLeft,
-    //     tileMap.floor.blue.wall.corner.bottom.right[0],
-    //   )
-    // levelWithBorder.set(
-    //   JSON.stringify([x - 2, y]),
-    //   tileMap.floor.blue.wall.corner.bottom.right[0],
-    // )
-    // }
+    if (
+      !levelWithBorder.get(coordLeft) &&
+      !levelWithBorder.get(JSON.stringify([x - 2, y])) &&
+      !levelWithBorder.get(coordUpLeft) &&
+      levelWithBorder.get(coordDownLeft)
+    ) {
+      levelWithBorder.set(
+        coordLeft,
+        211,
+        // tileMap.floor.blue.wall.corner.bottom.right[0],
+      )
+      // levelWithBorder.set(
+      //   JSON.stringify([x - 2, y]),
+      //   tileMap.floor.blue.wall.corner.bottom.right[0],
+      // )
+    }
 
     /**
      * standard cornders
      */
     if (!levelWithBorder.get(coordUp) && !levelWithBorder.get(coordLeft)) {
-      levelWithBorder.set(
-        coordUpLeft,
-        tileMap.floor.blue.wall.corner.top.left[0],
-      )
+      levelWithBorder.set(coordUpLeft, tileMap.blue.wall.corner.top.left[0])
     }
 
     if (!levelWithBorder.get(coordUp) && !levelWithBorder.get(coordRight)) {
-      levelWithBorder.set(
-        coordUpRight,
-        tileMap.floor.blue.wall.corner.top.right[0],
-      )
+      levelWithBorder.set(coordUpRight, tileMap.blue.wall.corner.top.right[0])
     }
 
     if (!levelWithBorder.get(coordDown) && !levelWithBorder.get(coordLeft)) {
       levelWithBorder.set(
         coordDownLeft,
-        tileMap.floor.blue.wall.corner.bottom.left[0],
+        tileMap.blue.wall.corner.bottom.left[0],
       )
     }
 
     if (!levelWithBorder.get(coordDown) && !levelWithBorder.get(coordRight)) {
       levelWithBorder.set(
         coordDownRight,
-        tileMap.floor.blue.wall.corner.bottom.right[0],
+        tileMap.blue.wall.corner.bottom.right[0],
       )
     }
 
@@ -198,21 +198,18 @@ export const wrapLevel = (level: PointMap) => {
     //  * Straightforward wallz
     //  */
     if (!levelWithBorder.get(coordUp)) {
-      levelWithBorder.set(coordUp, tileMap.floor.blue.wall.horizontal.clean[0])
+      levelWithBorder.set(coordUp, tileMap.blue.wall.horizontal.clean[0])
     }
 
     if (!levelWithBorder.get(coordDown)) {
-      levelWithBorder.set(
-        coordDown,
-        tileMap.floor.blue.wall.horizontal.clean[0],
-      )
+      levelWithBorder.set(coordDown, tileMap.blue.wall.horizontal.clean[0])
     }
 
     if (!levelWithBorder.get(coordLeft)) {
-      levelWithBorder.set(coordLeft, tileMap.floor.blue.wall.vertical.clean[0])
+      levelWithBorder.set(coordLeft, tileMap.blue.wall.vertical.clean[0])
     }
     if (!levelWithBorder.get(coordRight)) {
-      levelWithBorder.set(coordRight, tileMap.floor.blue.wall.vertical.clean[0])
+      levelWithBorder.set(coordRight, tileMap.blue.wall.vertical.clean[0])
     }
   })
   return levelWithBorder

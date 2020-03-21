@@ -1,8 +1,32 @@
 import { flow } from 'lodash'
 import tileMap from '../utils/tileMap'
 
+export const wrapLevel = (level: PointMap) => {
+  return flow(wrapEgedCases, wrapTrivialWalls)(level)
+}
 export const addEdgeCaseCorners = (level: PointMap) => {}
 
+export const wrapTrivialWalls = (level: PointMap) => {
+  // Clone fresh new level: levelWithBorder !
+  const levelWithBorder = cloneMap(level)
+  const isFree = makeIsFree(levelWithBorder)
+
+  level.forEach((_, key) => {
+    const [x, y] = deserrializeKey(key)
+
+    const {
+      left,
+      right,
+      up,
+      down,
+      downLeft,
+      downRight,
+      upLeft,
+      upRight,
+    } = makeDirUtils([x, y])
+  })
+  return levelWithBorder
+}
 export const wrapEgedCases = (level: PointMap) => {
   // Clone fresh new level: levelWithBorder !
   const levelWithBorder = cloneMap(level)
@@ -57,10 +81,6 @@ export const wrapEgedCases = (level: PointMap) => {
     }
   })
   return levelWithBorder
-}
-
-export const wrapLevel = (level: PointMap) => {
-  return flow(wrapEgedCases)(level)
 }
 
 const deserrializeKey = (key: string): Point => JSON.parse(key)

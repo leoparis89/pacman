@@ -16,7 +16,7 @@ export const wrapTrivialWalls = (level: PointMap) => {
     if (!isFloor(tileValue)) {
       return
     }
-    const [x, y] = deserrializeKey(key)
+    const [x, y] = JSON.parse(key)
 
     const dirs = makeDirUtils([x, y])
 
@@ -37,7 +37,7 @@ export const wrapEgedCases = (level: PointMap) => {
   const isFree = makeIsFree(levelWithBorder)
 
   level.forEach((_, key) => {
-    const [x, y] = deserrializeKey(key)
+    const [x, y] = JSON.parse(key)
 
     const dirs = makeDirUtils([x, y])
 
@@ -77,8 +77,6 @@ export const wrapEgedCases = (level: PointMap) => {
   })
   return levelWithBorder
 }
-
-const deserrializeKey = (key: string): Point => JSON.parse(key)
 
 const cloneMap = (map: Map<any, any>) => {
   const cloned = new Map()

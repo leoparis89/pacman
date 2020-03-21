@@ -206,8 +206,8 @@ export const wrapLevel = (level: PointMap) => {
     // }
 
     /**
-     *   0
-     *  x?0
+     *
+     *  C?
      *  xx
      */
     if (
@@ -223,8 +223,8 @@ export const wrapLevel = (level: PointMap) => {
       )
     }
 
-    /**  0
-     *  0?x
+    /**
+     *   ?C
      *   xx
      */
     if (
@@ -242,10 +242,28 @@ export const wrapLevel = (level: PointMap) => {
 
     /**
      *
-     *  xx
-     *  ?x
+     *   xx
+     *   ?C
+     *
      */
-    // if (isFree(coordLeft) && !isFree(coordUpLeft)) {
+    if (
+      isFree(left) &&
+      isFree([x - 2, y]) &&
+      isFree(downLeft) &&
+      !isFree(upLeft)
+    ) {
+      // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
+      levelWithBorder.set(
+        JSON.stringify(left),
+        tileMap.blue.wall.corner.top.right,
+      )
+    }
+    /**
+     *
+     *  xx
+     *  ?C
+     */
+    // if (isFree(left) && isFree([x - 2, y]) && !isFree(coordUpLeft)) {
     //   // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
     //   levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.top.right)
     // }

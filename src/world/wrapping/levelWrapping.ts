@@ -86,6 +86,40 @@ export const wrapEgedCases = (level: PointMap) => {
       )
     }
     /**
+     *
+     *  xx
+     *  ?C
+     */
+    if (
+      !pointIsFloor(dirs.left) &&
+      !pointIsFloor([x - 2, y]) &&
+      !pointIsFloor(dirs.downLeft) &&
+      pointIsFloor(dirs.upLeft)
+    ) {
+      // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
+      levelWithBorder.set(
+        JSON.stringify(dirs.left),
+        tileMap.blue.wall.corner.top.right,
+      )
+    }
+    /**
+     *
+     *  xx
+     *  C?
+     */
+    if (
+      !pointIsFloor(dirs.right) &&
+      !pointIsFloor([x + 2, y]) &&
+      !pointIsFloor(dirs.downRight) &&
+      pointIsFloor(dirs.upRight)
+    ) {
+      // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
+      levelWithBorder.set(
+        JSON.stringify(dirs.right),
+        tileMap.blue.wall.corner.top.left,
+      )
+    }
+    /**
      *   ?C
      *   xx
      */

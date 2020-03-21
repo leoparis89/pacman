@@ -1,3 +1,4 @@
+import { isFloor } from '../utils/tileCheckers'
 import tileMap from '../utils/tileMap'
 import { getRandomIndexFromArray } from './helpers'
 import { createRoomOnDirection, roomsToPointMap } from './transformations'
@@ -133,9 +134,19 @@ export const addBorder = (size: number) => (g: Grid) => {
   return [...padding, ...result, ...padding]
 }
 
+const isEmptyOrAWall = level => keyDirection => {}
+
+const cloneMap = (map: Map<any, any>) => {
+  const cloned = new Map()
+  map.forEach((val, key) => cloned.set(key, val))
+  return cloned
+}
+
 export const wrapLevel = (level: PointMap) => {
-  const levelWithBorder = new Map()
-  level.forEach((val, key) => levelWithBorder.set(key, val))
+  // Clone fresh new level: levelWithBorder !
+  const levelWithBorder = cloneMap(level)
+
+  const isFree = (coord: string) => !isFloor(levelWithBorder.get(coord))
 
   level.forEach((_, key) => {
     const [x, y] = deserrializeKey(key)
@@ -149,68 +160,61 @@ export const wrapLevel = (level: PointMap) => {
     const coordDownLeft = JSON.stringify([x - 1, y + 1])
     const coordDownRight = JSON.stringify([x + 1, y + 1])
 
+    // Left wall
+    if (isFree(coordLeft)) {
+      levelWithBorder.set(coordLeft, tileMap.blue.wall.vertical.clean[0])
+    }
     /**
      * tricy
      */
     if (
-      !levelWithBorder.get(coordLeft) &&
-      !levelWithBorder.get(JSON.stringify([x - 2, y])) &&
-      !levelWithBorder.get(coordUpLeft) &&
-      levelWithBorder.get(coordDownLeft)
+      isFree(coordLeft) &&
+      !isFree(coordDownLeft)
+      // !levelWithBorder.get(JSON.stringify([x - 2, y])) &&
+      // !levelWithBorder.get(coordUpLeft) &&
     ) {
-      levelWithBorder.set(
-        coordLeft,
-        211,
-        // tileMap.floor.blue.wall.corner.bottom.right[0],
-      )
-      // levelWithBorder.set(
-      //   JSON.stringify([x - 2, y]),
-      //   tileMap.floor.blue.wall.corner.bottom.right[0],
-      // )
+      levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.right)
     }
 
     /**
      * standard cornders
      */
-    if (!levelWithBorder.get(coordUp) && !levelWithBorder.get(coordLeft)) {
+    if (isFree(coordUp) && isFree(coordLeft)) {
       levelWithBorder.set(coordUpLeft, tileMap.blue.wall.corner.top.left[0])
     }
 
-    if (!levelWithBorder.get(coordUp) && !levelWithBorder.get(coordRight)) {
-      levelWithBorder.set(coordUpRight, tileMap.blue.wall.corner.top.right[0])
-    }
+    // if (!levelWithBorder.get(coordUp) && !levelWithBorder.get(coordRight)) {
+    //   levelWithBorder.set(coordUpRight, tileMap.blue.wall.corner.top.right[0])
+    // }
 
-    if (!levelWithBorder.get(coordDown) && !levelWithBorder.get(coordLeft)) {
-      levelWithBorder.set(
-        coordDownLeft,
-        tileMap.blue.wall.corner.bottom.left[0],
-      )
-    }
+    // if (!levelWithBorder.get(coordDown) && !levelWithBorder.get(coordLeft)) {
+    //   levelWithBorder.set(
+    //     coordDownLeft,
+    //     tileMap.blue.wall.corner.bottom.left[0],
+    //   )
+    // }
 
-    if (!levelWithBorder.get(coordDown) && !levelWithBorder.get(coordRight)) {
-      levelWithBorder.set(
-        coordDownRight,
-        tileMap.blue.wall.corner.bottom.right[0],
-      )
-    }
+    // if (!levelWithBorder.get(coordDown) && !levelWithBorder.get(coordRight)) {
+    //   levelWithBorder.set(
+    //     coordDownRight,
+    //     tileMap.blue.wall.corner.bottom.right[0],
+    //   )
+    // }
 
     // /**
     //  * Straightforward wallz
     //  */
-    if (!levelWithBorder.get(coordUp)) {
-      levelWithBorder.set(coordUp, tileMap.blue.wall.horizontal.clean[0])
-    }
+    // if (!levelWithBorder.get(coordUp)) {
+    //   levelWithBorder.set(coordUp, tileMap.blue.wall.horizontal.clean[0])
+    // }
 
-    if (!levelWithBorder.get(coordDown)) {
-      levelWithBorder.set(coordDown, tileMap.blue.wall.horizontal.clean[0])
-    }
+    // if (!levelWithBorder.get(coordDown)) {
+    //   levelWithBorder.set(coordDown, tileMap.blue.wall.horizontal.clean[0])
+    // }
 
-    if (!levelWithBorder.get(coordLeft)) {
-      levelWithBorder.set(coordLeft, tileMap.blue.wall.vertical.clean[0])
-    }
-    if (!levelWithBorder.get(coordRight)) {
-      levelWithBorder.set(coordRight, tileMap.blue.wall.vertical.clean[0])
-    }
+    // if (!levelWithBorder.get(coordRight)) {
+    //   levelWithBorder.set(coordRight, tileMap.blue.wall.vertical.clean[0])
+    // }
   })
   return levelWithBorder
 }

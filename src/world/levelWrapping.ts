@@ -1,9 +1,9 @@
-import { isFloor } from '../utils/tileCheckers'
+import { flow } from 'lodash'
 import tileMap from '../utils/tileMap'
 
 export const addEdgeCaseCorners = (level: PointMap) => {}
 
-export const wrapLevel = (level: PointMap) => {
+export const wrapEgedCases = (level: PointMap) => {
   // Clone fresh new level: levelWithBorder !
   const levelWithBorder = cloneMap(level)
   const isFree = makeIsFree(levelWithBorder)
@@ -81,12 +81,12 @@ export const wrapLevel = (level: PointMap) => {
       )
     }
 
-    if (isFree(up)) {
-      levelWithBorder.set(
-        JSON.stringify(up),
-        tileMap.blue.wall.horizontal.clean[0],
-      )
-    }
+    // if (isFree(up)) {
+    //   levelWithBorder.set(
+    //     JSON.stringify(up),
+    //     tileMap.blue.wall.horizontal.clean[0],
+    //   )
+    // }
     // /**
     //  *
     //  *   xx
@@ -172,6 +172,10 @@ export const wrapLevel = (level: PointMap) => {
   return levelWithBorder
 }
 
+export const wrapLevel = (level: PointMap) => {
+  return flow(wrapEgedCases)(level)
+}
+
 const deserrializeKey = (key: string): Point => JSON.parse(key)
 
 const cloneMap = (map: Map<any, any>) => {
@@ -181,7 +185,7 @@ const cloneMap = (map: Map<any, any>) => {
 }
 
 export const makeIsFree = (level: PointMap) => (coord: Point) =>
-  !isFloor(level.get(JSON.stringify(coord)))
+  level.get(JSON.stringify(coord)) === undefined
 
 const makeDirUtils = ([x, y]: Point): { [index: string]: Point } => {
   return {

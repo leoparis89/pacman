@@ -1,4 +1,5 @@
 import { flow } from 'lodash'
+import { isFloor } from '../utils/tileCheckers'
 import tileMap from '../utils/tileMap'
 
 export const wrapLevel = (level: PointMap) => {
@@ -11,22 +12,25 @@ export const wrapTrivialWalls = (level: PointMap) => {
   const levelWithBorder = cloneMap(level)
   const isFree = makeIsFree(levelWithBorder)
 
-  level.forEach((_, key) => {
+  level.forEach((tileValue, key) => {
+    if (!isFloor(tileValue)) {
+      return
+    }
     const [x, y] = deserrializeKey(key)
 
-    const {
-      left,
-      right,
-      up,
-      down,
-      downLeft,
-      downRight,
-      upLeft,
-      upRight,
-    } = makeDirUtils([x, y])
+    const dirs = makeDirUtils([x, y])
+
+    if (isFree(dirs.up)) {
+      // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
+      levelWithBorder.set(
+        JSON.stringify(dirs.up),
+        tileMap.blue.wall.horizontal.clean,
+      )
+    }
   })
   return levelWithBorder
 }
+
 export const wrapEgedCases = (level: PointMap) => {
   // Clone fresh new level: levelWithBorder !
   const levelWithBorder = cloneMap(level)
@@ -35,16 +39,7 @@ export const wrapEgedCases = (level: PointMap) => {
   level.forEach((_, key) => {
     const [x, y] = deserrializeKey(key)
 
-    const {
-      left,
-      right,
-      up,
-      down,
-      downLeft,
-      downRight,
-      upLeft,
-      upRight,
-    } = makeDirUtils([x, y])
+    const dirs = makeDirUtils([x, y])
 
     /**
      *
@@ -52,14 +47,14 @@ export const wrapEgedCases = (level: PointMap) => {
      *  xx
      */
     if (
-      isFree(right) &&
+      isFree(dirs.right) &&
       isFree([x + 2, y]) &&
-      isFree(upRight) &&
-      !isFree(downRight)
+      isFree(dirs.upRight) &&
+      !isFree(dirs.downRight)
     ) {
       // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
       levelWithBorder.set(
-        JSON.stringify(right),
+        JSON.stringify(dirs.right),
         tileMap.blue.wall.corner.bottom.left,
       )
     }
@@ -69,13 +64,13 @@ export const wrapEgedCases = (level: PointMap) => {
      *   xx
      */
     if (
-      isFree(left) &&
+      isFree(dirs.left) &&
       isFree([x - 2, y]) &&
-      isFree(upLeft) &&
-      !isFree(downLeft)
+      isFree(dirs.upLeft) &&
+      !isFree(dirs.downLeft)
     ) {
       levelWithBorder.set(
-        JSON.stringify(left),
+        JSON.stringify(dirs.left),
         tileMap.blue.wall.corner.bottom.right,
       )
     }

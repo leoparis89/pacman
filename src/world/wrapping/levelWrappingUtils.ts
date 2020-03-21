@@ -1,10 +1,15 @@
+import { isFloor } from '../../utils/tileCheckers'
+
 export const cloneMap = (map: Map<any, any>) => {
   const cloned = new Map()
   map.forEach((val, key) => cloned.set(key, val))
   return cloned
 }
-export const isEmpty = (level: PointMap) => (coord: Point) =>
+export const makeIsEmpy = (level: PointMap) => (coord: Point) =>
   level.get(JSON.stringify(coord)) === undefined
+
+export const makeIsFloor = (level: PointMap) => (coord: Point) =>
+  isFloor(level.get(JSON.stringify(coord)))
 
 export const makeDirUtils = ([x, y]: Point): {
   [index: string]: Point

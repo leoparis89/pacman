@@ -1,7 +1,7 @@
 import { flow } from 'lodash'
 import { isFloor } from '../../utils/tileCheckers'
 import tileMap from '../../utils/tileMap'
-import { cloneMap, makeDirUtils, isEmpty } from './levelWrappingUtils'
+import { cloneMap, makeDirUtils, makeIsEmpy } from './levelWrappingUtils'
 
 export const wrapLevel = (level: PointMap) => {
   // return flow(wrapEgedCases, wrapTrivialWalls)(level)
@@ -12,7 +12,7 @@ export const addEdgeCaseCorners = (level: PointMap) => {}
 export const wrapTrivialWalls = (level: PointMap) => {
   // Clone fresh new level: levelWithBorder !
   const levelWithBorder = cloneMap(level)
-  const isFree = isEmpty(levelWithBorder)
+  const isFree = makeIsEmpy(levelWithBorder)
 
   level.forEach((tileValue, key) => {
     if (!isFloor(tileValue)) {
@@ -36,7 +36,8 @@ export const wrapTrivialWalls = (level: PointMap) => {
 export const wrapEgedCases = (level: PointMap) => {
   // Clone fresh new level: levelWithBorder !
   const levelWithBorder = cloneMap(level)
-  const isFree = isEmpty(levelWithBorder)
+  const isFree = makeIsEmpy(levelWithBorder)
+  const isFloor = makeIsEmpy(levelWithBorder)
 
   level.forEach((tileValue, key) => {
     if (!isFloor(tileValue)) {

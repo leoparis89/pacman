@@ -1,6 +1,6 @@
 import { flow } from 'lodash'
-import { isFloor } from '../utils/tileCheckers'
-import tileMap from '../utils/tileMap'
+import { isFloor } from '../../utils/tileCheckers'
+import tileMap from '../../utils/tileMap'
 import { cloneMap, makeDirUtils, makeIsFree } from './levelWrappingUtils'
 
 export const wrapLevel = (level: PointMap) => {

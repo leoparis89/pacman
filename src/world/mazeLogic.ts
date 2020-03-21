@@ -140,9 +140,21 @@ const cloneMap = (map: Map<any, any>) => {
   return cloned
 }
 
-export const makeIsFree = (level: PointMap) => (coord: string) =>
-  !isFloor(level.get(coord))
+export const makeIsFree = (level: PointMap) => (coord: Point) =>
+  !isFloor(level.get(JSON.stringify(coord)))
 
+const makeDirUtils = ([x, y]: Point): { [index: string]: Point } => {
+  return {
+    up: [x, y - 1],
+    down: [x, y + 1],
+    left: [x - 1, y],
+    right: [x + 1, y],
+    upLeft: [x - 1, y - 1],
+    upRight: [x + 1, y - 1],
+    downLeft: [x - 1, y + 1],
+    downRight: [x + 1, y + 1],
+  }
+}
 export const wrapLevel = (level: PointMap) => {
   // Clone fresh new level: levelWithBorder !
   const levelWithBorder = cloneMap(level)
@@ -151,14 +163,24 @@ export const wrapLevel = (level: PointMap) => {
   level.forEach((_, key) => {
     const [x, y] = deserrializeKey(key)
 
-    const coordUp = getRelativeCoords(key, 'up')
-    const coordDown = getRelativeCoords(key, 'down')
-    const coordLeft = getRelativeCoords(key, 'left')
-    const coordRight = getRelativeCoords(key, 'right')
-    const coordUpLeft = JSON.stringify([x - 1, y - 1])
-    const coordUpRight = JSON.stringify([x + 1, y - 1])
-    const coordDownLeft = JSON.stringify([x - 1, y + 1])
-    const coordDownRight = JSON.stringify([x + 1, y + 1])
+    const {
+      left,
+      right,
+      up,
+      down,
+      downLeft,
+      downRight,
+      upLeft,
+      upRight,
+    } = makeDirUtils([x, y])
+    // const coordUp = getRelativeCoords(key, 'up')
+    // const coordDown = getRelativeCoords(key, 'down')
+    // const coordLeft = getRelativeCoords(key, 'left')
+    // const coordRight = getRelativeCoords(key, 'right')
+    // const coordUpLeft = JSON.stringify([x - 1, y - 1])
+    // const coordUpRight = JSON.stringify([x + 1, y - 1])
+    // const coordDownLeft = JSON.stringify([x - 1, y + 1])
+    // const coordDownRight = JSON.stringify([x + 1, y + 1])
 
     // Left wall
     // if (isFree(coordLeft)) {
@@ -185,9 +207,12 @@ export const wrapLevel = (level: PointMap) => {
      *  x?.
      *  xx
      */
-    if (isFree(coordRight) && isFree(coordUpRight) && !isFree(coordDownRight)) {
+    if (isFree(right) && !isFree(downRight)) {
       // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
-      levelWithBorder.set(coordRight, tileMap.blue.wall.corner.bottom.left)
+      levelWithBorder.set(
+        JSON.stringify(right),
+        tileMap.blue.wall.corner.bottom.left,
+      )
     }
 
     /**

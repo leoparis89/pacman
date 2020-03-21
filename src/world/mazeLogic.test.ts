@@ -332,7 +332,7 @@ describe('isFree', () => {
     }
     const level = roomsToPointMap([room])
     const isFree = makeIsFree(level)
-    expect(isFree(JSON.stringify([0, 4]))).toEqual(true)
+    expect(isFree([0, 4])).toEqual(true)
   })
 
   it('should return true if provided cell contains floor', () => {
@@ -344,6 +344,6 @@ describe('isFree', () => {
     }
     const level = roomsToPointMap([room])
     const isFree = makeIsFree(level)
-    expect(isFree(JSON.stringify([0, 3]))).toEqual(false)
+    expect(isFree([0, 3])).toEqual(false)
   })
 })

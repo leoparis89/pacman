@@ -134,8 +134,6 @@ export const addBorder = (size: number) => (g: Grid) => {
   return [...padding, ...result, ...padding]
 }
 
-const isEmptyOrAWall = level => keyDirection => {}
-
 const cloneMap = (map: Map<any, any>) => {
   const cloned = new Map()
   map.forEach((val, key) => cloned.set(key, val))

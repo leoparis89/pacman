@@ -142,11 +142,13 @@ const cloneMap = (map: Map<any, any>) => {
   return cloned
 }
 
+export const makeIsFree = (level: PointMap) => (coord: string) =>
+  !isFloor(level.get(coord))
+
 export const wrapLevel = (level: PointMap) => {
   // Clone fresh new level: levelWithBorder !
   const levelWithBorder = cloneMap(level)
-
-  const isFree = (coord: string) => !isFloor(levelWithBorder.get(coord))
+  const isFree = makeIsFree(levelWithBorder)
 
   level.forEach((_, key) => {
     const [x, y] = deserrializeKey(key)

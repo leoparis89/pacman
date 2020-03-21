@@ -118,14 +118,6 @@ const setup = (scene: Phaser.Scene) => {
     addBorder(borderWidth),
   )(levelPointMap)
 
-  const boundsMap = scene.make.tilemap({
-    data: reverseGrid(grid, []),
-    tileWidth: tile.size,
-    tileHeight: tile.size,
-  } as Phaser.Types.Tilemaps.TilemapConfig)
-
-  const boundsTiles = boundsMap.addTilesetImage('myTiles')
-  const boundsLayer = boundsMap.createStaticLayer(0, boundsTiles, 0, 0)
   // boundsMap.setCollision([tileMapping.floor.grass[0]])
 
   const floorMap = scene.make.tilemap({
@@ -147,5 +139,5 @@ const setup = (scene: Phaser.Scene) => {
    * You can zoom out by changing this porperty to lower values than 1
    */
   camera.zoom = 1
-  scene.physics.add.collider(character, boundsLayer)
+  // scene.physics.add.collider(character, boundsLayer)
 }

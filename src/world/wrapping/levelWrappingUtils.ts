@@ -3,8 +3,9 @@ export const cloneMap = (map: Map<any, any>) => {
   map.forEach((val, key) => cloned.set(key, val))
   return cloned
 }
-export const makeIsFree = (level: PointMap) => (coord: Point) =>
+export const isEmpty = (level: PointMap) => (coord: Point) =>
   level.get(JSON.stringify(coord)) === undefined
+
 export const makeDirUtils = ([x, y]: Point): {
   [index: string]: Point
 } => {

@@ -1,4 +1,5 @@
-import { nextRoom, wrapLevel } from './mazeLogic'
+import { wrapLevel } from './levelWrapping'
+import { nextRoom } from './mazeLogic'
 import mockRooms from './mockRooms'
 import { roomsToPointMap } from './transformations'
 
@@ -41,7 +42,7 @@ export const makeLevel = () => {
 
   const level = roomsToPointMap(mockRooms)
 
-  // shiftPointMapOutOfNegative,
+  // ahiftPointMapOutOfNegative,
   // pointMaptoGrid,
   // paintGrid(292),
 

@@ -260,13 +260,22 @@ export const wrapLevel = (level: PointMap) => {
     }
     /**
      *
-     *  xx
-     *  ?C
+     *   xx
+     *   C?
+     *
      */
-    // if (isFree(left) && isFree([x - 2, y]) && !isFree(coordUpLeft)) {
-    //   // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
-    //   levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.top.right)
-    // }
+    if (
+      isFree(right) &&
+      isFree([x + 2, y]) &&
+      isFree(downRight) &&
+      !isFree(upRight)
+    ) {
+      // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
+      levelWithBorder.set(
+        JSON.stringify(right),
+        tileMap.blue.wall.corner.top.left,
+      )
+    }
 
     /**
      *

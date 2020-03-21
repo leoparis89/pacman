@@ -187,9 +187,12 @@ export const wrapLevel = (level: PointMap) => {
     //   levelWithBorder.set(coordLeft, tileMap.blue.wall.vertical.clean[0])
     // }
 
-    // if (isFree(coordUp)) {
-    //   levelWithBorder.set(coordUp, tileMap.blue.wall.horizontal.clean[0])
-    // }
+    if (isFree(up)) {
+      // levelWithBorder.set(
+      //   JSON.stringify(up),
+      //   tileMap.blue.wall.horizontal.clean[0],
+      // )
+    }
 
     // if (!levelWithBorder.get(coordRight)) {
     //   levelWithBorder.set(coordRight, tileMap.blue.wall.vertical.clean[0])
@@ -203,15 +206,37 @@ export const wrapLevel = (level: PointMap) => {
     // }
 
     /**
-     *   .
-     *  x?.
+     *   0
+     *  x?0
      *  xx
      */
-    if (isFree(right) && !isFree(downRight)) {
+    if (
+      isFree(right) &&
+      isFree([x + 2, y]) &&
+      isFree(upRight) &&
+      !isFree(downRight)
+    ) {
       // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
       levelWithBorder.set(
         JSON.stringify(right),
         tileMap.blue.wall.corner.bottom.left,
+      )
+    }
+
+    /**  0
+     *  0?x
+     *   xx
+     */
+    if (
+      isFree(left) &&
+      isFree([x - 2, y]) &&
+      isFree(upLeft) &&
+      !isFree(downLeft)
+    ) {
+      // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
+      levelWithBorder.set(
+        JSON.stringify(left),
+        tileMap.blue.wall.corner.bottom.right,
       )
     }
 

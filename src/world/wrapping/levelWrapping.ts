@@ -9,11 +9,55 @@ import {
 } from './levelWrappingUtils'
 
 export const wrapLevel = (level: PointMap) => {
-  return flow(wrapEgedCases, wrapTrivialWalls)(level)
+  return flow(wrapCorners, wrapEgedCases, wrapTrivialWalls)(level)
+  // return flow(wrapCorners)(level)
   // return flow(wrapEgedCases)(level)
 }
 export const addEdgeCaseCorners = (level: PointMap) => {}
 
+export const wrapCorners = (level: PointMap) => {
+  // Clone fresh new level: levelWithBorder !
+  const levelWithBorder = cloneMap(level)
+  const isFree = makeIsEmpy(level)
+
+  level.forEach((tileValue, key) => {
+    if (!isFloor(tileValue)) {
+      return
+    }
+    const [x, y] = JSON.parse(key)
+
+    const dirs = makeDirUtils([x, y])
+
+    if (isFree(dirs.up) && isFree(dirs.left) && isFree(dirs.upLeft)) {
+      levelWithBorder.set(
+        JSON.stringify(dirs.upLeft),
+        tileMap.blue.wall.corner.top.left,
+      )
+    }
+
+    if (isFree(dirs.up) && isFree(dirs.right) && isFree(dirs.upRight)) {
+      levelWithBorder.set(
+        JSON.stringify(dirs.upRight),
+        tileMap.blue.wall.corner.top.right,
+      )
+    }
+
+    if (isFree(dirs.down) && isFree(dirs.right) && isFree(dirs.downRight)) {
+      levelWithBorder.set(
+        JSON.stringify(dirs.downRight),
+        tileMap.blue.wall.corner.bottom.right,
+      )
+    }
+
+    if (isFree(dirs.down) && isFree(dirs.left) && isFree(dirs.downLeft)) {
+      levelWithBorder.set(
+        JSON.stringify(dirs.downLeft),
+        tileMap.blue.wall.corner.bottom.left,
+      )
+    }
+  })
+  return levelWithBorder
+}
 export const wrapTrivialWalls = (level: PointMap) => {
   // Clone fresh new level: levelWithBorder !
   const levelWithBorder = cloneMap(level)

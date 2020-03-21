@@ -8,8 +8,10 @@ export const cloneMap = (map: Map<any, any>) => {
 export const makeIsEmpy = (level: PointMap) => (coord: Point) =>
   level.get(JSON.stringify(coord)) === undefined
 
-export const makeIsFloor = (level: PointMap) => (coord: Point) =>
-  isFloor(level.get(JSON.stringify(coord)))
+export const makeIsFloor = (level: PointMap) => (coord: Point) => {
+  const cellValue = level.get(JSON.stringify(coord))
+  return isFloor(cellValue)
+}
 
 export const makeDirUtils = ([x, y]: Point): {
   [index: string]: Point

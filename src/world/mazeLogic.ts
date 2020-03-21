@@ -161,35 +161,31 @@ export const wrapLevel = (level: PointMap) => {
     const coordDownRight = JSON.stringify([x + 1, y + 1])
 
     // Left wall
-    if (isFree(coordLeft)) {
-      levelWithBorder.set(coordLeft, tileMap.blue.wall.vertical.clean[0])
-    }
+    // if (isFree(coordLeft)) {
+    //   levelWithBorder.set(coordLeft, tileMap.blue.wall.vertical.clean[0])
+    // }
 
-    if (!levelWithBorder.get(coordUp)) {
-      levelWithBorder.set(coordUp, tileMap.blue.wall.horizontal.clean[0])
-    }
+    // if (isFree(coordUp)) {
+    //   levelWithBorder.set(coordUp, tileMap.blue.wall.horizontal.clean[0])
+    // }
 
-    if (!levelWithBorder.get(coordDown)) {
-      levelWithBorder.set(coordDown, tileMap.blue.wall.horizontal.clean[0])
-    }
-
-    if (!levelWithBorder.get(coordRight)) {
-      levelWithBorder.set(coordRight, tileMap.blue.wall.vertical.clean[0])
-    }
+    // if (!levelWithBorder.get(coordRight)) {
+    //   levelWithBorder.set(coordRight, tileMap.blue.wall.vertical.clean[0])
+    // }
     /**
      * ?x
      * xx
      */
-    if (isFree(coordLeft) && !isFree(coordDownLeft)) {
-      levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.right)
-    }
+    // if (isFree(coordLeft) && !isFree(coordDownLeft)) {
+    //   levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.right)
+    // }
 
     /**
-     *
-     *  x?
+     *   .
+     *  x?.
      *  xx
      */
-    if (isFree(coordRight) && !isFree(coordDownRight)) {
+    if (isFree(coordRight) && isFree(coordUpRight) && !isFree(coordDownRight)) {
       // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
       levelWithBorder.set(coordRight, tileMap.blue.wall.corner.bottom.left)
     }
@@ -199,38 +195,38 @@ export const wrapLevel = (level: PointMap) => {
      *  xx
      *  ?x
      */
-    if (isFree(coordLeft) && !isFree(coordUpLeft)) {
-      // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
-      levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.top.right)
-    }
+    // if (isFree(coordLeft) && !isFree(coordUpLeft)) {
+    //   // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
+    //   levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.top.right)
+    // }
 
     /**
      *
      *  xx
      *  x?
      */
-    if (isFree(coordRight) && !isFree(coordUpRight)) {
-      // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
-      levelWithBorder.set(coordRight, tileMap.blue.wall.corner.top.left)
-    }
+    // if (isFree(coordRight) && !isFree(coordUpRight)) {
+    //   // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
+    //   levelWithBorder.set(coordRight, tileMap.blue.wall.corner.top.left)
+    // }
     /**
      * standard cornders
      */
-    if (isFree(coordUp) && isFree(coordLeft)) {
-      levelWithBorder.set(coordUpLeft, tileMap.blue.wall.corner.top.left)
-    }
+    // if (isFree(coordUp) && isFree(coordLeft)) {
+    //   levelWithBorder.set(coordUpLeft, tileMap.blue.wall.corner.top.left)
+    // }
 
-    if (isFree(coordUp) && isFree(coordRight)) {
-      levelWithBorder.set(coordUpRight, tileMap.blue.wall.corner.top.right)
-    }
+    // if (isFree(coordUp) && isFree(coordRight)) {
+    //   levelWithBorder.set(coordUpRight, tileMap.blue.wall.corner.top.right)
+    // }
 
-    if (isFree(coordDown) && isFree(coordLeft)) {
-      levelWithBorder.set(coordDownLeft, tileMap.blue.wall.corner.bottom.left)
-    }
+    // if (isFree(coordDown) && isFree(coordLeft)) {
+    //   levelWithBorder.set(coordDownLeft, tileMap.blue.wall.corner.bottom.left)
+    // }
 
-    if (isFree(coordDown) && isFree(coordRight)) {
-      levelWithBorder.set(coordDownRight, tileMap.blue.wall.corner.bottom.right)
-    }
+    // if (isFree(coordDown) && isFree(coordRight)) {
+    //   levelWithBorder.set(coordDownRight, tileMap.blue.wall.corner.bottom.right)
+    // }
     // if (!levelWithBorder.get(coordDown) && !levelWithBorder.get(coordLeft)) {
     //   levelWithBorder.set(
     //     coordDownLeft,

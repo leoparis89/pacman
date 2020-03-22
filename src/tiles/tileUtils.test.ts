@@ -1,5 +1,5 @@
-import { isFloor } from './tileCheckers'
-import tileMap from '../tiles/tileMap'
+import tileMap from './tileMap'
+import { isFloor } from './tilleUtils'
 
 describe('ifFloor', () => {
   it('should return true if tile is a floor', () => {

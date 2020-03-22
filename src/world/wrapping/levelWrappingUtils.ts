@@ -1,4 +1,4 @@
-import { isFloor } from '../../utils/tileCheckers'
+import { isFloor } from '../../tiles/tilleUtils'
 
 export const cloneMap = (map: Map<any, any>) => {
   const cloned = new Map()

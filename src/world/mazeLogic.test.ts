@@ -1,4 +1,4 @@
-import tileMap from '../tileMap'
+import tileMap from '../tiles/tileMap'
 import {
   _nextRoom,
   enoughSpace,

@@ -1,6 +1,7 @@
 import { flow } from 'lodash'
 import Phaser from 'phaser'
 import settings from './settings'
+import tileMap from './tiles/tileMap'
 import { handleCursor } from './utils/controls'
 import { makeLevel } from './world'
 import { getMinXY, shiftPointMapOutOfNegative } from './world/helpers'
@@ -117,6 +118,8 @@ const setup = (scene: Phaser.Scene) => {
   const floorTiles = floorMap.addTilesetImage('myTiles')
   const floorLayer = floorMap.createStaticLayer(0, floorTiles, 0, 0)
 
+  floorLayer.setCollision(tileMap.blue.wall.horizontal.clean)
+
   const charOffset = {
     x: -(minX - borderWidth - 4) * settings.tile.size,
     y: -(minY - borderWidth - 4) * settings.tile.size,
@@ -128,5 +131,5 @@ const setup = (scene: Phaser.Scene) => {
    * You can zoom out by changing this porperty to lower values than 1
    */
   camera.zoom = 1
-  // scene.physics.add.collider(character, boundsLayer)
+  scene.physics.add.collider(character, floorLayer)
 }

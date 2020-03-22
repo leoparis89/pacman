@@ -1,4 +1,4 @@
-import tileMap from '../tileMap'
+import tileMap from '../tiles/tileMap'
 
 export const isFloor = (tileId: number) => {
   const vals = Object.values(tileMap.blue.floor)

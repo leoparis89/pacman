@@ -1,6 +1,6 @@
 import { flow } from 'lodash'
 import { isFloor } from '../../utils/tileCheckers'
-import tileMap from '../../tileMap'
+import tileMap from '../../tiles/tileMap'
 import {
   cloneMap,
   makeDirUtils,

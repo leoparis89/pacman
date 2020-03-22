@@ -32,36 +32,3 @@ export const handleCursor = (
     character.setVelocityY(0)
   }
 }
-
-// export const handleWallCollision = (
-//   character: Phaser.Physics.Arcade.Sprite,
-//   tile: Phaser.Tilemaps.Tile,
-// ) => {
-//   const charWidth = settings.character.width
-//   const result: IDirection = {}
-//   const charX = character.x - settings.character.width / 2
-//   // const tileX = tile.pixelX * settings.tile.scaling
-
-//   const charY = character.y
-//   // const tileY = tile.pixelY * settings.tile.scaling
-
-//   const rightWall = tileMapping.wall.vertical.right.includes(tile.index)
-//   const rightBotomCorner = tileMapping.wall.corner.bottom.right.includes(
-//     tile.index,
-//   )
-//   const rightTopCorner = tileMapping.wall.corner.top.right.includes(tile.index)
-
-//   const leftWall = tileMapping.wall.vertical.left.includes(tile.index)
-
-//   if (rightWall) {
-//     result.right = true
-//   }
-
-//   // console.log('charX@', charX)
-//   // console.log('tileX', tileX)
-//   // if (leftWall && charX < tileX + 16) {
-//   if (leftWall) {
-//     result.left = true
-//   }
-//   return result
-// }

@@ -1,4 +1,4 @@
-import tileMap from '../utils/tileMap'
+import tileMap from '../tileMap'
 import { normalizeArray } from './helpers'
 
 /**

@@ -1,5 +1,5 @@
 import { isFloor } from '../utils/tileCheckers'
-import tileMap from '../utils/tileMap'
+import tileMap from '../tileMap'
 import { getRandomIndexFromArray } from './helpers'
 import { createRoomOnDirection, roomsToPointMap } from './transformations'
 

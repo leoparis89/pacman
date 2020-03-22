@@ -2,7 +2,7 @@ import { flow } from 'lodash'
 import Phaser from 'phaser'
 import settings from './settings'
 import { handleCursor } from './utils/controls'
-import tileMapping from './utils/tileMap'
+import tileMapping from './tileMap'
 import { makeLevel } from './world'
 
 import {

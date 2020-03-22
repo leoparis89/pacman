@@ -2,15 +2,8 @@ import { flow } from 'lodash'
 import Phaser from 'phaser'
 import settings from './settings'
 import { handleCursor } from './utils/controls'
-import tileMapping from './tileMap'
 import { makeLevel } from './world'
-
-import {
-  getMinXY,
-  paintGrid,
-  reverseGrid,
-  shiftPointMapOutOfNegative,
-} from './world/helpers'
+import { getMinXY, shiftPointMapOutOfNegative } from './world/helpers'
 import { addBorder } from './world/mazeLogic'
 import { pointMaptoGrid } from './world/transformations'
 

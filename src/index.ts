@@ -37,7 +37,6 @@ const stop: IDirection = {
  * Side effect creates the game
  */
 const game = new Phaser.Game(config)
-console.log(game)
 
 function preload() {
   const scene: Phaser.Scene = this
@@ -101,7 +100,6 @@ const setup = (scene: Phaser.Scene) => {
   const levelPointMap = makeLevel()
 
   const [minX, minY] = getMinXY(levelPointMap)
-  console.log(minX, minY)
 
   const borderWidth = 50
 
@@ -110,8 +108,6 @@ const setup = (scene: Phaser.Scene) => {
     pointMaptoGrid,
     addBorder(borderWidth),
   )(levelPointMap)
-
-  // boundsMap.setCollision([tileMapping.floor.grass[0]])
 
   const floorMap = scene.make.tilemap({
     data: grid,

@@ -10,3 +10,18 @@ export const isFloor = (tileId: number) => {
   }
   return false
 }
+
+export const getTileValules = (obj, acc?: number[]) => {
+  const result: number[] = []
+  if (!acc) {
+    acc = result
+  }
+  if (typeof obj === 'number') {
+    acc.push(obj)
+    return
+  }
+  Object.values(obj).forEach(val => getTileValules(val, acc))
+
+  return result
+}
+

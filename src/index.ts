@@ -2,6 +2,7 @@ import { flow } from 'lodash'
 import Phaser from 'phaser'
 import settings from './settings'
 import tileMap from './tiles/tileMap'
+import { getTileValules } from './tiles/tilleUtils'
 import { handleCursor } from './utils/controls'
 import { makeLevel } from './world'
 import { getMinXY, shiftPointMapOutOfNegative } from './world/helpers'
@@ -118,7 +119,7 @@ const setup = (scene: Phaser.Scene) => {
   const floorTiles = floorMap.addTilesetImage('myTiles')
   const floorLayer = floorMap.createStaticLayer(0, floorTiles, 0, 0)
 
-  floorLayer.setCollision(tileMap.blue.wall.horizontal.clean)
+  floorLayer.setCollision(getTileValules(tileMap.blue.wall)!)
 
   const charOffset = {
     x: -(minX - borderWidth - 4) * settings.tile.size,

@@ -24,4 +24,3 @@ export const getTileValules = (obj, acc?: number[]) => {
 
   return result
 }
-

@@ -3,11 +3,12 @@ import Phaser from 'phaser'
 import settings from './settings'
 import tileMap from './tiles/tileMap'
 import { getTileValules } from './tiles/tilleUtils'
-import { handleCursor } from './utils/controls'
+import { handleCursor } from './animation/handleCursor'
 import { makeLevel } from './world'
 import { getMinXY, shiftPointMapOutOfNegative } from './world/helpers'
 import { addBorder } from './world/mazeLogic'
 import { pointMaptoGrid } from './world/transformations'
+import { createAnims } from './animation/createAnims'
 
 const { screen, tile } = settings
 
@@ -26,13 +27,6 @@ const config = {
     create,
     update,
   },
-}
-
-const stop: IDirection = {
-  up: false,
-  down: false,
-  right: false,
-  left: false,
 }
 
 /**
@@ -61,41 +55,14 @@ function create() {
 
   camera = scene.cameras.main
 
+  createAnims(scene)
   setup(scene)
 
   cursors = scene.input.keyboard.createCursorKeys()
-
-  scene.anims.create({
-    key: 'down',
-    frames: this.anims.generateFrameNumbers('hero', { start: 0, end: 2 }),
-    frameRate: 10,
-    repeat: -1,
-  })
-
-  scene.anims.create({
-    key: 'left',
-    frames: this.anims.generateFrameNumbers('hero', { start: 3, end: 5 }),
-    frameRate: 10,
-    repeat: -1,
-  })
-
-  scene.anims.create({
-    key: 'right',
-    frames: this.anims.generateFrameNumbers('hero', { start: 6, end: 8 }),
-    frameRate: 10,
-    repeat: -1,
-  })
-
-  scene.anims.create({
-    key: 'up',
-    frames: this.anims.generateFrameNumbers('hero', { start: 9, end: 11 }),
-    frameRate: 10,
-    repeat: -1,
-  })
 }
 
 function update(time, delta) {
-  handleCursor(cursors, character, stop)
+  handleCursor(cursors, character)
 }
 
 const setup = (scene: Phaser.Scene) => {

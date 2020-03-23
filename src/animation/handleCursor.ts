@@ -1,8 +1,13 @@
 export const handleCursor = (
   cursors: Phaser.Types.Input.Keyboard.CursorKeys,
   character: Phaser.Physics.Arcade.Sprite,
-  stop: IDirection,
 ) => {
+  const stop: IDirection = {
+    up: false,
+    down: false,
+    right: false,
+    left: false,
+  }
   const cursorDir: IDirection = {
     up: cursors.up!.isDown,
     down: cursors.down!.isDown,

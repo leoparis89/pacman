@@ -102,4 +102,4 @@ const mockRooms: IRoom[] = [
   { coords: [-32, 13], height: 4, width: 4, type: 'coridoor' },
 ]
 
-export default mockRooms
+module.exports = process.env.POI_APP_STATIC === 'true' ? mockRooms : undefined

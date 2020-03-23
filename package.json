@@ -23,6 +23,7 @@
   },
   "scripts": {
     "dev": "yarn poi --serve src/index.ts",
+    "dev:static": "POI_APP_STATIC=true yarn poi --serve src/index.ts",
     "test:watch": "jest --watch --verbose"
   }
 }

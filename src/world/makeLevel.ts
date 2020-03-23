@@ -1,6 +1,5 @@
 import { wrapLevel } from './wrapping/levelWrapping'
 import { nextRoom } from './mazeLogic'
-import mockRooms from './mockRooms'
 import { roomsToPointMap } from './transformations'
 
 export const cookUpLevel = (
@@ -38,14 +37,8 @@ export const cookUpLevel = (
 }
 
 export const makeLevel = () => {
-  const rooms = cookUpLevel()
-
-  const level = roomsToPointMap(mockRooms)
-
-  // ahiftPointMapOutOfNegative,
-  // pointMaptoGrid,
-  // paintGrid(292),
-
+  const rooms = require('../mocks/mockRooms') || cookUpLevel()
+  const level = roomsToPointMap(rooms)
   return wrapLevel(level)
 }
 

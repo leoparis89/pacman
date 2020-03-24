@@ -13,17 +13,23 @@
     "@types/lodash": "^4.14.149",
     "@types/poi": "^12.5.0",
     "@types/prettier": "^1.19.1",
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
+    "@typescript-eslint/parser": "^2.25.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
     "jest": "^25.1.0",
     "poi": "^12.7.5",
     "prettier": "^2.0.1",
     "ts-jest": "^25.2.1",
-    "tslint": "^6.1.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.8.3"
   },
   "scripts": {
     "dev": "yarn poi --serve src/index.ts",
     "dev:static": "POI_APP_STATIC=true yarn poi --serve src/index.ts",
-    "test:watch": "jest --watch --verbose"
+    "test:watch": "jest --watch --verbose",
+    "lint": "eslint --fix 'src/**/*.ts'"
   }
 }

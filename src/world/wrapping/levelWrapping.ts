@@ -14,9 +14,9 @@ export const wrapLevel = (level: PointMap) =>
 export const wrapCorners = (level: PointMap) => {
   // Clone fresh new level: levelWithBorder !
   const levelWithBorder = cloneMap(level)
-  const isFree = makeIsEmpy(level)
 
   level.forEach((tileValue, key) => {
+    const isFree = makeIsEmpy(level)
     if (!isFloor(tileValue)) {
       return
     }

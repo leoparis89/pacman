@@ -5,9 +5,17 @@ export const cloneMap = (map: Map<any, any>) => {
   map.forEach((val, key) => cloned.set(key, val))
   return cloned
 }
+/**
+ * Returns a function to check if a Point constains undefined
+ * @param level
+ */
 export const makeIsEmpy = (level: PointMap) => (coord: Point) =>
   level.get(JSON.stringify(coord)) === undefined
 
+/**
+ * Returns a function to check if a point contains a floor tile index
+ * @param level
+ */
 export const makeIsFloor = (level: PointMap) => (coord: Point) => {
   const cellValue = level.get(JSON.stringify(coord))
   return isFloor(cellValue)

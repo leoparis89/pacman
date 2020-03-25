@@ -8,12 +8,8 @@ import {
   makeIsFloor,
 } from './levelWrappingUtils'
 
-export const wrapLevel = (level: PointMap) => {
-  return flow(wrapCorners, wrapEgedCases, wrapTrivialWalls)(level)
-  // return flow(wrapCorners)(level)
-  // return flow(wrapEgedCases)(level)
-}
-export const addEdgeCaseCorners = (level: PointMap) => {}
+export const wrapLevel = (level: PointMap) =>
+  flow(wrapCorners, wrapEgedCases, wrapTrivialWalls)(level)
 
 export const wrapCorners = (level: PointMap) => {
   // Clone fresh new level: levelWithBorder !

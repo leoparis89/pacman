@@ -37,6 +37,7 @@ const config = {
  * Side effect creates the game
  */
 const game = new Phaser.Game(config)
+console.log(game)
 
 function preload() {
   const scene: Phaser.Scene = this
@@ -65,14 +66,13 @@ function create() {
   cursors = scene.input.keyboard.createCursorKeys()
 }
 
+// eslint-disable-next-line no-unused-vars
 function update(time, delta) {
   handleCursor(cursors, character)
 }
 
 const setup = (scene: Phaser.Scene) => {
-  const levelPointMap = makeLevel()
-
-  const [minX, minY] = getMinXY(levelPointMap)
+  const level = makeLevel()
 
   const borderWidth = 50
 
@@ -80,7 +80,7 @@ const setup = (scene: Phaser.Scene) => {
     shiftPointMapOutOfNegative,
     pointMaptoGrid,
     addBorder(borderWidth),
-  )(levelPointMap)
+  )(level)
 
   const floorMap = scene.make.tilemap({
     data: grid,
@@ -92,6 +92,7 @@ const setup = (scene: Phaser.Scene) => {
 
   floorLayer.setCollision(getTileValules(tileMap.blue.wall)!)
 
+  const [minX, minY] = getMinXY(level)
   const charOffset = {
     x: -(minX - borderWidth - 4) * settings.tile.size,
     y: -(minY - borderWidth - 4) * settings.tile.size,

@@ -1,1 +1,1 @@
-export * from './makeLevel'
+export { makeLevel } from './makeLevel'

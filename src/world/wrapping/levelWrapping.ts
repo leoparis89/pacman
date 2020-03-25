@@ -15,8 +15,8 @@ export const wrapCorners = (level: PointMap) => {
   // Clone fresh new level: levelWithBorder !
   const levelWithBorder = cloneMap(level)
 
+  const isFree = makeIsEmpy(level)
   level.forEach((tileValue, key) => {
-    const isFree = makeIsEmpy(level)
     if (!isFloor(tileValue)) {
       return
     }
@@ -27,28 +27,28 @@ export const wrapCorners = (level: PointMap) => {
     if (isFree(dirs.up) && isFree(dirs.left) && isFree(dirs.upLeft)) {
       levelWithBorder.set(
         JSON.stringify(dirs.upLeft),
-        tileMap.blue.wall.corner.top.left,
+        tileMap.blue.wall.corner.top.left[0],
       )
     }
 
     if (isFree(dirs.up) && isFree(dirs.right) && isFree(dirs.upRight)) {
       levelWithBorder.set(
         JSON.stringify(dirs.upRight),
-        tileMap.blue.wall.corner.top.right,
+        tileMap.blue.wall.corner.top.right[0],
       )
     }
 
     if (isFree(dirs.down) && isFree(dirs.right) && isFree(dirs.downRight)) {
       levelWithBorder.set(
         JSON.stringify(dirs.downRight),
-        tileMap.blue.wall.corner.bottom.right,
+        tileMap.blue.wall.corner.bottom.right[0],
       )
     }
 
     if (isFree(dirs.down) && isFree(dirs.left) && isFree(dirs.downLeft)) {
       levelWithBorder.set(
         JSON.stringify(dirs.downLeft),
-        tileMap.blue.wall.corner.bottom.left,
+        tileMap.blue.wall.corner.bottom.left[0],
       )
     }
   })

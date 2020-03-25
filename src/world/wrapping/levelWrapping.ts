@@ -70,25 +70,25 @@ export const wrapTrivialWalls = (level: PointMap) => {
     if (isFree(dirs.up)) {
       levelWithBorder.set(
         JSON.stringify(dirs.up),
-        tileMap.blue.wall.horizontal.clean,
+        tileMap.blue.wall.horizontal.clean[0],
       )
     }
     if (isFree(dirs.down)) {
       levelWithBorder.set(
         JSON.stringify(dirs.down),
-        tileMap.blue.wall.horizontal.clean,
+        tileMap.blue.wall.horizontal.clean[0],
       )
     }
     if (isFree(dirs.left)) {
       levelWithBorder.set(
         JSON.stringify(dirs.left),
-        tileMap.blue.wall.vertical.clean,
+        tileMap.blue.wall.vertical.clean[0],
       )
     }
     if (isFree(dirs.right)) {
       levelWithBorder.set(
         JSON.stringify(dirs.right),
-        tileMap.blue.wall.vertical.clean,
+        tileMap.blue.wall.vertical.clean[0],
       )
     }
   })

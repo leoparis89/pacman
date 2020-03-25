@@ -1,21 +1,25 @@
 import { flow } from 'lodash'
 import Phaser from 'phaser'
+import { createAnims } from './animation/createAnims'
+import { handleCursor } from './animation/handleCursor'
 import settings from './settings'
 import tileMap from './tiles/tileMap'
 import { getTileValules } from './tiles/tilleUtils'
-import { handleCursor } from './animation/handleCursor'
 import { makeLevel } from './world'
 import { getMinXY, shiftPointMapOutOfNegative } from './world/helpers'
 import { addBorder } from './world/mazeLogic'
 import { pointMaptoGrid } from './world/transformations'
-import { createAnims } from './animation/createAnims'
 
-const { screen, tile } = settings
+const { tile } = settings
 
 const config = {
   type: Phaser.AUTO,
-  width: screen.width,
-  height: screen.height,
+  scale: {
+    mode: Phaser.Scale.RESIZE,
+    parent: 'phaser-example',
+    width: '100%',
+    height: '100%',
+  },
   physics: {
     default: 'arcade',
     arcade: {

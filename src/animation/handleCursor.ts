@@ -2,12 +2,6 @@ export const handleCursor = (
   cursors: Phaser.Types.Input.Keyboard.CursorKeys,
   character: Phaser.Physics.Arcade.Sprite,
 ) => {
-  const stop: IDirection = {
-    up: false,
-    down: false,
-    right: false,
-    left: false,
-  }
   const cursorDir: IDirection = {
     up: cursors.up!.isDown,
     down: cursors.down!.isDown,
@@ -15,25 +9,33 @@ export const handleCursor = (
     right: cursors.right!.isDown,
   }
 
-  if (cursorDir.right && !stop.right) {
+  const { up, down, left, right } = cursorDir
+
+  if (right) {
     character.anims.play('right', true)
     character.setVelocityX(160)
-  } else if (cursorDir.left) {
+    return
+  }
+
+  if (left) {
     character.anims.play('left', true)
     character.setVelocityX(-160)
-  } else {
-    // character.anims.stop()
-    character.setVelocityX(0)
-  } //     character.setVelocityX(-160)
+    return
+  }
 
-  if (cursorDir.up && !stop.right) {
+  if (up) {
     character.anims.play('up', true)
     character.setVelocityY(-160)
-  } else if (cursorDir.down && !stop.down) {
+    return
+  }
+
+  if (down) {
     character.anims.play('down', true)
     character.setVelocityY(160)
-  } else {
-    character.anims.stopOnRepeat()
-    character.setVelocityY(0)
+    return
   }
+
+  character.setVelocityX(0)
+  character.setVelocityY(0)
+  character.anims.stop()
 }

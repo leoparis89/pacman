@@ -46,7 +46,10 @@ export const handleCorners = wrappedLevel => (tileValue, key) => {
   }
 }
 
-const handleTrivialWalls = (levelWithBorder: PointMap) => (tileValue, key) => {
+export const handleTrivialWalls = (levelWithBorder: PointMap) => (
+  tileValue,
+  key,
+) => {
   const isFree = makeIsEmpy(levelWithBorder)
   if (!tileIdIsFloor(tileValue)) {
     return
@@ -81,7 +84,7 @@ const handleTrivialWalls = (levelWithBorder: PointMap) => (tileValue, key) => {
   }
 }
 
-const handleEdgeCases = levelWithBorder => (tileValue, key) => {
+export const handleEdgeCases = levelWithBorder => (tileValue, key) => {
   const pointIsFloor = makeIsFloor(levelWithBorder)
   if (!tileIdIsFloor(tileValue)) {
     return
@@ -202,31 +205,13 @@ const handleDeadEnds = (levelWithBorder: PointMap) => (tileValue, key) => {
       levelWithBorder.set(JSON.stringify([x, y]), 17)
     }
   }
-  // if (
-  //   isFree(dirs.right) &&
-  //   isFloor(dirs.upRight) &&
-  //   isFloor(dirs.downRight) &&
-  //   isFloor([x + 2, y])
-  // ) {
-  //   levelWithBorder.set(JSON.stringify(dirs.right), 50)
-  // }
 }
-const makeWrapper = handleWrapping => level => {
+
+export const makeWrapper = handleWrapping => level => {
   const levelWithBorder = cloneMap(level)
   levelWithBorder.forEach(handleWrapping(levelWithBorder))
   return levelWithBorder
 }
-
-export const wrapCorners = (level: PointMap) =>
-  makeWrapper(handleCorners)(level)
-
-export const wrapEgedCases = (level: PointMap) =>
-  makeWrapper(handleEdgeCases)(level)
-
-export const wrapTrivialWalls = (level: PointMap) =>
-  makeWrapper(handleTrivialWalls)(level)
-
-export const wrapSingle = (level: PointMap) => makeWrapper(handleSingle)(level)
 
 const levelWrappers = [
   handleCorners,

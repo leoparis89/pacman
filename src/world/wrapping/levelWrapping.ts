@@ -181,6 +181,36 @@ const handleSingle = (levelWithBorder: PointMap) => (tileValue, key) => {
   }
 }
 
+const handleDeadEnds = (levelWithBorder: PointMap) => (tileValue, key) => {
+  const [x, y] = JSON.parse(key)
+  const dirs = makeDirUtils([x, y])
+  // const isFree = makeIsEmpy(levelWithBorder)
+  const isFloor = makeIsFloor(levelWithBorder)
+
+  if (tileValue === tileMap.blue.wall.vertical.clean[0]) {
+    if (isFloor(dirs.up)) {
+      levelWithBorder.set(JSON.stringify([x, y]), 33)
+    } else if (isFloor(dirs.down)) {
+      levelWithBorder.set(JSON.stringify([x, y]), 50)
+    }
+    return
+  }
+  if (tileValue === tileMap.blue.wall.horizontal.clean[0]) {
+    if (isFloor(dirs.left)) {
+      levelWithBorder.set(JSON.stringify([x, y]), 18)
+    } else if (isFloor(dirs.right)) {
+      levelWithBorder.set(JSON.stringify([x, y]), 17)
+    }
+  }
+  // if (
+  //   isFree(dirs.right) &&
+  //   isFloor(dirs.upRight) &&
+  //   isFloor(dirs.downRight) &&
+  //   isFloor([x + 2, y])
+  // ) {
+  //   levelWithBorder.set(JSON.stringify(dirs.right), 50)
+  // }
+}
 const makeWrapper = handleWrapping => level => {
   const levelWithBorder = cloneMap(level)
   levelWithBorder.forEach(handleWrapping(levelWithBorder))
@@ -203,6 +233,7 @@ const levelWrappers = [
   handleEdgeCases,
   handleSingle,
   handleTrivialWalls,
+  handleDeadEnds,
 ].map(makeWrapper)
 
 export const wrapLevel = (level: PointMap) => flow(...levelWrappers)(level)

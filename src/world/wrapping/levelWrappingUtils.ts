@@ -1,4 +1,4 @@
-import { isFloor } from '../../tiles/tilleUtils'
+import { tileIdIsFloor } from '../../tiles/tilleUtils'
 
 export const cloneMap = (map: Map<any, any>) => {
   const cloned = new Map()
@@ -18,7 +18,7 @@ export const makeIsEmpy = (level: PointMap) => (coord: Point) =>
  */
 export const makeIsFloor = (level: PointMap) => (coord: Point) => {
   const cellValue = level.get(JSON.stringify(coord))
-  return isFloor(cellValue)
+  return tileIdIsFloor(cellValue)
 }
 
 export const makeDirUtils = ([x, y]: Point): {

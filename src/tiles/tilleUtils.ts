@@ -1,6 +1,6 @@
 import tileMap from './tileMap'
 
-export const isFloor = (tileId: number) => {
+export const tileIdIsFloor = (tileId: number) => {
   const vals = Object.values(tileMap.blue.floor)
 
   for (const ids of vals) {

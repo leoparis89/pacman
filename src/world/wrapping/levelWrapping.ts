@@ -1,5 +1,5 @@
 import { flow } from 'lodash'
-import { isFloor } from '../../tiles/tilleUtils'
+import { tileIdIsFloor } from '../../tiles/tilleUtils'
 import tileMap from '../../tiles/tileMap'
 import {
   cloneMap,
@@ -8,21 +8,9 @@ import {
   makeIsFloor,
 } from './levelWrappingUtils'
 
-export const wrapLevel = (level: PointMap) =>
-  flow(wrapCorners, wrapEgedCases, wrapTrivialWalls)(level)
-
-export const wrapCorners = (level: PointMap) =>
-  makeWrapper(level, handleCorners)
-
-export const wrapEgedCases = (level: PointMap) =>
-  makeWrapper(level, handleEdgeCases)
-
-export const wrapTrivialWalls = (level: PointMap) =>
-  makeWrapper(level, handleTrivialWalls)
-
 export const handleCorners = wrappedLevel => (tileValue, key) => {
   const isEmpty = makeIsEmpy(wrappedLevel)
-  if (!isFloor(tileValue)) {
+  if (!tileIdIsFloor(tileValue)) {
     return
   }
   const [x, y] = JSON.parse(key)
@@ -58,15 +46,9 @@ export const handleCorners = wrappedLevel => (tileValue, key) => {
   }
 }
 
-const makeWrapper = (level: PointMap, handleWrapping) => {
-  const levelWithBorder = cloneMap(level)
-  levelWithBorder.forEach(handleWrapping(levelWithBorder))
-  return levelWithBorder
-}
-
 const handleTrivialWalls = (levelWithBorder: PointMap) => (tileValue, key) => {
   const isFree = makeIsEmpy(levelWithBorder)
-  if (!isFloor(tileValue)) {
+  if (!tileIdIsFloor(tileValue)) {
     return
   }
   const [x, y] = JSON.parse(key)
@@ -101,7 +83,7 @@ const handleTrivialWalls = (levelWithBorder: PointMap) => (tileValue, key) => {
 
 const handleEdgeCases = levelWithBorder => (tileValue, key) => {
   const pointIsFloor = makeIsFloor(levelWithBorder)
-  if (!isFloor(tileValue)) {
+  if (!tileIdIsFloor(tileValue)) {
     return
   }
   const [x, y] = JSON.parse(key)
@@ -177,3 +159,50 @@ const handleEdgeCases = levelWithBorder => (tileValue, key) => {
     )
   }
 }
+
+const handleSingle = (levelWithBorder: PointMap) => (tileValue, key) => {
+  if (!tileIdIsFloor(tileValue)) {
+    return
+  }
+
+  const isFree = makeIsEmpy(levelWithBorder)
+  const isFloor = makeIsFloor(levelWithBorder)
+  const [x, y] = JSON.parse(key)
+
+  const dirs = makeDirUtils([x, y])
+
+  if (
+    isFree(dirs.right) &&
+    isFloor(dirs.upRight) &&
+    isFloor(dirs.downRight) &&
+    isFloor([x + 2, y])
+  ) {
+    levelWithBorder.set(JSON.stringify(dirs.right), 50)
+  }
+}
+
+const makeWrapper = handleWrapping => level => {
+  const levelWithBorder = cloneMap(level)
+  levelWithBorder.forEach(handleWrapping(levelWithBorder))
+  return levelWithBorder
+}
+
+export const wrapCorners = (level: PointMap) =>
+  makeWrapper(handleCorners)(level)
+
+export const wrapEgedCases = (level: PointMap) =>
+  makeWrapper(handleEdgeCases)(level)
+
+export const wrapTrivialWalls = (level: PointMap) =>
+  makeWrapper(handleTrivialWalls)(level)
+
+export const wrapSingle = (level: PointMap) => makeWrapper(handleSingle)(level)
+
+const levelWrappers = [
+  handleCorners,
+  handleEdgeCases,
+  handleSingle,
+  handleTrivialWalls,
+].map(makeWrapper)
+
+export const wrapLevel = (level: PointMap) => flow(...levelWrappers)(level)

@@ -11,8 +11,8 @@ import {
 export const wrapLevel = (level: PointMap) =>
   flow(wrapCorners, wrapEgedCases, wrapTrivialWalls)(level)
 
-export const handleCorners = (wrappedLevel, prevLevel) => (tileValue, key) => {
-  const isEmpty = makeIsEmpy(prevLevel)
+export const handleCorners = wrappedLevel => (tileValue, key) => {
+  const isEmpty = makeIsEmpy(wrappedLevel)
   if (!isFloor(tileValue)) {
     return
   }
@@ -50,9 +50,8 @@ export const handleCorners = (wrappedLevel, prevLevel) => (tileValue, key) => {
 }
 
 export const wrapCorners = (level: PointMap) => {
-  // Clone fresh new level: levelWithBorder !
   const levelWithBorder = cloneMap(level)
-  level.forEach(handleCorners(levelWithBorder, level))
+  levelWithBorder.forEach(handleCorners(levelWithBorder))
   return levelWithBorder
 }
 
@@ -93,14 +92,10 @@ const handleTrivialWalls = (levelWithBorder: PointMap) => (tileValue, key) => {
 
 export const wrapTrivialWalls = (level: PointMap) => {
   const levelWithBorder = cloneMap(level)
-  level.forEach(handleTrivialWalls(levelWithBorder))
+  levelWithBorder.forEach(handleTrivialWalls(levelWithBorder))
   return levelWithBorder
 }
 
-export const workOnLevel = (original: PointMap, handler) => {
-  const levelWithBorder = cloneMap(original)
-  original.forEach(handleTrivialWalls(levelWithBorder))
-}
 const handleEdgeCases = levelWithBorder => (tileValue, key) => {
   const pointIsFloor = makeIsFloor(levelWithBorder)
   if (!isFloor(tileValue)) {
@@ -184,6 +179,6 @@ export const wrapEgedCases = (level: PointMap) => {
   // Clone fresh new level: levelWithBorder !
   const levelWithBorder = cloneMap(level)
 
-  level.forEach(handleEdgeCases(levelWithBorder))
+  levelWithBorder.forEach(handleEdgeCases(levelWithBorder))
   return levelWithBorder
 }

@@ -11,11 +11,7 @@ import {
 export const wrapLevel = (level: PointMap) =>
   flow(wrapCorners, wrapEgedCases, wrapTrivialWalls)(level)
 
-export const handleCorners = (wrappedLevel, prevLevel) => (tileValue, key) => {
-  const isEmpty = makeIsEmpy(prevLevel)
-  if (!isFloor(tileValue)) {
-    return
-  }
+export const handleCorners = (wrappedLevel, isEmpty, key) => {
   const [x, y] = JSON.parse(key)
 
   const dirs = makeDirUtils([x, y])
@@ -49,10 +45,20 @@ export const handleCorners = (wrappedLevel, prevLevel) => (tileValue, key) => {
   }
 }
 
-export const wrapCorners = (level: PointMap) => {
-  // Clone fresh new level: levelWithBorder !
+export const wrapCorners = (level: PointMap) =>
+  processLevel(level, handleCorners)
+
+const processLevel = (level: PointMap, handleTile) => {
   const levelWithBorder = cloneMap(level)
-  level.forEach(handleCorners(levelWithBorder, level))
+  const isEmpty = makeIsEmpy(level)
+
+  level.forEach((tileValue, key) => {
+    if (!isFloor(tileValue)) {
+      return
+    }
+
+    handleTile(levelWithBorder, isEmpty, key)
+  })
   return levelWithBorder
 }
 

@@ -11,8 +11,8 @@ import {
 export const wrapLevel = (level: PointMap) =>
   flow(wrapCorners, wrapEgedCases, wrapTrivialWalls)(level)
 
-export const handleCorners = (levelWithBorder, level?) => (tileValue, key) => {
-  const isFree = makeIsEmpy(level)
+export const handleCorners = (wrappedLevel, prevLevel) => (tileValue, key) => {
+  const isEmpty = makeIsEmpy(prevLevel)
   if (!isFloor(tileValue)) {
     return
   }
@@ -20,29 +20,29 @@ export const handleCorners = (levelWithBorder, level?) => (tileValue, key) => {
 
   const dirs = makeDirUtils([x, y])
 
-  if (isFree(dirs.up) && isFree(dirs.left) && isFree(dirs.upLeft)) {
-    levelWithBorder.set(
+  if (isEmpty(dirs.up) && isEmpty(dirs.left) && isEmpty(dirs.upLeft)) {
+    wrappedLevel.set(
       JSON.stringify(dirs.upLeft),
       tileMap.blue.wall.corner.top.left[0],
     )
   }
 
-  if (isFree(dirs.up) && isFree(dirs.right) && isFree(dirs.upRight)) {
-    levelWithBorder.set(
+  if (isEmpty(dirs.up) && isEmpty(dirs.right) && isEmpty(dirs.upRight)) {
+    wrappedLevel.set(
       JSON.stringify(dirs.upRight),
       tileMap.blue.wall.corner.top.right[0],
     )
   }
 
-  if (isFree(dirs.down) && isFree(dirs.right) && isFree(dirs.downRight)) {
-    levelWithBorder.set(
+  if (isEmpty(dirs.down) && isEmpty(dirs.right) && isEmpty(dirs.downRight)) {
+    wrappedLevel.set(
       JSON.stringify(dirs.downRight),
       tileMap.blue.wall.corner.bottom.right[0],
     )
   }
 
-  if (isFree(dirs.down) && isFree(dirs.left) && isFree(dirs.downLeft)) {
-    levelWithBorder.set(
+  if (isEmpty(dirs.down) && isEmpty(dirs.left) && isEmpty(dirs.downLeft)) {
+    wrappedLevel.set(
       JSON.stringify(dirs.downLeft),
       tileMap.blue.wall.corner.bottom.left[0],
     )
@@ -97,6 +97,10 @@ export const wrapTrivialWalls = (level: PointMap) => {
   return levelWithBorder
 }
 
+export const workOnLevel = (original: PointMap, handler) => {
+  const levelWithBorder = cloneMap(original)
+  original.forEach(handleTrivialWalls(levelWithBorder))
+}
 const handleEdgeCases = levelWithBorder => (tileValue, key) => {
   const pointIsFloor = makeIsFloor(levelWithBorder)
   if (!isFloor(tileValue)) {

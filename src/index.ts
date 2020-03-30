@@ -4,7 +4,7 @@ import { createAnims } from './animation/createAnims'
 import { handleCursor } from './animation/handleCursor'
 import settings from './settings'
 import tileMap from './tiles/tileMap'
-import { getTileValules } from './tiles/tilleUtils'
+import { getLeafs } from './tiles/tilleUtils'
 import { makeLevel } from './world'
 import { getMinXY, shiftPointMapOutOfNegative } from './world/helpers'
 import { addBorder } from './world/mazeLogic'
@@ -90,7 +90,7 @@ const setup = (scene: Phaser.Scene) => {
   const floorTiles = floorMap.addTilesetImage('myTiles')
   const floorLayer = floorMap.createStaticLayer(0, floorTiles, 0, 0)
 
-  floorLayer.setCollision(getTileValules(tileMap.blue.wall)!)
+  floorLayer.setCollision(getLeafs(tileMap.blue.wall)!)
 
   const [minX, minY] = getMinXY(level)
   const charOffset = {

@@ -1,5 +1,5 @@
 import tileMap from './tileMap'
-import { getTileValules, tileIdIsFloor } from './tilleUtils'
+import { tileIdIsFloor, getLeafs } from './tilleUtils'
 
 describe('ifFloor', () => {
   it('should return true if tile is a floor', () => {
@@ -12,7 +12,7 @@ describe('ifFloor', () => {
 })
 
 test('getTileValues should return the right value ', () => {
-  expect(getTileValules(tileMap.blue.wall)).toEqual([
+  expect(getLeafs(tileMap.blue.wall)).toEqual([
     2,
     36,
     37,
@@ -24,4 +24,16 @@ test('getTileValues should return the right value ', () => {
     0,
     3,
   ])
+})
+
+test('getLeafs should return the right value', () => {
+  const input = {
+    foo: {
+      bar: [3, 4, 9],
+      bob: {
+        booz: [1, 7],
+      },
+    },
+  }
+  expect(getLeafs(input)).toEqual([3, 4, 9, 1, 7])
 })

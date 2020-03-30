@@ -11,16 +11,11 @@ export const tileIdIsFloor = (tileId: number) => {
   return false
 }
 
-export const getTileValules = (obj, acc?: number[]) => {
-  const result: number[] = []
-  if (!acc) {
-    acc = result
-  }
-  if (typeof obj === 'number') {
-    acc.push(obj)
+export const getLeafs = (obj, acc: number[] = []) => {
+  if (Array.isArray(obj)) {
+    obj.forEach(key => acc.push(key))
     return
   }
-  Object.values(obj).forEach(val => getTileValules(val, acc))
-
-  return result
+  Object.keys(obj).forEach(key => getLeafs(obj[key], acc))
+  return acc
 }

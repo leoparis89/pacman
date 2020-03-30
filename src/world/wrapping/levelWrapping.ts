@@ -192,21 +192,48 @@ const handleDeadEnds = (levelWithBorder: PointMap) => (tileValue, key) => {
 
   if (tileValue === tileMap.blue.wall.vertical.clean[0]) {
     if (isFloor(dirs.up)) {
-      levelWithBorder.set(JSON.stringify([x, y]), 33)
+      levelWithBorder.set(JSON.stringify([x, y]), tileMap.blue.wall.deadEnd.top)
     } else if (isFloor(dirs.down)) {
-      levelWithBorder.set(JSON.stringify([x, y]), 50)
+      levelWithBorder.set(
+        JSON.stringify([x, y]),
+        tileMap.blue.wall.deadEnd.bottom,
+      )
     }
     return
   }
   if (tileValue === tileMap.blue.wall.horizontal.clean[0]) {
     if (isFloor(dirs.left)) {
-      levelWithBorder.set(JSON.stringify([x, y]), 18)
+      levelWithBorder.set(
+        JSON.stringify([x, y]),
+        tileMap.blue.wall.deadEnd.left,
+      )
     } else if (isFloor(dirs.right)) {
-      levelWithBorder.set(JSON.stringify([x, y]), 17)
+      levelWithBorder.set(
+        JSON.stringify([x, y]),
+        tileMap.blue.wall.deadEnd.right,
+      )
     }
   }
 }
 
+// const handleConnectedCorners = (levelWithBorder: PointMap) => (
+//   tileValue,
+//   key,
+// ) => {
+//   const [x, y] = JSON.parse(key)
+//   const dirs = makeDirUtils([x, y])
+//   // const isFree = makeIsEmpy(levelWithBorder)
+//   const isFloor = makeIsFloor(levelWithBorder)
+
+//   if (tileValue === tileMap.blue.wall.corner.top.left[0]) {
+//     if (isFloor(dirs.up)) {
+//       levelWithBorder.set(JSON.stringify([x, y]), 33)
+//     } else if (isFloor(dirs.down)) {
+//       levelWithBorder.set(JSON.stringify([x, y]), 50)
+//     }
+//     return
+//   }
+// }
 export const makeWrapper = handleWrapping => level => {
   const levelWithBorder = cloneMap(level)
   levelWithBorder.forEach(handleWrapping(levelWithBorder))

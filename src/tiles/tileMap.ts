@@ -14,6 +14,12 @@ export default {
         clean: [32],
         cracked: [4, 35],
       },
+      deadEnd: {
+        bottom: [50],
+        top: [33],
+        left: [18],
+        right: [17],
+      },
       corner: {
         bottom: {
           left: [48],

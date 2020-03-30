@@ -20,6 +20,20 @@ export default {
         left: [18],
         right: [17],
       },
+      connection: {
+        bottom: {
+          left: [],
+          right: [],
+        },
+        top: {
+          left: {
+            case1: [16],
+          },
+          right: {
+            '2Con': [],
+          },
+        },
+      },
       corner: {
         bottom: {
           left: [48],

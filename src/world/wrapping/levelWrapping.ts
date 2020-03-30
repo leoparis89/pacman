@@ -6,6 +6,8 @@ import {
   makeDirUtils,
   makeIsEmpy,
   makeIsFloor,
+  makeIsHorizontal,
+  makeIsVertical,
 } from './levelWrappingUtils'
 
 export const handleCorners = wrappedLevel => (tileValue, key) => {
@@ -216,6 +218,38 @@ const handleDeadEnds = (levelWithBorder: PointMap) => (tileValue, key) => {
   }
 }
 
+const handleCornerConnections = (levelWithBorder: PointMap) => (
+  tileValue,
+  key,
+) => {
+  const [x, y] = JSON.parse(key)
+  const dirs = makeDirUtils([x, y])
+
+  const isFloor = makeIsFloor(levelWithBorder)
+  const isHorizonal = makeIsHorizontal(levelWithBorder)
+  const isVertival = makeIsVertical(levelWithBorder)
+  // const isFree = makeIsEmpy(levelWithBorder)
+
+  if (tileValue === tileMap.blue.wall.corner.top.left[0]) {
+    if (isFloor(dirs.left) && isVertival(dirs.up)) {
+      levelWithBorder.set(
+        JSON.stringify([x, y]),
+        tileMap.blue.wall.connection.top.left.case1[0],
+      )
+      return
+    }
+    if (isHorizonal(dirs.left)) {
+      levelWithBorder.set(JSON.stringify([x, y]), 34)
+      return
+    }
+  }
+  // if (tileValue === tileMap.blue.wall.corner.top.right[0]) {
+  // }
+  // if (tileValue === tileMap.blue.wall.corner.bottom.left[0]) {
+  // }
+  // if (tileValue === tileMap.blue.wall.corner.bottom.right[0]) {
+  // }
+}
 // const handleConnectedCorners = (levelWithBorder: PointMap) => (
 //   tileValue,
 //   key,
@@ -246,6 +280,7 @@ const levelWrappers = [
   handleSingle,
   handleTrivialWalls,
   handleDeadEnds,
+  handleCornerConnections,
 ].map(makeWrapper)
 
 export const wrapLevel = (level: PointMap) => flow(...levelWrappers)(level)

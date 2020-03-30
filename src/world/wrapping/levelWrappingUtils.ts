@@ -1,4 +1,8 @@
-import { tileIdIsFloor } from '../../tiles/tilleUtils'
+import {
+  tileIdIsFloor,
+  tileIdIsVertical,
+  tileIdIsHorizontal,
+} from '../../tiles/tilleUtils'
 
 export const cloneMap = (map: Map<any, any>) => {
   const cloned = new Map()
@@ -21,6 +25,15 @@ export const makeIsFloor = (level: PointMap) => (coord: Point) => {
   return tileIdIsFloor(cellValue)
 }
 
+export const makeIsVertical = (level: PointMap) => (coord: Point) => {
+  const cellValue = level.get(JSON.stringify(coord))
+  return tileIdIsVertical(cellValue)
+}
+
+export const makeIsHorizontal = (level: PointMap) => (coord: Point) => {
+  const cellValue = level.get(JSON.stringify(coord))
+  return tileIdIsHorizontal(cellValue)
+}
 export const makeDirUtils = ([x, y]: Point): {
   [index: string]: Point
 } => {

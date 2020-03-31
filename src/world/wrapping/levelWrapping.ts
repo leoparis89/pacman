@@ -243,6 +243,39 @@ const handleCornerConnections = (levelWithBorder: PointMap) => (
       return
     }
   }
+
+  if (tileValue === tileMap.blue.wall.corner.top.right[0]) {
+    if (isFloor(dirs.right) && isVertival(dirs.up)) {
+      levelWithBorder.set(JSON.stringify([x, y]), 19)
+      return
+    }
+    // if (isHorizonal(dirs.left)) {
+    //   levelWithBorder.set(JSON.stringify([x, y]), 34)
+    //   return
+    // }
+  }
+
+  if (tileValue === tileMap.blue.wall.corner.bottom.left[0]) {
+    if (isHorizonal(dirs.left) && isFloor(dirs.down)) {
+      levelWithBorder.set(JSON.stringify([x, y]), 49)
+      return
+    }
+    if (isFloor(dirs.left) && isVertival(dirs.down)) {
+      levelWithBorder.set(JSON.stringify([x, y]), 16)
+      return
+    }
+    // if (isFloor(dirs.left) && isVertival(dirs.up)) {
+    //   levelWithBorder.set(
+    //     JSON.stringify([x, y]),
+    //     tileMap.blue.wall.connection.top.left.case1[0],
+    //   )
+    //   return
+    // }
+    // if (isHorizonal(dirs.left)) {
+    //   levelWithBorder.set(JSON.stringify([x, y]), 34)
+    //   return
+    // }
+  }
   // if (tileValue === tileMap.blue.wall.corner.top.right[0]) {
   // }
   // if (tileValue === tileMap.blue.wall.corner.bottom.left[0]) {

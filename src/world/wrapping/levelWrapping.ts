@@ -189,33 +189,70 @@ const handleSingle = (levelWithBorder: PointMap) => (tileValue, key) => {
 const handleDeadEnds = (levelWithBorder: PointMap) => (tileValue, key) => {
   const [x, y] = JSON.parse(key)
   const dirs = makeDirUtils([x, y])
-  // const isFree = makeIsEmpy(levelWithBorder)
+  const isFree = makeIsEmpy(levelWithBorder)
   const isFloor = makeIsFloor(levelWithBorder)
 
-  if (tileValue === tileMap.blue.wall.vertical.clean[0]) {
-    if (isFloor(dirs.up)) {
-      levelWithBorder.set(JSON.stringify([x, y]), tileMap.blue.wall.deadEnd.top)
-    } else if (isFloor(dirs.down)) {
-      levelWithBorder.set(
-        JSON.stringify([x, y]),
-        tileMap.blue.wall.deadEnd.bottom,
-      )
-    }
+  if (!isFloor([x, y])) {
     return
   }
-  if (tileValue === tileMap.blue.wall.horizontal.clean[0]) {
-    if (isFloor(dirs.left)) {
-      levelWithBorder.set(
-        JSON.stringify([x, y]),
-        tileMap.blue.wall.deadEnd.left,
-      )
-    } else if (isFloor(dirs.right)) {
-      levelWithBorder.set(
-        JSON.stringify([x, y]),
-        tileMap.blue.wall.deadEnd.right,
-      )
-    }
+  /**
+   *  xxx
+   *  o?x
+   */
+
+  if (isFree(dirs.right) && isFloor(dirs.upRight) && isFloor([x + 2, y])) {
+    levelWithBorder.set(
+      JSON.stringify([x + 1, y]),
+      tileMap.blue.wall.deadEnd.top,
+    )
   }
+
+  /**
+   *  xxxx
+   *  o? x
+   *  xxxx
+   */
+
+  if (isFree(dirs.right) && isFloor(dirs.upRight) && isFloor(dirs.downRight)) {
+    levelWithBorder.set(
+      JSON.stringify([x + 1, y]),
+      tileMap.blue.wall.deadEnd.left,
+    )
+  }
+  // if (isFree(dirs.right) && isFloor(dirs.upRight) && isFloor([x + 2, y])) {
+  //   levelWithBorder.set(
+  //     JSON.stringify([x + 1, y]),
+  //     tileMap.blue.wall.deadEnd.top,
+  //   )
+  // }
+  // if (tileValue === tileMap.blue.wall.corner.top.left[0]){
+
+  // }
+
+  // if (tileValue === tileMap.blue.wall.vertical.clean[0]) {
+  //   if (isFloor(dirs.up)) {
+  //     levelWithBorder.set(JSON.stringify([x, y]), 55)
+  //   } else if (isFloor(dirs.down)) {
+  //     levelWithBorder.set(
+  //       JSON.stringify([x, y]),
+  //       tileMap.blue.wall.deadEnd.bottom,
+  //     )
+  //   }
+  //   return
+  // }
+  // if (tileValue === tileMap.blue.wall.horizontal.clean[0]) {
+  //   if (isFloor(dirs.left)) {
+  //     levelWithBorder.set(
+  //       JSON.stringify([x, y]),
+  //       tileMap.blue.wall.deadEnd.left,
+  //     )
+  //   } else if (isFloor(dirs.right)) {
+  //     levelWithBorder.set(
+  //       JSON.stringify([x, y]),
+  //       tileMap.blue.wall.deadEnd.right,
+  //     )
+  //   }
+  // }
 }
 
 const handleCornerConnections = (levelWithBorder: PointMap) => (
@@ -311,9 +348,9 @@ const levelWrappers = [
   handleCorners,
   handleEdgeCases,
   handleSingle,
-  handleTrivialWalls,
+  // handleTrivialWalls,
   handleDeadEnds,
-  handleCornerConnections,
+  // handleCornerConnections,
 ].map(makeWrapper)
 
 export const wrapLevel = (level: PointMap) => flow(...levelWrappers)(level)

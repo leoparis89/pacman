@@ -1,5 +1,5 @@
 import tileMap from './tileMap'
-import { tileIdIsFloor, getLeafs } from './tilleUtils'
+import { tileIdIsFloor, getLeafs, verifyPresence } from './tilleUtils'
 
 describe('ifFloor', () => {
   it('should return true if tile is a floor', () => {
@@ -9,6 +9,15 @@ describe('ifFloor', () => {
   it('should return floor if tile is a floor', () => {
     expect(tileIdIsFloor(tileMap.blue.wall.horizontal[0])).toEqual(false)
   })
+})
+test('verify presence should work with ingle value or array ', () => {
+  const data = [1, 2, 3, 4, 5]
+
+  expect(verifyPresence(3, data)).toEqual(true)
+  expect(verifyPresence([3, 5], data)).toEqual(true)
+
+  expect(verifyPresence([9, 11], data)).toEqual(false)
+  expect(verifyPresence(88, data)).toEqual(false)
 })
 
 test.skip('getTileValues should return the right value ', () => {

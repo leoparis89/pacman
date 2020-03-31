@@ -12,6 +12,13 @@ export const tileIdIsVertical = (tileId: number) => {
   return getLeafs(tileMap.blue.wall.vertical).includes(tileId)
 }
 
+export const verifyPresence = (toVerify: number | number[], data: number[]) => {
+  if (Array.isArray(toVerify)) {
+    return toVerify.every(el => data.includes(el))
+  }
+  return data.includes(toVerify)
+}
+
 export const getLeafs = (obj, acc: number[] = []) => {
   if (Array.isArray(obj)) {
     obj.forEach(key => acc.push(key))

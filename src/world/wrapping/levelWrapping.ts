@@ -18,19 +18,7 @@ export const handleCorners = (level: LevelMutator) => (
 
 const _handleCorners: WrapHandler = (
   tileVale,
-  {
-    current,
-    up,
-    left,
-    down,
-    right,
-    upLeft,
-    upRight,
-    downLeft,
-    downRight,
-  }: {
-    [index: string]: Point
-  },
+  { current, up, left, down, right, upLeft, upRight, downLeft, downRight },
   level,
 ) => {
   const corner = tileMap.blue.wall.corner
@@ -60,30 +48,34 @@ export const handleTrivialWalls = (levelWithBorder: LevelMutator) => (
   tileValue,
   key,
 ) => {
+  _handleTrivialWalls(tileValue, makeDirUtils(key), levelWithBorder)
+}
+
+const _handleTrivialWalls: WrapHandler = (
+  tileValue,
+  { current, up, left, down, right, upLeft, upRight, downLeft, downRight },
+  levelWithBorder,
+) => {
   if (!tileIdIsFloor(tileValue)) {
     return
   }
 
-  const dirs = makeDirUtils(key)
-
   const wall = tileMap.blue.wall
-  if (levelWithBorder._isEmpty(dirs.up)) {
-    levelWithBorder.set(dirs.up, wall.horizontal.clean[0])
+  if (levelWithBorder._isEmpty(up)) {
+    levelWithBorder.set(up, wall.horizontal.clean[0])
   }
 
-  if (levelWithBorder._isEmpty(dirs.down)) {
-    levelWithBorder.set(dirs.down, wall.horizontal.clean[0])
+  if (levelWithBorder._isEmpty(down)) {
+    levelWithBorder.set(down, wall.horizontal.clean[0])
   }
 
-  if (levelWithBorder._isEmpty(dirs.left)) {
-    levelWithBorder.set(dirs.left, wall.vertical.clean[0])
+  if (levelWithBorder._isEmpty(left)) {
+    levelWithBorder.set(left, wall.vertical.clean[0])
   }
-  if (levelWithBorder._isEmpty(dirs.right)) {
-    levelWithBorder.set(dirs.right, wall.vertical.clean[0])
+  if (levelWithBorder._isEmpty(right)) {
+    levelWithBorder.set(right, wall.vertical.clean[0])
   }
 }
-
-const foo = () => {}
 // export const handleEdgeCases = levelWithBorder => (tileValue, key) => {
 //   const pointIsFloor = isFloor(levelWithBorder)
 //   if (!tileIdIsFloor(tileValue)) {

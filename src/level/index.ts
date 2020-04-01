@@ -1,13 +1,5 @@
 import { tileIdIsFloor, tileIdisEmpty } from '../tiles/tilleUtils'
 
-export const createLevel = (level: PointMap) => ({
-  get: (coord: Point): PointContent => level.get(JSON.stringify(coord)),
-  set: (coord: Point, value: number) => level.set(JSON.stringify(coord), value),
-  isFloor(coord: Point) {
-    return tileIdIsFloor(this.set)
-  },
-})
-
 export class LevelMutator {
   constructor(private pointMap: PointMap) {}
 

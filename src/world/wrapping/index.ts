@@ -2,9 +2,8 @@ import { flow } from 'lodash'
 import { cloneMap } from './levelWrappingUtils'
 import {
   handleCorners,
-  // handleEdgeCases,
   // handleSingle,
-  // handleTrivialWalls,
+  handleTrivialWalls,
   // handleDeadEnds,
   // handleCornerConnections,
 } from './levelWrapping'
@@ -34,7 +33,7 @@ export const makeWrapper = handleWrapping => level => {
 }
 const levelWrappers = [
   handleCorners,
-  // handleEdgeCases,
+  handleTrivialWalls,
   // handleSingle,
   // handleTrivialWalls,
   // handleDeadEnds,

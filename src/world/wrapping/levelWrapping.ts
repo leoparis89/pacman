@@ -45,43 +45,51 @@ export const handleCorners = (level: LevelMutator) => (tileValue, key) => {
   }
 }
 
-// export const handleTrivialWalls = (levelWithBorder: PointMap) => (
-//   tileValue,
-//   key,
-// ) => {
-//   const isFree = makeIsEmpy(levelWithBorder)
-//   if (!tileIdIsFloor(tileValue)) {
-//     return
-//   }
-//   const [x, y] = JSON.parse(key)
+export const handleTrivialWalls = (levelWithBorder: LevelMutator) => (
+  tileValue,
+  key,
+) => {
+  if (!tileIdIsFloor(tileValue)) {
+    return
+  }
+  const [x, y] = JSON.parse(key)
 
-//   const dirs = makeDirUtils([x, y])
+  const dirs = makeDirUtils([x, y])
 
-//   if (isFree(dirs.up)) {
-//     levelWithBorder.set(
-//       JSON.stringify(dirs.up),
-//       tileMap.blue.wall.horizontal.clean[0],
-//     )
-//   }
-//   if (isFree(dirs.down)) {
-//     levelWithBorder.set(
-//       JSON.stringify(dirs.down),
-//       tileMap.blue.wall.horizontal.clean[0],
-//     )
-//   }
-//   if (isFree(dirs.left)) {
-//     levelWithBorder.set(
-//       JSON.stringify(dirs.left),
-//       tileMap.blue.wall.vertical.clean[0],
-//     )
-//   }
-//   if (isFree(dirs.right)) {
-//     levelWithBorder.set(
-//       JSON.stringify(dirs.right),
-//       tileMap.blue.wall.vertical.clean[0],
-//     )
-//   }
-// }
+  const wall = tileMap.blue.wall
+  if (levelWithBorder._isEmpty(dirs.up)) {
+    levelWithBorder.set(dirs.up, wall.horizontal.clean[0])
+  }
+
+  if (levelWithBorder._isEmpty(dirs.down)) {
+    levelWithBorder.set(dirs.down, wall.horizontal.clean[0])
+  }
+  // if (isFree(dirs.down)) {
+  //   levelWithBorder.set(
+  //     JSON.stringify(dirs.down),
+  //     tileMap.blue.wall.horizontal.clean[0],
+  //   )
+  // }
+
+  if (levelWithBorder._isEmpty(dirs.left)) {
+    levelWithBorder.set(dirs.left, wall.vertical.clean[0])
+  }
+  // if (isFree(dirs.left)) {
+  //   levelWithBorder.set(
+  //     JSON.stringify(dirs.left),
+  //     tileMap.blue.wall.vertical.clean[0],
+  //   )
+  // }
+  // if (isFree(dirs.right)) {
+  //   levelWithBorder.set(
+  //     JSON.stringify(dirs.right),
+  //     tileMap.blue.wall.vertical.clean[0],
+  //   )
+  // }
+  if (levelWithBorder._isEmpty(dirs.right)) {
+    levelWithBorder.set(dirs.right, wall.vertical.clean[0])
+  }
+}
 
 // export const handleEdgeCases = levelWithBorder => (tileValue, key) => {
 //   const pointIsFloor = isFloor(levelWithBorder)

@@ -29,7 +29,8 @@ export const getLeafs = (obj, acc: number[] = []) => {
   return acc
 }
 
-export const tileIdIsFloor = makeTileChecker(getLeafs(tileMap.blue.floor))
+export const tileIdIsFloor = id =>
+  makeTileChecker(getLeafs(tileMap.blue.floor))(id)
 
 export const tileIdIsHorizontal = makeTileChecker(
   getLeafs(tileMap.blue.wall.horizontal),

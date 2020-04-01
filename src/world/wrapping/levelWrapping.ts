@@ -16,7 +16,7 @@ export const handleCorners = (level: LevelMutator) => (
   _handleCorners(tileValue, makeDirUtils(key), level)
 }
 
-const _handleCorners = (
+const _handleCorners: WrapHandler = (
   tileVale,
   {
     current,
@@ -83,6 +83,7 @@ export const handleTrivialWalls = (levelWithBorder: LevelMutator) => (
   }
 }
 
+const foo = () => {}
 // export const handleEdgeCases = levelWithBorder => (tileValue, key) => {
 //   const pointIsFloor = isFloor(levelWithBorder)
 //   if (!tileIdIsFloor(tileValue)) {
@@ -320,3 +321,21 @@ export const handleTrivialWalls = (levelWithBorder: LevelMutator) => (
 //   // if (tileValue === tileMap.blue.wall.corner.bottom.right[0]) {
 //   // }
 // }
+
+type WrapHandler = (
+  t: number,
+  dirs: DirConvinience,
+  level: LevelMutator,
+) => void
+
+export type DirConvinience = {
+  current: Point
+  up: Point
+  left: Point
+  down: Point
+  right: Point
+  upLeft: Point
+  upRight: Point
+  downLeft: Point
+  downRight: Point
+}

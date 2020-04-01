@@ -3,6 +3,7 @@ import {
   tileIdIsVertical,
   tileIdIsHorizontal,
 } from '../tiles/tilleUtils'
+import { DirConvinience } from '../world/wrapping/levelWrapping'
 import { createAccessor } from '../world/wrapping/levelWrappingUtils'
 /**
  * Returns a function to check if a Point constains undefined
@@ -29,11 +30,7 @@ export const isFloor = makeTileVerifier(tileIdIsFloor)
 export const makeIsVertical = makeTileVerifier(tileIdIsVertical)
 export const makeIsHorizontal = makeTileVerifier(tileIdIsHorizontal)
 
-export const makeDirUtils = (
-  coordStr: string,
-): {
-  [index: string]: Point
-} => {
+export const makeDirUtils = (coordStr: string): DirConvinience => {
   const [x, y] = JSON.parse(coordStr)
   return {
     current: [x, y],

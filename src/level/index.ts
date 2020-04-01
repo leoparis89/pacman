@@ -11,13 +11,20 @@ export const createLevel = (level: PointMap) => ({
 export class Level {
   constructor(private pointMap: PointMap) {}
 
+  _isFloor = (coord: Point) => tileIdIsFloor(this.get(coord))
+  isFloor = handleValOrArray(this._isFloor)
+
   get(coord: Point) {
     return this.pointMap.get(JSON.stringify(coord))
   }
   set(coord: Point, value: number) {
     return this.pointMap.set(JSON.stringify(coord), value)
   }
-  isFloor(coord: Point) {
-    return tileIdIsFloor(this.get(coord))
+}
+
+const handleValOrArray = fn => args => {
+  if (Array.isArray(args)) {
+    return args.every(t => fn(t))
   }
+  return fn(args)
 }

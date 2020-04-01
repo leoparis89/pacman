@@ -1,16 +1,8 @@
 import tileMap from './tileMap'
 
-export const tileIdIsFloor = (tileId: number) => {
-  return getLeafs(tileMap.blue.floor).includes(tileId)
-}
-
-export const tileIdIsHorizontal = (tileId: number) => {
-  return getLeafs(tileMap.blue.wall.horizontal).includes(tileId)
-}
-
-export const tileIdIsVertical = (tileId: number) => {
-  return getLeafs(tileMap.blue.wall.vertical).includes(tileId)
-}
+export const makeTileCheck = (data: number[]) => (
+  tilesToCheck: number | number[],
+) => verifyPresence(tilesToCheck, data)
 
 export const verifyPresence = (toVerify: number | number[], data: number[]) => {
   if (Array.isArray(toVerify)) {
@@ -27,3 +19,15 @@ export const getLeafs = (obj, acc: number[] = []) => {
   Object.keys(obj).forEach(key => getLeafs(obj[key], acc))
   return acc
 }
+
+export const tileIdIsFloor = makeTileCheck(getLeafs(tileMap.blue.floor))
+
+export const tileIdIsHorizontal = makeTileCheck(
+  getLeafs(tileMap.blue.wall.horizontal),
+)
+
+export const tileIdIsVertical = makeTileCheck(
+  getLeafs(tileMap.blue.wall.vertical),
+)
+
+export const tileIdisEmpty = makeTileCheck([undefined] as any)

@@ -348,9 +348,9 @@ const levelWrappers = [
   handleCorners,
   handleEdgeCases,
   handleSingle,
-  // handleTrivialWalls,
+  handleTrivialWalls,
   handleDeadEnds,
-  // handleCornerConnections,
+  handleCornerConnections,
 ].map(makeWrapper)
 
 export const wrapLevel = (level: PointMap) => flow(...levelWrappers)(level)

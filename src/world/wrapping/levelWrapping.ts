@@ -25,22 +25,18 @@ const _handleCorners: WrapHandler = (
 
   if (level.isEmpty([up, left, upLeft])) {
     level.set(upLeft, corner.top.left[0])
-    return
   }
 
   if (level.isEmpty([up, right, upRight])) {
     level.set(upRight, corner.top.right[0])
-    return
   }
 
   if (level.isEmpty([down, right, downRight])) {
     level.set(downRight, tileMap.blue.wall.corner.bottom.right[0])
-    return
   }
 
   if (level.isEmpty([down, left, downLeft])) {
     level.set(downLeft, corner.bottom.left[0])
-    return
   }
 }
 
@@ -63,98 +59,117 @@ const _handleTrivialWalls: WrapHandler = (
   const wall = tileMap.blue.wall
   if (levelWithBorder._isEmpty(up)) {
     levelWithBorder.set(up, wall.horizontal.clean[0])
+    return
   }
 
   if (levelWithBorder._isEmpty(down)) {
     levelWithBorder.set(down, wall.horizontal.clean[0])
+    return
   }
 
   if (levelWithBorder._isEmpty(left)) {
     levelWithBorder.set(left, wall.vertical.clean[0])
+    return
   }
   if (levelWithBorder._isEmpty(right)) {
     levelWithBorder.set(right, wall.vertical.clean[0])
+    return
   }
 }
-// export const handleEdgeCases = levelWithBorder => (tileValue, key) => {
-//   const pointIsFloor = isFloor(levelWithBorder)
-//   if (!tileIdIsFloor(tileValue)) {
-//     return
-//   }
-//   const [x, y] = JSON.parse(key)
-//   const dirs = makeDirUtils([x, y])
 
-//   /**
-//    *
-//    *  C?
-//    *  xx
-//    */
-//   if (
-//     !pointIsFloor(dirs.right) &&
-//     !pointIsFloor([x + 2, y]) &&
-//     !pointIsFloor(dirs.upRight) &&
-//     pointIsFloor(dirs.downRight)
-//   ) {
-//     // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
-//     levelWithBorder.set(
-//       JSON.stringify(dirs.right),
-//       tileMap.blue.wall.corner.bottom.left,
-//     )
-//   }
+export const _handleEdgeCases: WrapHandler = (
+  tileValue,
+  { current, up, left, down, right, upLeft, upRight, downLeft, downRight },
+  levelWithBorder,
+) => {
+  const [x, y] = current
+  if (!tileIdIsFloor(tileValue)) {
+    return
+  }
+  // const [x, y] = JSON.parse(key)
+  // const dirs = makeDirUtils([x, y])
 
-//   /**
-//    *
-//    *  ?C
-//    *  xx
-//    */
-//   if (
-//     !pointIsFloor(dirs.left) &&
-//     !pointIsFloor([x - 2, y]) &&
-//     !pointIsFloor(dirs.upLeft) &&
-//     pointIsFloor(dirs.downLeft)
-//   ) {
-//     // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
-//     levelWithBorder.set(
-//       JSON.stringify(dirs.left),
-//       tileMap.blue.wall.corner.bottom.right,
-//     )
-//   }
-//   /**
-//    *
-//    *  xx
-//    *  ?C
-//    */
-//   if (
-//     !pointIsFloor(dirs.left) &&
-//     !pointIsFloor([x - 2, y]) &&
-//     !pointIsFloor(dirs.downLeft) &&
-//     pointIsFloor(dirs.upLeft)
-//   ) {
-//     // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
-//     levelWithBorder.set(
-//       JSON.stringify(dirs.left),
-//       tileMap.blue.wall.corner.top.right,
-//     )
-//   }
-//   /**
-//    *
-//    *  xx
-//    *  C?
-//    */
-//   if (
-//     !pointIsFloor(dirs.right) &&
-//     !pointIsFloor([x + 2, y]) &&
-//     !pointIsFloor(dirs.downRight) &&
-//     pointIsFloor(dirs.upRight)
-//   ) {
-//     // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
-//     levelWithBorder.set(
-//       JSON.stringify(dirs.right),
-//       tileMap.blue.wall.corner.top.left,
-//     )
-//   }
-// }
+  const corner = tileMap.blue.wall.corner
+  /**
+   *
+   *  C?
+   *  xx
+   */
+  if (
+    !levelWithBorder.isFloor(
+      [right, [x + 2, y], upRight], //&&
+      // levelWithBorder.isFloor(downRight),
+    ) &&
+    levelWithBorder.isFloor(up)
+    // !pointIsFloor(dirs.right) &&
+    // !pointIsFloor([x + 2, y]) &&
+    // !pointIsFloor(dirs.upRight) &&
+    // pointIsFloor(dirs.downRight)
+  ) {
+    // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
+    levelWithBorder.set(right, 211)
+    return
+  }
 
+  /**
+   *
+   *  ?C
+   *  xx
+   */
+  // if (
+  //   !pointIsFloor(dirs.left) &&
+  //   !pointIsFloor([x - 2, y]) &&
+  //   !pointIsFloor(dirs.upLeft) &&
+  //   pointIsFloor(dirs.downLeft)
+  // ) {
+  //   // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
+  //   levelWithBorder.set(
+  //     JSON.stringify(dirs.left),
+  //     tileMap.blue.wall.corner.bottom.right,
+  //   )
+  // }
+  /**
+   *
+   *  xx
+   *  ?C
+   */
+  // if (
+  //   !pointIsFloor(dirs.left) &&
+  //   !pointIsFloor([x - 2, y]) &&
+  //   !pointIsFloor(dirs.downLeft) &&
+  //   pointIsFloor(dirs.upLeft)
+  // ) {
+  //   // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
+  //   levelWithBorder.set(
+  //     JSON.stringify(dirs.left),
+  //     tileMap.blue.wall.corner.top.right,
+  //   )
+  // }
+  /**
+   *
+   *  xx
+   *  C?
+   */
+  // if (
+  //   !pointIsFloor(dirs.right) &&
+  //   !pointIsFloor([x + 2, y]) &&
+  //   !pointIsFloor(dirs.downRight) &&
+  //   pointIsFloor(dirs.upRight)
+  // ) {
+  //   // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
+  //   levelWithBorder.set(
+  //     JSON.stringify(dirs.right),
+  //     tileMap.blue.wall.corner.top.left,
+  //   )
+  // }
+}
+
+export const handleEdgeCases = (level: LevelMutator) => (
+  tileValue: number,
+  key: string,
+) => {
+  _handleEdgeCases(tileValue, makeDirUtils(key), level)
+}
 // export const handleSingle = (levelWithBorder: PointMap) => (tileValue, key) => {
 //   if (!tileIdIsFloor(tileValue)) {
 //     return

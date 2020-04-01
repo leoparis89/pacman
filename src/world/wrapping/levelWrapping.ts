@@ -9,9 +9,17 @@ import {
 } from '../../level/verifiers'
 import { LevelMutator } from '../../level'
 
-export const handleCorners = (level: LevelMutator) => (tileValue, key) => {
-  const [x, y] = JSON.parse(key)
-  const {
+export const handleCorners = (level: LevelMutator) => (
+  tileValue: number,
+  key: string,
+) => {
+  _handleCorners(tileValue, makeDirUtils(key), level)
+}
+
+const _handleCorners = (
+  tileVale,
+  {
+    current,
     up,
     left,
     down,
@@ -20,8 +28,11 @@ export const handleCorners = (level: LevelMutator) => (tileValue, key) => {
     upRight,
     downLeft,
     downRight,
-  } = makeDirUtils([x, y])
-
+  }: {
+    [index: string]: Point
+  },
+  level,
+) => {
   const corner = tileMap.blue.wall.corner
 
   if (level.isEmpty([up, left, upLeft])) {
@@ -45,7 +56,6 @@ export const handleCorners = (level: LevelMutator) => (tileValue, key) => {
   }
 }
 
-const foo = () => {}
 export const handleTrivialWalls = (levelWithBorder: LevelMutator) => (
   tileValue,
   key,
@@ -53,9 +63,8 @@ export const handleTrivialWalls = (levelWithBorder: LevelMutator) => (
   if (!tileIdIsFloor(tileValue)) {
     return
   }
-  const [x, y] = JSON.parse(key)
 
-  const dirs = makeDirUtils([x, y])
+  const dirs = makeDirUtils(key)
 
   const wall = tileMap.blue.wall
   if (levelWithBorder._isEmpty(dirs.up)) {

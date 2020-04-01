@@ -28,9 +28,13 @@ export const makeIsEmpy = (level: PointMap) => (coord: Point) =>
 export const isFloor = makeTileVerifier(tileIdIsFloor)
 export const makeIsVertical = makeTileVerifier(tileIdIsVertical)
 export const makeIsHorizontal = makeTileVerifier(tileIdIsHorizontal)
-export const makeDirUtils = ([x, y]: Point): {
+
+export const makeDirUtils = (
+  coordStr: string,
+): {
   [index: string]: Point
 } => {
+  const [x, y] = JSON.parse(coordStr)
   return {
     current: [x, y],
     up: [x, y - 1],

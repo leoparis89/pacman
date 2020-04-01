@@ -13,7 +13,7 @@ interface IGraph {
 
 type Point = [number, number]
 
-type PointContent = Array<number | undefined>
+type PointContent = number | undefined
 
 type PointMap = Map<string, any>
 

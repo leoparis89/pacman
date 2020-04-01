@@ -1,4 +1,4 @@
-import { tileIdIsFloor } from '../tiles/tilleUtils'
+import { tileIdIsFloor, tileIdisEmpty } from '../tiles/tilleUtils'
 
 export const createLevel = (level: PointMap) => ({
   get: (coord: Point): PointContent => level.get(JSON.stringify(coord)),
@@ -12,7 +12,9 @@ export class Level {
   constructor(private pointMap: PointMap) {}
 
   _isFloor = (coord: Point) => tileIdIsFloor(this.get(coord))
+  _isEmpty = (coord: Point) => tileIdisEmpty(this.get(coord))
   isFloor = handleValOrArray(this._isFloor)
+  isEmpty = handleValOrArray(this._isEmpty)
 
   get(coord: Point) {
     return this.pointMap.get(JSON.stringify(coord))

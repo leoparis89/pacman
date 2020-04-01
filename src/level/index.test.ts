@@ -78,4 +78,28 @@ describe('level accessor', () => {
       ]),
     ).toEqual(false)
   })
+
+  test('isEmpty should return true if tile is empty', () => {
+    const room: IRoom = {
+      coords: [0, 0],
+      height: 4,
+      width: 4,
+      type: 'suite',
+    }
+    const pointMap = roomsToPointMap([room])
+    const level = new Level(pointMap)
+    expect(level._isEmpty([0, 0])).toEqual(false)
+  })
+
+  test('isEmpty should return false if tile is not empty', () => {
+    const room: IRoom = {
+      coords: [0, 0],
+      height: 4,
+      width: 4,
+      type: 'suite',
+    }
+    const pointMap = roomsToPointMap([room])
+    const level = new Level(pointMap)
+    expect(level._isEmpty([5, 0])).toEqual(true)
+  })
 })

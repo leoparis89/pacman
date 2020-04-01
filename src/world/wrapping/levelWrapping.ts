@@ -7,47 +7,42 @@ import {
   makeIsHorizontal,
   makeIsVertical,
 } from '../../level/verifiers'
-import { Level } from '../../level'
+import { LevelMutator } from '../../level'
 
-export const handleCorners = wrappedLevel => (tileValue, key) => {
-  const level = new Level(wrappedLevel)
-  // if (!tileIdIsFloor(tileValue)) {
-  //   return
-  // }
+export const handleCorners = (level: LevelMutator) => (tileValue, key) => {
   const [x, y] = JSON.parse(key)
+  const {
+    up,
+    left,
+    down,
+    right,
+    upLeft,
+    upRight,
+    downLeft,
+    downRight,
+  } = makeDirUtils([x, y])
 
-  const { up, left, upLeft } = makeDirUtils([x, y])
-
-  // if (isEmpty(dirs.up) && isEmpty(dirs.left) && isEmpty(dirs.upLeft)) {
+  const corner = tileMap.blue.wall.corner
 
   if (level.isEmpty([up, left, upLeft])) {
-    level.set(upLeft, tileMap.blue.wall.corner.top.left[0])
-    // wrappedLevel.set(
-    //   JSON.stringify(dirs.upLeft),
-    //   tileMap.blue.wall.corner.top.left[0],
-    // )
+    level.set(upLeft, corner.top.left[0])
+    return
   }
 
-  // if ((isEmpty)(dirs.up) && isEmpty(dirs.right) && isEmpty(dirs.upRight)) {
-  //   wrappedLevel.set(
-  //     JSON.stringify(dirs.upRight),
-  //     tileMap.blue.wall.corner.top.right[0],
-  //   )
-  // }
+  if (level.isEmpty([up, right, upRight])) {
+    level.set(upRight, corner.top.right[0])
+    return
+  }
 
-  // if (isEmpty(dirs.down) && isEmpty(dirs.right) && isEmpty(dirs.downRight)) {
-  //   wrappedLevel.set(
-  //     JSON.stringify(dirs.downRight),
-  //     tileMap.blue.wall.corner.bottom.right[0],
-  //   )
-  // }
+  if (level.isEmpty([down, right, downRight])) {
+    level.set(downRight, tileMap.blue.wall.corner.bottom.right[0])
+    return
+  }
 
-  // if (isEmpty(dirs.down) && isEmpty(dirs.left) && isEmpty(dirs.downLeft)) {
-  //   wrappedLevel.set(
-  //     JSON.stringify(dirs.downLeft),
-  //     tileMap.blue.wall.corner.bottom.left[0],
-  //   )
-  // }
+  if (level.isEmpty([down, left, downLeft])) {
+    level.set(downLeft, corner.bottom.left[0])
+    return
+  }
 }
 
 // export const handleTrivialWalls = (levelWithBorder: PointMap) => (

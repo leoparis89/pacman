@@ -2,12 +2,13 @@ import { flow } from 'lodash'
 import { cloneMap } from './levelWrappingUtils'
 import {
   handleCorners,
-  handleEdgeCases,
-  handleSingle,
-  handleTrivialWalls,
-  handleDeadEnds,
-  handleCornerConnections,
+  // handleEdgeCases,
+  // handleSingle,
+  // handleTrivialWalls,
+  // handleDeadEnds,
+  // handleCornerConnections,
 } from './levelWrapping'
+import { LevelMutator } from '../../level'
 // const handleConnectedCorners = (levelWithBorder: PointMap) => (
 //   tileValue,
 //   key,
@@ -27,12 +28,13 @@ import {
 // }
 export const makeWrapper = handleWrapping => level => {
   const levelWithBorder = cloneMap(level)
-  levelWithBorder.forEach(handleWrapping(levelWithBorder))
+
+  level.forEach(handleWrapping(new LevelMutator(levelWithBorder)))
   return levelWithBorder
 }
 const levelWrappers = [
   handleCorners,
-  handleEdgeCases,
+  // handleEdgeCases,
   // handleSingle,
   // handleTrivialWalls,
   // handleDeadEnds,

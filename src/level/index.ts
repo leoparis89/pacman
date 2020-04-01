@@ -8,7 +8,7 @@ export const createLevel = (level: PointMap) => ({
   },
 })
 
-export class Level {
+export class LevelMutator {
   constructor(private pointMap: PointMap) {}
 
   _isFloor = (coord: Point) => tileIdIsFloor(this.get(coord))

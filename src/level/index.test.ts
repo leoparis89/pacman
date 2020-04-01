@@ -1,7 +1,20 @@
-import { Level } from '.'
+import { LevelMutator } from '.'
 import { roomsToPointMap } from '../world/transformations'
 
 describe('level accessor', () => {
+  test('get/set smoke test', () => {
+    const room: IRoom = {
+      coords: [0, 0],
+      height: 4,
+      width: 4,
+      type: 'suite',
+    }
+    const pointMap = roomsToPointMap([room])
+    const level = new LevelMutator(pointMap)
+    level.set([1, 2], 88)
+    expect(level.get([1, 2])).toEqual(88)
+  })
+
   test('isFloor should return true if tile is floor', () => {
     const room: IRoom = {
       coords: [0, 0],
@@ -10,7 +23,7 @@ describe('level accessor', () => {
       type: 'suite',
     }
     const pointMap = roomsToPointMap([room])
-    const level = new Level(pointMap)
+    const level = new LevelMutator(pointMap)
     expect(level._isFloor([0, 0])).toEqual(true)
   })
 
@@ -22,7 +35,7 @@ describe('level accessor', () => {
       type: 'suite',
     }
     const pointMap = roomsToPointMap([room])
-    const level = new Level(pointMap)
+    const level = new LevelMutator(pointMap)
     expect(level._isFloor([5, 0])).toEqual(false)
   })
 
@@ -34,7 +47,7 @@ describe('level accessor', () => {
       type: 'suite',
     }
     const pointMap = roomsToPointMap([room])
-    const level = new Level(pointMap)
+    const level = new LevelMutator(pointMap)
     expect(
       level.isFloor([
         [0, 0],
@@ -51,7 +64,7 @@ describe('level accessor', () => {
       type: 'suite',
     }
     const pointMap = roomsToPointMap([room])
-    const level = new Level(pointMap)
+    const level = new LevelMutator(pointMap)
     level.set([1, 2], 99999999)
     expect(
       level.isFloor([
@@ -69,7 +82,7 @@ describe('level accessor', () => {
       type: 'suite',
     }
     const pointMap = roomsToPointMap([room])
-    const level = new Level(pointMap)
+    const level = new LevelMutator(pointMap)
     expect(
       level.isFloor([
         [0, 0],
@@ -87,7 +100,7 @@ describe('level accessor', () => {
       type: 'suite',
     }
     const pointMap = roomsToPointMap([room])
-    const level = new Level(pointMap)
+    const level = new LevelMutator(pointMap)
     expect(level._isEmpty([5, 0])).toEqual(true)
   })
 
@@ -99,7 +112,7 @@ describe('level accessor', () => {
       type: 'suite',
     }
     const pointMap = roomsToPointMap([room])
-    const level = new Level(pointMap)
+    const level = new LevelMutator(pointMap)
     expect(level._isEmpty([0, 0])).toEqual(false)
   })
 
@@ -111,7 +124,7 @@ describe('level accessor', () => {
       type: 'suite',
     }
     const pointMap = roomsToPointMap([room])
-    const level = new Level(pointMap)
+    const level = new LevelMutator(pointMap)
     expect(
       level.isEmpty([
         [5, 0],
@@ -129,7 +142,7 @@ describe('level accessor', () => {
       type: 'suite',
     }
     const pointMap = roomsToPointMap([room])
-    const level = new Level(pointMap)
+    const level = new LevelMutator(pointMap)
     expect(
       level.isEmpty([
         [5, 0],

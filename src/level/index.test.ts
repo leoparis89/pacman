@@ -88,7 +88,7 @@ describe('level accessor', () => {
     }
     const pointMap = roomsToPointMap([room])
     const level = new Level(pointMap)
-    expect(level._isEmpty([0, 0])).toEqual(false)
+    expect(level._isEmpty([5, 0])).toEqual(true)
   })
 
   test('isEmpty should return false if tile is not empty', () => {
@@ -100,6 +100,42 @@ describe('level accessor', () => {
     }
     const pointMap = roomsToPointMap([room])
     const level = new Level(pointMap)
-    expect(level._isEmpty([5, 0])).toEqual(true)
+    expect(level._isEmpty([0, 0])).toEqual(false)
+  })
+
+  test('isEmpty should return true if tile is empty (case array)', () => {
+    const room: IRoom = {
+      coords: [0, 0],
+      height: 4,
+      width: 4,
+      type: 'suite',
+    }
+    const pointMap = roomsToPointMap([room])
+    const level = new Level(pointMap)
+    expect(
+      level.isEmpty([
+        [5, 0],
+        [6, 0],
+        [6, 6],
+      ]),
+    ).toEqual(true)
+  })
+
+  test('isEmpty should return false if tile is not empty (case array)', () => {
+    const room: IRoom = {
+      coords: [0, 0],
+      height: 4,
+      width: 4,
+      type: 'suite',
+    }
+    const pointMap = roomsToPointMap([room])
+    const level = new Level(pointMap)
+    expect(
+      level.isEmpty([
+        [5, 0],
+        [1, 0],
+        [6, 6],
+      ]),
+    ).toEqual(false)
   })
 })

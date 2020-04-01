@@ -1,4 +1,4 @@
-import { wrapLevel } from './wrapping/levelWrapping'
+import { wrapLevel } from './wrapping'
 import { nextRoom } from './mazeLogic'
 import { roomsToPointMap } from './transformations'
 

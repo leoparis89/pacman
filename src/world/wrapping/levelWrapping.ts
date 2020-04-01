@@ -1,8 +1,6 @@
-import { flow } from 'lodash'
 import { tileIdIsFloor } from '../../tiles/tilleUtils'
 import tileMap from '../../tiles/tileMap'
 import {
-  cloneMap,
   makeDirUtils,
   makeIsEmpy,
   makeIsFloor,
@@ -165,7 +163,7 @@ export const handleEdgeCases = levelWithBorder => (tileValue, key) => {
   }
 }
 
-const handleSingle = (levelWithBorder: PointMap) => (tileValue, key) => {
+export const handleSingle = (levelWithBorder: PointMap) => (tileValue, key) => {
   if (!tileIdIsFloor(tileValue)) {
     return
   }
@@ -186,7 +184,10 @@ const handleSingle = (levelWithBorder: PointMap) => (tileValue, key) => {
   }
 }
 
-const handleDeadEnds = (levelWithBorder: PointMap) => (tileValue, key) => {
+export const handleDeadEnds = (levelWithBorder: PointMap) => (
+  tileValue,
+  key,
+) => {
   const [x, y] = JSON.parse(key)
   const dirs = makeDirUtils([x, y])
   const isFree = makeIsEmpy(levelWithBorder)
@@ -255,7 +256,7 @@ const handleDeadEnds = (levelWithBorder: PointMap) => (tileValue, key) => {
   // }
 }
 
-const handleCornerConnections = (levelWithBorder: PointMap) => (
+export const handleCornerConnections = (levelWithBorder: PointMap) => (
   tileValue,
   key,
 ) => {
@@ -320,37 +321,3 @@ const handleCornerConnections = (levelWithBorder: PointMap) => (
   // if (tileValue === tileMap.blue.wall.corner.bottom.right[0]) {
   // }
 }
-// const handleConnectedCorners = (levelWithBorder: PointMap) => (
-//   tileValue,
-//   key,
-// ) => {
-//   const [x, y] = JSON.parse(key)
-//   const dirs = makeDirUtils([x, y])
-//   // const isFree = makeIsEmpy(levelWithBorder)
-//   const isFloor = makeIsFloor(levelWithBorder)
-
-//   if (tileValue === tileMap.blue.wall.corner.top.left[0]) {
-//     if (isFloor(dirs.up)) {
-//       levelWithBorder.set(JSON.stringify([x, y]), 33)
-//     } else if (isFloor(dirs.down)) {
-//       levelWithBorder.set(JSON.stringify([x, y]), 50)
-//     }
-//     return
-//   }
-// }
-export const makeWrapper = handleWrapping => level => {
-  const levelWithBorder = cloneMap(level)
-  levelWithBorder.forEach(handleWrapping(levelWithBorder))
-  return levelWithBorder
-}
-
-const levelWrappers = [
-  handleCorners,
-  handleEdgeCases,
-  handleSingle,
-  handleTrivialWalls,
-  handleDeadEnds,
-  handleCornerConnections,
-].map(makeWrapper)
-
-export const wrapLevel = (level: PointMap) => flow(...levelWrappers)(level)

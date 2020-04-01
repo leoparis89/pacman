@@ -32,6 +32,7 @@ export const makeDirUtils = ([x, y]: Point): {
   [index: string]: Point
 } => {
   return {
+    current: [x, y],
     up: [x, y - 1],
     down: [x, y + 1],
     left: [x - 1, y],

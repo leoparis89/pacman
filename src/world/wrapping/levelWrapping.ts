@@ -45,6 +45,7 @@ export const handleCorners = (level: LevelMutator) => (tileValue, key) => {
   }
 }
 
+const foo = () => {}
 export const handleTrivialWalls = (levelWithBorder: LevelMutator) => (
   tileValue,
   key,
@@ -64,28 +65,10 @@ export const handleTrivialWalls = (levelWithBorder: LevelMutator) => (
   if (levelWithBorder._isEmpty(dirs.down)) {
     levelWithBorder.set(dirs.down, wall.horizontal.clean[0])
   }
-  // if (isFree(dirs.down)) {
-  //   levelWithBorder.set(
-  //     JSON.stringify(dirs.down),
-  //     tileMap.blue.wall.horizontal.clean[0],
-  //   )
-  // }
 
   if (levelWithBorder._isEmpty(dirs.left)) {
     levelWithBorder.set(dirs.left, wall.vertical.clean[0])
   }
-  // if (isFree(dirs.left)) {
-  //   levelWithBorder.set(
-  //     JSON.stringify(dirs.left),
-  //     tileMap.blue.wall.vertical.clean[0],
-  //   )
-  // }
-  // if (isFree(dirs.right)) {
-  //   levelWithBorder.set(
-  //     JSON.stringify(dirs.right),
-  //     tileMap.blue.wall.vertical.clean[0],
-  //   )
-  // }
   if (levelWithBorder._isEmpty(dirs.right)) {
     levelWithBorder.set(dirs.right, wall.vertical.clean[0])
   }

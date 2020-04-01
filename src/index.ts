@@ -103,6 +103,6 @@ const setup = (scene: Phaser.Scene) => {
   /**
    * You can zoom out by changing this porperty to lower values than 1
    */
-  camera.zoom = 0.5
+  camera.zoom = 1
   scene.physics.add.collider(character, floorLayer)
 }

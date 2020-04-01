@@ -6,10 +6,29 @@ describe('ifFloor', () => {
     expect(tileIdIsFloor(tileMap.blue.floor.broken[1])).toEqual(true)
   })
 
-  it('should return floor if tile is a floor', () => {
+  it('should return true if all tiles are a floor (case arg is array)', () => {
+    expect(
+      tileIdIsFloor([
+        tileMap.blue.floor.broken[1],
+        tileMap.blue.floor.clean[0],
+      ]),
+    ).toEqual(true)
+  })
+
+  it('should return false if tile is not a floor', () => {
     expect(tileIdIsFloor(tileMap.blue.wall.horizontal[0])).toEqual(false)
   })
+
+  it('should return false if not all tiles are a floor (case arg is array)', () => {
+    expect(
+      tileIdIsFloor([
+        tileMap.blue.floor.broken[1],
+        tileMap.blue.wall.horizontal.clean[0],
+      ]),
+    ).toEqual(false)
+  })
 })
+
 test('verify presence should work with ingle value or array ', () => {
   const data = [1, 2, 3, 4, 5]
 

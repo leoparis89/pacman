@@ -15,6 +15,8 @@ type Point = [number, number]
 
 type PointContent = number | undefined
 
+type ContentVerifier = (p: PointContent) => boolean
+
 type PointMap = Map<string, any>
 
 type Grid = Array<Array<number | undefined>>

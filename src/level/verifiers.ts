@@ -8,14 +8,16 @@ import { createAccessor } from '../world/wrapping/levelWrappingUtils'
  * Returns a function to check if a Point constains undefined
  * @param level
  */
-const makeTileVerifier = verifier => (level: PointMap) => (
+const makeTileVerifier = verifier => (
+  level: PointMap,
   coord: Point | Point[],
 ) => {
-  const accessor = createAccessor(level)
-  const cells = Array.isArray(coord)
-    ? (coord as Point[]).map(e => accessor.get(e))
-    : accessor.get(coord)
-  return verifier(cells)
+  return verifier(coord)
+  // const accessor = createAccessor(level)
+  // const cells = Array.isArray(coord)
+  //   ? (coord as Point[]).map(e => accessor.get(e))
+  //   : accessor.get(coord)
+  // return verifier(cells)
 }
 /**
  * Returns a function to check if a point contains a floor tile index
@@ -23,7 +25,7 @@ const makeTileVerifier = verifier => (level: PointMap) => (
  */
 export const makeIsEmpy = (level: PointMap) => (coord: Point) =>
   level.get(JSON.stringify(coord)) === undefined
-export const makeIsFloor = makeTileVerifier(tileIdIsFloor)
+export const isFloor = makeTileVerifier(tileIdIsFloor)
 export const makeIsVertical = makeTileVerifier(tileIdIsVertical)
 export const makeIsHorizontal = makeTileVerifier(tileIdIsHorizontal)
 export const makeDirUtils = ([x, y]: Point): {

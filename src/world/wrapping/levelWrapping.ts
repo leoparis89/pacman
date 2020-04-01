@@ -6,7 +6,7 @@ import {
   makeIsFloor,
   makeIsHorizontal,
   makeIsVertical,
-} from './levelWrappingUtils'
+} from '../../level/verifiers'
 
 export const handleCorners = wrappedLevel => (tileValue, key) => {
   const isEmpty = makeIsEmpy(wrappedLevel)

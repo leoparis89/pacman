@@ -32,7 +32,7 @@ export const makeWrapper = handleWrapping => level => {
 }
 const levelWrappers = [
   handleCorners,
-  // handleEdgeCases,
+  handleEdgeCases,
   // handleSingle,
   // handleTrivialWalls,
   // handleDeadEnds,

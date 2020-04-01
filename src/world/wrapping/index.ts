@@ -1,5 +1,5 @@
 import { flow } from 'lodash'
-import { cloneMap } from './levelWrappingUtils'
+import { cloneMap, makeWrapper } from './levelWrappingUtils'
 import {
   handleCorners,
   // handleSingle,
@@ -25,12 +25,6 @@ import { LevelMutator } from '../../level'
 //     return
 //   }
 // }
-export const makeWrapper = handleWrapping => level => {
-  const levelWithBorder = cloneMap(level)
-
-  level.forEach(handleWrapping(new LevelMutator(levelWithBorder)))
-  return levelWithBorder
-}
 const levelWrappers = [
   handleCorners,
   handleTrivialWalls,

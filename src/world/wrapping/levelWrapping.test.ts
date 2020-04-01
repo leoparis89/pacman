@@ -1,7 +1,7 @@
 // import serialize from 'serialize-javascript'
 import { roomsToPointMap } from '../transformations'
 import { handleCorners, handleTrivialWalls } from './levelWrapping'
-import { makeWrapper } from '.'
+import { makeWrapper } from './levelWrappingUtils'
 
 test('wrapCorners should return the right value ', () => {
   const room: IRoom = {

@@ -15,7 +15,7 @@ describe('level accessor', () => {
     expect(level.get([1, 2])).toEqual(88)
   })
 
-  test('isFloor should return true if tile is floor', () => {
+  test.only('isFloor should return true if tile is floor', () => {
     const room: IRoom = {
       coords: [0, 0],
       height: 4,
@@ -24,7 +24,7 @@ describe('level accessor', () => {
     }
     const pointMap = roomsToPointMap([room])
     const level = new LevelMutator(pointMap)
-    expect(level._isFloor([0, 0])).toEqual(true)
+    expect(level.isFloor([0, 0])).toEqual(true)
   })
 
   test('isFloor should return false if tile is not floor', () => {
@@ -36,7 +36,7 @@ describe('level accessor', () => {
     }
     const pointMap = roomsToPointMap([room])
     const level = new LevelMutator(pointMap)
-    expect(level._isFloor([5, 0])).toEqual(false)
+    expect(level.isFloor([5, 0])).toEqual(false)
   })
 
   test('isFloor should return true if all tiles are floor(case array)', () => {
@@ -101,7 +101,7 @@ describe('level accessor', () => {
     }
     const pointMap = roomsToPointMap([room])
     const level = new LevelMutator(pointMap)
-    expect(level._isEmpty([5, 0])).toEqual(true)
+    expect(level.isEmpty([5, 0])).toEqual(true)
   })
 
   test('isEmpty should return false if tile is not empty', () => {
@@ -113,7 +113,7 @@ describe('level accessor', () => {
     }
     const pointMap = roomsToPointMap([room])
     const level = new LevelMutator(pointMap)
-    expect(level._isEmpty([0, 0])).toEqual(false)
+    expect(level.isEmpty([0, 0])).toEqual(false)
   })
 
   test('isEmpty should return true if tile is empty (case array)', () => {

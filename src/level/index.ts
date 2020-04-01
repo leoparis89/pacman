@@ -17,8 +17,12 @@ export class LevelMutator {
 }
 
 const handleValOrArray = fn => args => {
-  if (Array.isArray(args)) {
+  if (isArrayOfArrayLol(args)) {
     return args.every(t => fn(t))
   }
   return fn(args)
+}
+
+const isArrayOfArrayLol = (arr: any[]) => {
+  return Array.isArray(arr[0])
 }

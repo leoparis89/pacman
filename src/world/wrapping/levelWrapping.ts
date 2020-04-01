@@ -1,50 +1,54 @@
-// import { tileIdIsFloor } from '../../tiles/tilleUtils'
-// import tileMap from '../../tiles/tileMap'
-// import {
-//   makeDirUtils,
-//   makeIsEmpy,
-//   isFloor,
-//   makeIsHorizontal,
-//   makeIsVertical,
-// } from '../../level/verifiers'
+import { tileIdIsFloor } from '../../tiles/tilleUtils'
+import tileMap from '../../tiles/tileMap'
+import {
+  makeDirUtils,
+  makeIsEmpy,
+  isFloor,
+  makeIsHorizontal,
+  makeIsVertical,
+} from '../../level/verifiers'
+import { Level } from '../../level'
 
-// export const handleCorners = wrappedLevel => (tileValue, key) => {
-//   const isEmpty = makeIsEmpy(wrappedLevel)
-//   if (!tileIdIsFloor(tileValue)) {
-//     return
-//   }
-//   const [x, y] = JSON.parse(key)
+export const handleCorners = wrappedLevel => (tileValue, key) => {
+  const level = new Level(wrappedLevel)
+  // if (!tileIdIsFloor(tileValue)) {
+  //   return
+  // }
+  const [x, y] = JSON.parse(key)
 
-//   const dirs = makeDirUtils([x, y])
+  const { up, left, upLeft } = makeDirUtils([x, y])
 
-//   if (isEmpty(dirs.up) && isEmpty(dirs.left) && isEmpty(dirs.upLeft)) {
-//     wrappedLevel.set(
-//       JSON.stringify(dirs.upLeft),
-//       tileMap.blue.wall.corner.top.left[0],
-//     )
-//   }
+  // if (isEmpty(dirs.up) && isEmpty(dirs.left) && isEmpty(dirs.upLeft)) {
 
-//   if (isEmpty(dirs.up) && isEmpty(dirs.right) && isEmpty(dirs.upRight)) {
-//     wrappedLevel.set(
-//       JSON.stringify(dirs.upRight),
-//       tileMap.blue.wall.corner.top.right[0],
-//     )
-//   }
+  if (level.isEmpty([up, left, upLeft])) {
+    level.set(upLeft, tileMap.blue.wall.corner.top.left[0])
+    // wrappedLevel.set(
+    //   JSON.stringify(dirs.upLeft),
+    //   tileMap.blue.wall.corner.top.left[0],
+    // )
+  }
 
-//   if (isEmpty(dirs.down) && isEmpty(dirs.right) && isEmpty(dirs.downRight)) {
-//     wrappedLevel.set(
-//       JSON.stringify(dirs.downRight),
-//       tileMap.blue.wall.corner.bottom.right[0],
-//     )
-//   }
+  // if ((isEmpty)(dirs.up) && isEmpty(dirs.right) && isEmpty(dirs.upRight)) {
+  //   wrappedLevel.set(
+  //     JSON.stringify(dirs.upRight),
+  //     tileMap.blue.wall.corner.top.right[0],
+  //   )
+  // }
 
-//   if (isEmpty(dirs.down) && isEmpty(dirs.left) && isEmpty(dirs.downLeft)) {
-//     wrappedLevel.set(
-//       JSON.stringify(dirs.downLeft),
-//       tileMap.blue.wall.corner.bottom.left[0],
-//     )
-//   }
-// }
+  // if (isEmpty(dirs.down) && isEmpty(dirs.right) && isEmpty(dirs.downRight)) {
+  //   wrappedLevel.set(
+  //     JSON.stringify(dirs.downRight),
+  //     tileMap.blue.wall.corner.bottom.right[0],
+  //   )
+  // }
+
+  // if (isEmpty(dirs.down) && isEmpty(dirs.left) && isEmpty(dirs.downLeft)) {
+  //   wrappedLevel.set(
+  //     JSON.stringify(dirs.downLeft),
+  //     tileMap.blue.wall.corner.bottom.left[0],
+  //   )
+  // }
+}
 
 // export const handleTrivialWalls = (levelWithBorder: PointMap) => (
 //   tileValue,

@@ -80,7 +80,7 @@ const _handleTrivialWalls: WrapHandler = (
 export const _handleEdgeCases: WrapHandler = (
   tileValue,
   { current, up, left, down, right, upLeft, upRight, downLeft, downRight },
-  levelWithBorder,
+  level,
 ) => {
   const [x, y] = current
   if (!tileIdIsFloor(tileValue)) {
@@ -96,18 +96,23 @@ export const _handleEdgeCases: WrapHandler = (
    *  xx
    */
   if (
-    !levelWithBorder.isFloor(
-      [right, [x + 2, y], upRight], //&&
-      // levelWithBorder.isFloor(downRight),
+    !level.isFloor(
+      right, //&&
     ) &&
-    levelWithBorder.isFloor(up)
+    !level.isFloor(
+      [x + 2, y], //&&
+    ) &&
+    !level.isFloor(
+      upRight, //&&
+    ) &&
+    level.isFloor(downRight)
     // !pointIsFloor(dirs.right) &&
     // !pointIsFloor([x + 2, y]) &&
     // !pointIsFloor(dirs.upRight) &&
     // pointIsFloor(dirs.downRight)
   ) {
     // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
-    levelWithBorder.set(right, 211)
+    level.set(right, corner.bottom.left[0])
     return
   }
 

@@ -96,22 +96,11 @@ export const _handleEdgeCases: WrapHandler = (
    *  xx
    */
   if (
-    !level.isFloor(
-      right, //&&
-    ) &&
-    !level.isFloor(
-      [x + 2, y], //&&
-    ) &&
-    !level.isFloor(
-      upRight, //&&
-    ) &&
+    !level.isFloor(right) &&
+    !level.isFloor([x + 2, y]) &&
+    !level.isFloor(upRight) &&
     level.isFloor(downRight)
-    // !pointIsFloor(dirs.right) &&
-    // !pointIsFloor([x + 2, y]) &&
-    // !pointIsFloor(dirs.upRight) &&
-    // pointIsFloor(dirs.downRight)
   ) {
-    // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
     level.set(right, corner.bottom.left[0])
     return
   }

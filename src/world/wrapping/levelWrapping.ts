@@ -86,10 +86,9 @@ export const _handleEdgeCases: WrapHandler = (
   if (!tileIdIsFloor(tileValue)) {
     return
   }
-  // const [x, y] = JSON.parse(key)
-  // const dirs = makeDirUtils([x, y])
 
   const corner = tileMap.blue.wall.corner
+
   /**
    *
    *  C?
@@ -110,52 +109,45 @@ export const _handleEdgeCases: WrapHandler = (
    *  ?C
    *  xx
    */
-  // if (
-  //   !pointIsFloor(dirs.left) &&
-  //   !pointIsFloor([x - 2, y]) &&
-  //   !pointIsFloor(dirs.upLeft) &&
-  //   pointIsFloor(dirs.downLeft)
-  // ) {
-  //   // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
-  //   levelWithBorder.set(
-  //     JSON.stringify(dirs.left),
-  //     tileMap.blue.wall.corner.bottom.right,
-  //   )
-  // }
+  if (
+    !level.isFloor(left) &&
+    !level.isFloor([x - 2, y]) &&
+    !level.isFloor(upLeft) &&
+    level.isFloor(downLeft)
+  ) {
+    level.set(left, corner.bottom.right[0])
+    return
+  }
+
   /**
    *
    *  xx
    *  ?C
    */
-  // if (
-  //   !pointIsFloor(dirs.left) &&
-  //   !pointIsFloor([x - 2, y]) &&
-  //   !pointIsFloor(dirs.downLeft) &&
-  //   pointIsFloor(dirs.upLeft)
-  // ) {
-  //   // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
-  //   levelWithBorder.set(
-  //     JSON.stringify(dirs.left),
-  //     tileMap.blue.wall.corner.top.right,
-  //   )
-  // }
+  if (
+    !level.isFloor(left) &&
+    !level.isFloor([x - 2, y]) &&
+    !level.isFloor(downLeft) &&
+    level.isFloor(upLeft)
+  ) {
+    level.set(left, corner.top.right[0])
+    return
+  }
+
   /**
    *
    *  xx
    *  C?
    */
-  // if (
-  //   !pointIsFloor(dirs.right) &&
-  //   !pointIsFloor([x + 2, y]) &&
-  //   !pointIsFloor(dirs.downRight) &&
-  //   pointIsFloor(dirs.upRight)
-  // ) {
-  //   // levelWithBorder.set(coordLeft, tileMap.blue.wall.corner.bottom.left)
-  //   levelWithBorder.set(
-  //     JSON.stringify(dirs.right),
-  //     tileMap.blue.wall.corner.top.left,
-  //   )
-  // }
+  if (
+    !level.isFloor(right) &&
+    !level.isFloor([x + 2, y]) &&
+    !level.isFloor(downRight) &&
+    level.isFloor(upRight)
+  ) {
+    level.set(right, corner.top.left[0])
+    return
+  }
 }
 
 export const handleEdgeCases = (level: LevelMutator) => (

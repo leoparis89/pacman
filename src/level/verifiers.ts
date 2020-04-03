@@ -1,10 +1,9 @@
 import {
   tileIdIsFloor,
-  tileIdIsVertical,
   tileIdIsHorizontal,
+  tileIdIsVertical,
 } from '../tiles/tilleUtils'
 import { DirConvinience } from '../world/wrapping/levelWrapping'
-import { createAccessor } from '../world/wrapping/levelWrappingUtils'
 /**
  * Returns a function to check if a Point constains undefined
  * @param level

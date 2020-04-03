@@ -8,10 +8,10 @@ export class LevelMutator {
   isFloor = handleValOrArray(this._isFloor)
   isEmpty = handleValOrArray(this._isEmpty)
 
-  get(coord: Point) {
+  get(coord: Point): PointContent {
     return this.pointMap.get(JSON.stringify(coord))
   }
-  set(coord: Point, value: number) {
+  set(coord: Point, value: PointContent) {
     return this.pointMap.set(JSON.stringify(coord), value)
   }
 }

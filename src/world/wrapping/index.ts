@@ -1,7 +1,8 @@
 import { flow } from 'lodash'
 import {
+  handleUndef,
   handleCorners,
-  // handleSingle,
+  handleSingle,
   handleTrivialWalls,
   handleEdgeCases,
 } from './levelWrapping'
@@ -24,10 +25,11 @@ import { makeWrapper } from './levelWrappingUtils'
 //   }
 // }
 const levelWrappers = [
+  handleUndef,
   handleCorners,
-  handleEdgeCases,
-  handleTrivialWalls,
-  // handleSingle,
+  // handleTrivialWalls,
+  // handleEdgeCases,
+  handleSingle,
   // handleDeadEnds,
   // handleCornerConnections,
 ].map(makeWrapper)

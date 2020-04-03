@@ -1,12 +1,6 @@
 import { tileIdIsFloor } from '../../tiles/tilleUtils'
 import tileMap from '../../tiles/tileMap'
-import {
-  makeDirUtils,
-  makeIsEmpy,
-  isFloor,
-  makeIsHorizontal,
-  makeIsVertical,
-} from '../../level/verifiers'
+import { makeDirUtils } from '../../level/verifiers'
 import { LevelMutator } from '../../level'
 
 export const handleCorners = (level: LevelMutator) => (
@@ -21,6 +15,10 @@ const _handleCorners: WrapHandler = (
   { current, up, left, down, right, upLeft, upRight, downLeft, downRight },
   level,
 ) => {
+  if (tileVale === undefined) {
+    return
+  }
+
   const corner = tileMap.blue.wall.corner
 
   if (level.isEmpty([up, left, upLeft])) {
@@ -73,6 +71,33 @@ const _handleTrivialWalls: WrapHandler = (
   }
 }
 
+export const handleUndef = (levelWithBorder: LevelMutator) => (
+  tileValue,
+  key,
+) => {
+  _handleUndef(tileValue, makeDirUtils(key), levelWithBorder)
+}
+
+const _handleUndef: WrapHandler = (
+  _,
+  { current, up, left, down, right, upLeft, upRight, downLeft, downRight },
+  levelWithBorder,
+) => {
+  if (levelWithBorder._isEmpty(up)) {
+    levelWithBorder.set(up, undefined)
+  }
+
+  if (levelWithBorder._isEmpty(down)) {
+    levelWithBorder.set(down, undefined)
+  }
+
+  if (levelWithBorder._isEmpty(left)) {
+    levelWithBorder.set(left, undefined)
+  }
+  if (levelWithBorder._isEmpty(right)) {
+    levelWithBorder.set(right, undefined)
+  }
+}
 export const _handleEdgeCases: WrapHandler = (
   tileValue,
   { current, up, left, down, right, upLeft, upRight, downLeft, downRight },
@@ -152,6 +177,29 @@ export const handleEdgeCases = (level: LevelMutator) => (
 ) => {
   _handleEdgeCases(tileValue, makeDirUtils(key), level)
 }
+
+export const _handleSingle: WrapHandler = (
+  tileValue,
+  { current, up, left, down, right, upLeft, upRight, downLeft, downRight },
+  level,
+) => {
+  const [x, y] = current
+  if (tileValue !== undefined) {
+    return
+  }
+
+  if (level.isFloor([up, down, left, right])) {
+    level.set(current, 50)
+  }
+}
+
+export const handleSingle = (level: LevelMutator) => (
+  tileValue: number,
+  key: string,
+) => {
+  _handleSingle(tileValue, makeDirUtils(key), level)
+}
+
 // export const handleSingle = (levelWithBorder: PointMap) => (tileValue, key) => {
 //   if (!tileIdIsFloor(tileValue)) {
 //     return

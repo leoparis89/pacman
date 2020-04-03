@@ -24,11 +24,10 @@ import { makeWrapper } from './levelWrappingUtils'
 //   }
 // }
 const levelWrappers = [
-  // handleCorners,
-  // handleTrivialWalls,
+  handleCorners,
   handleEdgeCases,
+  handleTrivialWalls,
   // handleSingle,
-  // handleTrivialWalls,
   // handleDeadEnds,
   // handleCornerConnections,
 ].map(makeWrapper)

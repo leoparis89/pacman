@@ -59,21 +59,17 @@ const _handleTrivialWalls: WrapHandler = (
   const wall = tileMap.blue.wall
   if (levelWithBorder._isEmpty(up)) {
     levelWithBorder.set(up, wall.horizontal.clean[0])
-    return
   }
 
   if (levelWithBorder._isEmpty(down)) {
     levelWithBorder.set(down, wall.horizontal.clean[0])
-    return
   }
 
   if (levelWithBorder._isEmpty(left)) {
     levelWithBorder.set(left, wall.vertical.clean[0])
-    return
   }
   if (levelWithBorder._isEmpty(right)) {
     levelWithBorder.set(right, wall.vertical.clean[0])
-    return
   }
 }
 

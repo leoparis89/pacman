@@ -1,12 +1,21 @@
-import { tileIdIsFloor, tileIdisEmpty } from '../tiles/tilleUtils'
+import {
+  tileIdIsFloor,
+  tileIdisEmpty,
+  tileIdIsHorizontal,
+  tileIdIsVertical,
+} from '../tiles/tilleUtils'
 
 export class LevelMutator {
   constructor(private pointMap: PointMap) {}
 
   _isFloor = (coord: Point) => tileIdIsFloor(this.get(coord))
   _isEmpty = (coord: Point) => tileIdisEmpty(this.get(coord))
+  _isHorizonal = (coord: Point) => tileIdIsHorizontal(this.get(coord))
+  _isVertical = (coord: Point) => tileIdIsVertical(this.get(coord))
   isFloor = handleValOrArray(this._isFloor)
   isEmpty = handleValOrArray(this._isEmpty)
+  isHorizonal = handleValOrArray(this._isHorizonal)
+  isVertical = handleValOrArray(this._isVertical)
 
   get(coord: Point): PointContent {
     return this.pointMap.get(JSON.stringify(coord))

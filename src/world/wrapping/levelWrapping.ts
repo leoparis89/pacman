@@ -302,6 +302,19 @@ export const _handleDeadEnds: WrapHandler = (
   }
 }
 
+export const _handleCornerConnections: WrapHandler = (
+  tileValue,
+  { current, up, left, down, right, upLeft, upRight, downLeft, downRight },
+  level,
+) => {
+  const corner = tileMap.blue.wall.corner
+
+  if (tileValue === corner.top.left[0]) {
+    // level.set(current, deadEnd.right[0])
+    return
+  }
+}
+
 // export const handleCornerConnections = (levelWithBorder: PointMap) => (
 //   tileValue,
 //   key,

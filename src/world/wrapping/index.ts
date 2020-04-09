@@ -7,6 +7,7 @@ import {
   _handleSingle,
   _handleTrivialWalls,
   _handleUndef,
+  _handleCornerConnections,
 } from './levelWrapping'
 import { makeWrapper } from './levelWrappingUtils'
 // const handleConnectedCorners = (levelWithBorder: PointMap) => (
@@ -33,7 +34,7 @@ const levelWrappers = [
   _handleSingle,
   _handleDeadEnds,
   _handleTrivialWalls,
-  // handleCornerConnections,
+  _handleCornerConnections,
 ]
   .map(makeHandler)
   .map(makeWrapper)

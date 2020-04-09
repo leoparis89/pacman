@@ -310,6 +310,8 @@ export const _handleCornerConnections: WrapHandler = (
   const corner = tileMap.blue.wall.corner
 
   /**
+   * TOP-LEFT
+   *
    *  ?
    * ?xx
    *  x
@@ -333,6 +335,8 @@ export const _handleCornerConnections: WrapHandler = (
   }
 
   /**
+   * DOWN-LEFT
+   *
    *   x
    * ? xx
    *   ?
@@ -356,6 +360,8 @@ export const _handleCornerConnections: WrapHandler = (
   }
 
   /**
+   * DOWN-RIGHT
+   *
    *  x
    * xx?
    *  ?
@@ -382,6 +388,8 @@ export const _handleCornerConnections: WrapHandler = (
   }
 
   /**
+   * TOP-RIGHT
+   *
    *   ?
    *  xx?
    *   x

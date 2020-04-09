@@ -37,4 +37,5 @@ const levelWrappers = [
 ]
   .map(makeHandler)
   .map(makeWrapper)
+
 export const wrapLevel = (level: PointMap) => flow(...levelWrappers)(level)

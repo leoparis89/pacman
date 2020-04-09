@@ -293,6 +293,42 @@ export const handleSingle = (level: LevelMutator) => (
 //   // }
 // }
 
+export const _handleDeadEnds: WrapHandler = (
+  tileValue,
+  { current, up, left, down, right, upLeft, upRight, downLeft, downRight },
+  level,
+) => {
+  if (tileValue !== undefined) {
+    return
+  }
+
+  const deadEnd = tileMap.blue.wall.deadEnd
+
+  if (level.isFloor([up, down, right])) {
+    level.set(current, deadEnd.right[0])
+    return
+  }
+
+  if (level.isFloor([up, down, left])) {
+    level.set(current, deadEnd.left[0])
+    return
+  }
+  if (level.isFloor([left, right, up])) {
+    level.set(current, deadEnd.top[0])
+    return
+  }
+  if (level.isFloor([left, right, down])) {
+    level.set(current, deadEnd.bottom[0])
+    return
+  }
+}
+
+export const handleDeadEnds = (level: LevelMutator) => (
+  tileValue: number,
+  key: string,
+) => {
+  _handleDeadEnds(tileValue, makeDirUtils(key), level)
+}
 // export const handleCornerConnections = (levelWithBorder: PointMap) => (
 //   tileValue,
 //   key,

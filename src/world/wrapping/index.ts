@@ -5,6 +5,7 @@ import {
   handleSingle,
   handleTrivialWalls,
   handleEdgeCases,
+  handleDeadEnds,
 } from './levelWrapping'
 import { makeWrapper } from './levelWrappingUtils'
 // const handleConnectedCorners = (levelWithBorder: PointMap) => (
@@ -30,7 +31,7 @@ const levelWrappers = [
   // handleTrivialWalls,
   // handleEdgeCases,
   handleSingle,
-  // handleDeadEnds,
+  handleDeadEnds,
   // handleCornerConnections,
 ].map(makeWrapper)
 export const wrapLevel = (level: PointMap) => flow(...levelWrappers)(level)

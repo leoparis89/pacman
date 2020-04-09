@@ -346,7 +346,7 @@ export const _handleCornerConnections: WrapHandler = (
       return
     }
     if (vertDown) {
-      // level.set(current, 16)
+      level.set(current, 16)
       return
     }
     if (horLeft) {
@@ -373,6 +373,9 @@ export const _handleCornerConnections: WrapHandler = (
       return
     }
 
+    if (horRight) {
+      level.set(current, 49)
+    }
     if (vertDown) {
       level.set(current, 19)
     }
@@ -396,7 +399,7 @@ export const _handleCornerConnections: WrapHandler = (
       return
     }
     if (horRight) {
-      // level.set(current, 34)
+      level.set(current, 34)
       return
     }
   }

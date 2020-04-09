@@ -326,6 +326,82 @@ export const _handleCornerConnections: WrapHandler = (
       return
     }
   }
+
+  /**
+   *    x
+   *  ? xx
+   * .  ?
+   */
+  if (tileValue === corner.bottom.left[0]) {
+    const vertDown = level.isVertical(down)
+    const horLeft = level.isHorizonal(left)
+
+    if (vertDown && horLeft) {
+      // TODO
+      return
+    }
+    if (vertDown) {
+      // level.set(current, 16)
+      return
+    }
+    if (horLeft) {
+      level.set(current, 49)
+      return
+    }
+  }
+  if (tileValue === corner.bottom.right[0]) {
+    const vertDown =
+      level.isVertical(down) ||
+      level.get(down) === corner.bottom.right[0] ||
+      level.get(down) === corner.bottom.left[0]
+
+    const horRight = level.isHorizonal(right)
+
+    if (vertDown && horRight) {
+      // TODO
+      return
+    }
+
+    if (vertDown) {
+      level.set(current, 19)
+    }
+
+    // if (vertUp && horLeft) {
+    //   // TODO
+    //   return
+    // }
+    // if (vertUp) {
+    //   level.set(current, 16)
+    //   return
+    // }
+    // if (horLeft) {
+    //   level.set(current, 34)
+    //   return
+    // }
+  }
+
+  /**
+   *   ?
+   *  xx?
+   *   x
+   */
+  if (tileValue === corner.top.right[0]) {
+    const vertUp = level.isVertical(up)
+    const horRight = level.isHorizonal(right)
+
+    if (vertUp && horRight) {
+      // TODO
+      return
+    }
+    if (vertUp) {
+      level.set(current, 19)
+      return
+    }
+    if (horRight) {
+      // level.set(current, 34)
+      return
+    }
+  }
 }
 
 // export const handleCornerConnections = (levelWithBorder: PointMap) => (

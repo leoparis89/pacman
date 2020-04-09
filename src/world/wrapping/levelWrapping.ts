@@ -3,13 +3,12 @@ import tileMap from '../../tiles/tileMap'
 import { makeDirUtils } from '../../level/verifiers'
 import { LevelMutator } from '../../level'
 
-export const handleCorners = (level: LevelMutator) => (
+const makeHandler = handler => (level: LevelMutator) => (
   tileValue: number,
   key: string,
 ) => {
-  _handleCorners(tileValue, makeDirUtils(key), level)
+  handler(tileValue, makeDirUtils(key), level)
 }
-
 const _handleCorners: WrapHandler = (
   tileVale,
   { current, up, left, down, right, upLeft, upRight, downLeft, downRight },
@@ -38,12 +37,7 @@ const _handleCorners: WrapHandler = (
   }
 }
 
-export const handleTrivialWalls = (levelWithBorder: LevelMutator) => (
-  tileValue,
-  key,
-) => {
-  _handleTrivialWalls(tileValue, makeDirUtils(key), levelWithBorder)
-}
+export const handleCorners = makeHandler(_handleCorners)
 
 const _handleTrivialWalls: WrapHandler = (
   tileValue,
@@ -71,12 +65,7 @@ const _handleTrivialWalls: WrapHandler = (
   }
 }
 
-export const handleUndef = (levelWithBorder: LevelMutator) => (
-  tileValue,
-  key,
-) => {
-  _handleUndef(tileValue, makeDirUtils(key), levelWithBorder)
-}
+export const handleTrivialWalls = makeHandler(_handleTrivialWalls)
 
 const _handleUndef: WrapHandler = (
   _,
@@ -98,6 +87,9 @@ const _handleUndef: WrapHandler = (
     levelWithBorder.set(right, undefined)
   }
 }
+
+export const handleUndef = makeHandler(_handleUndef)
+
 export const _handleEdgeCases: WrapHandler = (
   tileValue,
   { current, up, left, down, right, upLeft, upRight, downLeft, downRight },
@@ -171,12 +163,7 @@ export const _handleEdgeCases: WrapHandler = (
   }
 }
 
-export const handleEdgeCases = (level: LevelMutator) => (
-  tileValue: number,
-  key: string,
-) => {
-  _handleEdgeCases(tileValue, makeDirUtils(key), level)
-}
+export const handleEdgeCases = makeHandler(_handleEdgeCases)
 
 export const _handleSingle: WrapHandler = (
   tileValue,
@@ -323,12 +310,7 @@ export const _handleDeadEnds: WrapHandler = (
   }
 }
 
-export const handleDeadEnds = (level: LevelMutator) => (
-  tileValue: number,
-  key: string,
-) => {
-  _handleDeadEnds(tileValue, makeDirUtils(key), level)
-}
+export const handleDeadEnds = makeHandler(_handleDeadEnds)
 // export const handleCornerConnections = (levelWithBorder: PointMap) => (
 //   tileValue,
 //   key,

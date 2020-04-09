@@ -310,8 +310,21 @@ export const _handleCornerConnections: WrapHandler = (
   const corner = tileMap.blue.wall.corner
 
   if (tileValue === corner.top.left[0]) {
-    // level.set(current, deadEnd.right[0])
-    return
+    const vertUp = level.isVertical(up)
+    const horLeft = level.isHorizonal(left)
+
+    if (vertUp && horLeft) {
+      // TODO
+      return
+    }
+    if (vertUp) {
+      level.set(current, 16)
+      return
+    }
+    if (horLeft) {
+      level.set(current, 34)
+      return
+    }
   }
 }
 

@@ -309,6 +309,11 @@ export const _handleCornerConnections: WrapHandler = (
 ) => {
   const corner = tileMap.blue.wall.corner
 
+  /**
+   *  ?
+   * ?xx
+   *  x
+   */
   if (tileValue === corner.top.left[0]) {
     const vertUp = level.isVertical(up)
     const horLeft = level.isHorizonal(left)
@@ -328,9 +333,9 @@ export const _handleCornerConnections: WrapHandler = (
   }
 
   /**
-   *    x
-   *  ? xx
-   * .  ?
+   *   x
+   * ? xx
+   *   ?
    */
   if (tileValue === corner.bottom.left[0]) {
     const vertDown = level.isVertical(down)
@@ -349,6 +354,12 @@ export const _handleCornerConnections: WrapHandler = (
       return
     }
   }
+
+  /**
+   *  x
+   * xx?
+   *  ?
+   */
   if (tileValue === corner.bottom.right[0]) {
     const vertDown =
       level.isVertical(down) ||
@@ -365,19 +376,6 @@ export const _handleCornerConnections: WrapHandler = (
     if (vertDown) {
       level.set(current, 19)
     }
-
-    // if (vertUp && horLeft) {
-    //   // TODO
-    //   return
-    // }
-    // if (vertUp) {
-    //   level.set(current, 16)
-    //   return
-    // }
-    // if (horLeft) {
-    //   level.set(current, 34)
-    //   return
-    // }
   }
 
   /**
@@ -403,72 +401,6 @@ export const _handleCornerConnections: WrapHandler = (
     }
   }
 }
-
-// export const handleCornerConnections = (levelWithBorder: PointMap) => (
-//   tileValue,
-//   key,
-// ) => {
-//   const [x, y] = JSON.parse(key)
-//   const dirs = makeDirUtils([x, y])
-
-//   const isFloor = isFloor(levelWithBorder)
-//   const isHorizonal = makeIsHorizontal(levelWithBorder)
-//   const isVertival = makeIsVertical(levelWithBorder)
-//   // const isFree = makeIsEmpy(levelWithBorder)
-
-//   if (tileValue === tileMap.blue.wall.corner.top.left[0]) {
-//     if (isFloor(dirs.left) && isVertival(dirs.up)) {
-//       levelWithBorder.set(
-//         JSON.stringify([x, y]),
-//         tileMap.blue.wall.connection.top.left.case1[0],
-//       )
-//       return
-//     }
-//     if (isHorizonal(dirs.left)) {
-//       levelWithBorder.set(JSON.stringify([x, y]), 34)
-//       return
-//     }
-//   }
-
-//   if (tileValue === tileMap.blue.wall.corner.top.right[0]) {
-//     if (isFloor(dirs.right) && isVertival(dirs.up)) {
-//       levelWithBorder.set(JSON.stringify([x, y]), 19)
-//       return
-//     }
-//     // if (isHorizonal(dirs.left)) {
-//     //   levelWithBorder.set(JSON.stringify([x, y]), 34)
-//     //   return
-//     // }
-//   }
-
-//   if (tileValue === tileMap.blue.wall.corner.bottom.left[0]) {
-//     if (isHorizonal(dirs.left) && isFloor(dirs.down)) {
-//       levelWithBorder.set(JSON.stringify([x, y]), 49)
-//       return
-//     }
-//     if (isFloor(dirs.left) && isVertival(dirs.down)) {
-//       levelWithBorder.set(JSON.stringify([x, y]), 16)
-//       return
-//     }
-//     // if (isFloor(dirs.left) && isVertival(dirs.up)) {
-//     //   levelWithBorder.set(
-//     //     JSON.stringify([x, y]),
-//     //     tileMap.blue.wall.connection.top.left.case1[0],
-//     //   )
-//     //   return
-//     // }
-//     // if (isHorizonal(dirs.left)) {
-//     //   levelWithBorder.set(JSON.stringify([x, y]), 34)
-//     //   return
-//     // }
-//   }
-//   // if (tileValue === tileMap.blue.wall.corner.top.right[0]) {
-//   // }
-//   // if (tileValue === tileMap.blue.wall.corner.bottom.left[0]) {
-//   // }
-//   // if (tileValue === tileMap.blue.wall.corner.bottom.right[0]) {
-//   // }
-// }
 
 type WrapHandler = (
   t: number,

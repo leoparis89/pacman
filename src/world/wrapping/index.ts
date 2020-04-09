@@ -1,11 +1,12 @@
 import { flow } from 'lodash'
 import {
-  handleUndef,
-  handleCorners,
-  handleSingle,
-  handleTrivialWalls,
-  handleEdgeCases,
-  handleDeadEnds,
+  makeHandler,
+  _handleCorners,
+  _handleDeadEnds,
+  _handleEdgeCases,
+  _handleSingle,
+  _handleTrivialWalls,
+  _handleUndef,
 } from './levelWrapping'
 import { makeWrapper } from './levelWrappingUtils'
 // const handleConnectedCorners = (levelWithBorder: PointMap) => (
@@ -26,12 +27,14 @@ import { makeWrapper } from './levelWrappingUtils'
 //   }
 // }
 const levelWrappers = [
-  handleUndef,
-  handleCorners,
-  // handleTrivialWalls,
-  // handleEdgeCases,
-  handleSingle,
-  handleDeadEnds,
+  _handleUndef,
+  _handleCorners,
+  _handleEdgeCases,
+  _handleSingle,
+  _handleDeadEnds,
+  _handleTrivialWalls,
   // handleCornerConnections,
-].map(makeWrapper)
+]
+  .map(makeHandler)
+  .map(makeWrapper)
 export const wrapLevel = (level: PointMap) => flow(...levelWrappers)(level)

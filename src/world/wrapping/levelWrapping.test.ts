@@ -1,6 +1,10 @@
 // import serialize from 'serialize-javascript'
 import { roomsToPointMap } from '../transformations'
-import { handleCorners, handleTrivialWalls } from './levelWrapping'
+import {
+  _handleCorners,
+  _handleTrivialWalls,
+  makeHandler,
+} from './levelWrapping'
 import { makeWrapper } from './levelWrappingUtils'
 
 test('wrapCorners should return the right value ', () => {
@@ -12,7 +16,7 @@ test('wrapCorners should return the right value ', () => {
   }
   const level = roomsToPointMap([room])
 
-  const result = makeWrapper(handleCorners)(level)
+  const result = makeWrapper(makeHandler(_handleCorners))(level)
 
   const expected = new Map([
     ['[0,0]', 7],
@@ -49,7 +53,7 @@ test('wrapTrivialWalls should return the right value ', () => {
   }
   const level = roomsToPointMap([room])
 
-  const result = makeWrapper(handleTrivialWalls)(level)
+  const result = makeWrapper(makeHandler(_handleTrivialWalls))(level)
 
   const expected = new Map([
     ['[0,0]', 7],

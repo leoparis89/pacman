@@ -6,7 +6,7 @@
   "dependencies": {
     "lodash": "^4.17.15",
     "phaser": "^3.22.0",
-    "serialize-javascript": "^3.0.0"
+    "serialize-javascript": "^3.1.0"
   },
   "devDependencies": {
     "@poi/plugin-typescript": "^12.3.0",

@@ -34,6 +34,7 @@
     "dev": "yarn poi --serve src/index.ts",
     "dev:static": "POI_APP_STATIC=true yarn poi --serve src/index.ts",
     "test:watch": "jest --watch --verbose",
-    "lint": "eslint --fix 'src/**/*.ts'"
+    "lint": "eslint --fix 'src/**/*.ts'",
+    "build": "yarn poi --prod -d build src/index.ts"
   }
 }
